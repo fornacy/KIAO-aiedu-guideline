@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力</title>
+    <meta name="description" content="KIAO 出品的 AI 時代學習指南。20 個學習法 + 3 個綜合主題,從專注力、護腦、速學、賦能到超越,完整的學習系統。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+
+        /* Hero */
+        .hero { text-align: center; color: white; margin-bottom: 4rem; }
+        .brand { font-size: 1rem; opacity: 0.85; letter-spacing: 0.2em; margin-bottom: 1rem; }
+        h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.2; }
+        .hero-subtitle { font-size: 1.3rem; opacity: 0.95; margin-bottom: 2rem; }
+        .hero-tagline { font-size: 1.05rem; max-width: 700px; margin: 0 auto; opacity: 0.9; line-height: 1.8; }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem 1rem;
+            margin-bottom: 3.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            color: white;
+            text-align: center;
+        }
+        .stat-item .stat-num { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+        .stat-item .stat-label { font-size: 0.9rem; opacity: 0.85; margin-top: 0.4rem; }
+
+        /* Section heading */
+        .section-title { color: white; text-align: center; font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .section-desc { color: white; text-align: center; opacity: 0.85; margin-bottom: 2.5rem; font-size: 1rem; }
+
+        /* Chapter grid */
+        .chapters { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 4rem; }
+        @media (min-width: 768px) { .chapters { grid-template-columns: 1fr 1fr; } }
+
+        .chapter-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+        .chapter-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.28); }
+
+        .chapter-head {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.8rem 1.8rem 1.5rem;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        .chapter-label { font-size: 0.85rem; opacity: 0.85; letter-spacing: 0.15em; }
+        .chapter-count { font-size: 0.85rem; opacity: 0.85; }
+
+        .chapter-body { padding: 1.8rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .chapter-title { font-size: 1.6rem; font-weight: 900; color: #2c3e50; margin-bottom: 0.4rem; }
+        .chapter-subtitle { color: #667eea; font-weight: 600; font-size: 1rem; margin-bottom: 1rem; }
+        .chapter-desc { color: #555; line-height: 1.7; font-size: 0.95rem; flex-grow: 1; margin-bottom: 1.5rem; }
+        .chapter-topics { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+        .topic-tag { background: #f0f4ff; color: #667eea; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.82rem; font-weight: 500; }
+        .chapter-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-align: center;
+            transition: opacity 0.3s;
+            margin-top: auto;
+        }
+        .chapter-cta:hover { opacity: 0.9; }
+        .arrow { margin-left: 0.4rem; transition: transform 0.3s; }
+        .chapter-card:hover .arrow { transform: translateX(4px); }
+
+        /* About */
+        .about-section {
+            background: rgba(255,255,255,0.97);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .about-section h2 { color: #2c3e50; font-size: 1.5rem; margin-bottom: 1rem; }
+        .about-section p { color: #555; line-height: 1.9; margin-bottom: 1rem; }
+        .about-section strong { color: #667eea; }
+
+        /* Footer */
+        footer { text-align: center; color: white; opacity: 0.85; padding: 2rem 0; font-size: 0.9rem; }
+        footer p { margin-bottom: 0.5rem; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .container { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <div class="brand">KIAO · 線上課程</div>
+            <h1>總校長的<br>AI 教育寶典</h1>
+            <p class="hero-subtitle">掌握未來 30 年必備的聰明學習力</p>
+            <p class="hero-tagline">當 AI 什麼都會,我們的大腦還需要練什麼?<br>從專注力到飛輪,20 個學習法 + 3 個綜合主題,組成你完整的 AI 時代學習系統。</p>
+        </section>
+
+        <div class="stats-bar">
+            <div class="stat-item"><div class="stat-num">5</div><div class="stat-label">章節</div></div>
+            <div class="stat-item"><div class="stat-num">20</div><div class="stat-label">學習法</div></div>
+            <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">綜合主題</div></div>
+            <div class="stat-item"><div class="stat-num">22</div><div class="stat-label">全球機構共識</div></div>
+            <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">離線可用</div></div>
+        </div>
+
+        <h2 class="section-title">完整學習地圖</h2>
+        <p class="section-desc">從基礎到超越,五層金字塔結構,每章可獨立學習也可串連</p>
+
+        <div class="chapters">
+            <a href="ch1-focus/index.html" class="chapter-card">
+                <div class="chapter-head">
+                    <span class="chapter-label">CH 1</span>
+                    <span class="chapter-count">5 個學習法</span>
+                </div>
+                <div class="chapter-body">
+                    <div class="chapter-title">專注力</div>
+                    <div class="chapter-subtitle">修好你的杯子</div>
+                    <p class="chapter-desc">分心一次,大腦需要 23 分鐘才能完全回神。先把專注力的地基修好,後面所有的學習法才能站得穩。</p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">專注力診斷</span>
+                        <span class="topic-tag">盒式呼吸</span>
+                        <span class="topic-tag">無聊練習</span>
+                        <span class="topic-tag">運動處方</span>
+                        <span class="topic-tag">環境設計</span>
+                    </div>
+                    <span class="chapter-cta">進入章節 <span class="arrow">→</span></span>
+                </div>
+            </a>
+
+            <a href="ch2-brain-care/index.html" class="chapter-card">
+                <div class="chapter-head">
+                    <span class="chapter-label">CH 2</span>
+                    <span class="chapter-count">3 個學習法</span>
+                </div>
+                <div class="chapter-body">
+                    <div class="chapter-title">護腦</div>
+                    <div class="chapter-subtitle">學會正確的倒水方式</div>
+                    <p class="chapter-desc">在 AI 答案唾手可得的時代,如何不讓大腦被「代練」?用先人後機、蘇格拉底、PME 三道過濾網,把 AI 變成教練。</p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">先人後機</span>
+                        <span class="topic-tag">蘇格拉底教練</span>
+                        <span class="topic-tag">PME 教練</span>
+                    </div>
+                    <span class="chapter-cta">進入章節 <span class="arrow">→</span></span>
+                </div>
+            </a>
+
+            <a href="ch3-fast-learning/index.html" class="chapter-card">
+                <div class="chapter-head">
+                    <span class="chapter-label">CH 3</span>
+                    <span class="chapter-count">7 個學習法</span>
+                </div>
+                <div class="chapter-body">
+                    <div class="chapter-title">速學</div>
+                    <div class="chapter-subtitle">鍛鍊你的肌肉</div>
+                    <p class="chapter-desc">7 個被科學驗證過的學習法:從 DiSSS 拆解、雙重編碼、間隔重複、刻意練習、費曼技巧到睡眠鞏固——掌握聰明學習的肌肉記憶。</p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">DiSSS</span>
+                        <span class="topic-tag">雙重編碼</span>
+                        <span class="topic-tag">間隔重複</span>
+                        <span class="topic-tag">刻意練習</span>
+                        <span class="topic-tag">費曼技巧</span>
+                        <span class="topic-tag">後設認知</span>
+                        <span class="topic-tag">睡眠鞏固</span>
+                    </div>
+                    <span class="chapter-cta">進入章節 <span class="arrow">→</span></span>
+                </div>
+            </a>
+
+            <a href="ch4-empowerment/index.html" class="chapter-card">
+                <div class="chapter-head">
+                    <span class="chapter-label">CH 4</span>
+                    <span class="chapter-count">6 個學習法</span>
+                </div>
+                <div class="chapter-body">
+                    <div class="chapter-title">賦能</div>
+                    <div class="chapter-subtitle">AI 煉金術 5 步</div>
+                    <p class="chapter-desc">從「AI 使用者」升級到「AI 創造者」。問對問題→驗證答案→深度學習→打造系統→打造工具,把 AI 變成你的學習加速器。</p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">AI 能力光譜</span>
+                        <span class="topic-tag">SCRF 提問</span>
+                        <span class="topic-tag">錨點驗證</span>
+                        <span class="topic-tag">知識庫</span>
+                        <span class="topic-tag">練習方案</span>
+                        <span class="topic-tag">打造 AI 工具</span>
+                    </div>
+                    <span class="chapter-cta">進入章節 <span class="arrow">→</span></span>
+                </div>
+            </a>
+
+            <a href="ch5-beyond/index.html" class="chapter-card" style="grid-column: 1 / -1;">
+                <div class="chapter-head">
+                    <span class="chapter-label">CH 5</span>
+                    <span class="chapter-count">3 個綜合主題</span>
+                </div>
+                <div class="chapter-body">
+                    <div class="chapter-title">超越</div>
+                    <div class="chapter-subtitle">打造 AI 無法取代的核心競爭力</div>
+                    <p class="chapter-desc">當 AI 越來越強,人類最不可取代的是什麼?MIT 的 EPOCH 框架、全球 22 個機構共識的 38 項持久技能,以及整合一切的六層金字塔——你的 AI 時代完整裝備。</p>
+                    <div class="chapter-topics">
+                        <span class="topic-tag">EPOCH 框架</span>
+                        <span class="topic-tag">38 項持久技能</span>
+                        <span class="topic-tag">六層金字塔</span>
+                    </div>
+                    <span class="chapter-cta">進入章節 <span class="arrow">→</span></span>
+                </div>
+            </a>
+        </div>
+
+        <div class="about-section">
+            <h2>關於這份寶典</h2>
+            <p>這是 KIAO「<strong>總校長的 AI 教育寶典</strong>」線上課程的精華摘要網頁。每個學習法都是獨立完整的 HTML 頁面,可離線閱讀,適合手機/平板/電腦。</p>
+            <p>內容奠基於認知科學、神經科學、教育心理學的研究,包含 <strong>EEF 355 項研究</strong>、<strong>MIT EPOCH 框架</strong>、<strong>全球 22 個權威機構</strong>對「未來必備能力」的共識結論。</p>
+            <p>每份摘要都包含:一句話核心、為什麼重要、核心觀念、實踐方案、關鍵數據、真實案例、立即可做的行動——讓你不只看完,還能用得上。</p>
+        </div>
+
+        <footer>
+            <p>© KIAO · 總校長的 AI 教育寶典</p>
+            <p>掌握未來 30 年必備的聰明學習力</p>
+        </footer>
+    </div>
+</body>
+</html>

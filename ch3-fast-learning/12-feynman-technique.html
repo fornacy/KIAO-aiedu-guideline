@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 12：費曼技巧 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%); color: #2c3e50; line-height: 1.8; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 2rem 0; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(30px); } }
+        .header-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .platform-badge { display: inline-block; background: rgba(255, 255, 255, 0.25); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+        .course-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .breadcrumb { font-size: 0.95rem; opacity: 0.95; margin-bottom: 1.5rem; }
+        .progress-indicator { background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 12px; display: inline-block; font-weight: 600; margin-top: 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .core-statement { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 5px solid #f59e0b; padding: 2rem; border-radius: 12px; margin-bottom: 3rem; font-size: 1.1rem; font-weight: 600; color: #d97706; line-height: 1.8; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-top: 4px solid #f59e0b; transition: transform 0.3s ease; }
+        .stat-card:nth-child(2) { border-top-color: #8b5cf6; }
+        .stat-card:nth-child(3) { border-top-color: #ec4899; }
+        .stat-card:nth-child(4) { border-top-color: #10b981; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem; }
+        .stat-card:nth-child(2) .stat-number { color: #8b5cf6; }
+        .stat-card:nth-child(3) .stat-number { color: #ec4899; }
+        .stat-card:nth-child(4) .stat-number { color: #10b981; }
+        .stat-label { font-size: 0.95rem; color: #6b7280; font-weight: 500; }
+        .section-title { font-size: 1.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid #f59e0b; display: inline-block; }
+        .section-container { margin-bottom: 3rem; }
+        .expandable-section { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .expand-header { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); padding: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 1.05rem; color: #2c3e50; }
+        .expand-icon { font-size: 1.5rem; color: #f59e0b; transition: transform 0.3s ease; }
+        .expandable-section.active .expand-icon { transform: rotate(180deg); }
+        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .expandable-section.active .expand-content { max-height: 2500px; padding: 1.5rem; }
+        .content-list { list-style: none; margin: 1rem 0; }
+        .content-list li { padding: 0.8rem 0; padding-left: 2rem; position: relative; color: #374151; }
+        .content-list li::before { content: '→'; position: absolute; left: 0; color: #f59e0b; font-weight: bold; }
+        .practice-container { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .practice-header { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 1.5rem; font-size: 1.1rem; font-weight: 700; }
+        .practice-number { display: inline-block; background: rgba(255, 255, 255, 0.3); padding: 0.3rem 0.8rem; border-radius: 20px; margin-right: 0.8rem; font-weight: 700; }
+        .practice-content { padding: 1.5rem; }
+        .practice-step { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
+        .practice-step:last-child { border-bottom: none; }
+        .step-label { font-weight: 700; color: #2c3e50; margin-bottom: 0.5rem; }
+        .step-content { color: #374151; }
+        .concept-card { background: linear-gradient(135deg, #fef3c7 0%, #fce7aa 100%); border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .concept-title { font-weight: 700; color: #d97706; margin-bottom: 1rem; }
+        .evidence-block { background: linear-gradient(135deg, #fefce8 0%, #fef9e7 100%); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border-left: 4px solid #f59e0b; }
+        .evidence-title { font-weight: 700; color: #d97706; margin-bottom: 0.8rem; }
+        .highlight-text { background-color: #fef3c7; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600; color: #92400e; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .resource-card { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; cursor: pointer; transition: transform 0.3s ease; }
+        .resource-card:hover { transform: translateY(-5px); }
+        .resource-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .resource-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .next-section { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 2rem; border-radius: 12px; margin: 3rem 0; }
+        .next-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+        .next-content { font-size: 1rem; line-height: 1.8; }
+        .four-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+        .step-box { background: white; padding: 1.5rem; border-radius: 8px; border-top: 4px solid #f59e0b; text-align: center; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+        .step-box-num { font-size: 1.5rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem; }
+        .step-box-text { font-size: 0.9rem; color: #374151; }
+        .understanding-level { margin: 1.5rem 0; background: white; border-radius: 8px; padding: 1.5rem; }
+        .level-item { margin-bottom: 1rem; padding-left: 2rem; position: relative; }
+        .level-item::before { content: ''; position: absolute; left: 0; width: 1rem; height: 1rem; background: #fbbf24; border-radius: 50%; top: 0.3rem; }
+    </style>
+    <script>
+        function toggleExpand(element) {
+            element.parentElement.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">Kiao｜總校長的 AI 教育寶典</div>
+            <div class="course-title">學習法 12：費曼技巧</div>
+            <div class="breadcrumb"><span>CH3 速學——鍛鍊你的肌肉</span> / <span>怎麼真正懂？</span></div>
+            <div class="progress-indicator">💡 核心概念：輸出是最好的輸入</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="core-statement">
+            ⚡ <strong>核心洞見</strong>：你跟朋友解釋一個概念，講到一半發現自己根本講不清楚？恭喜你——你剛發現自己真正不懂的地方。費曼技巧是最強的「理解力檢測工具」。
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">4步</div>
+                <div class="stat-label">費曼技巧的完整流程</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">簡單但威力強大</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20-40%</div>
+                <div class="stat-label">生成效應增加記憶</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">自己說出來 vs 被動接收</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Chi 實驗中建立正確心智模型</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">自我解釋效應</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2x+</div>
+                <div class="stat-label">2025 年 AI 蘇格拉底式教學效果</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">Traditional classroom</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🏆 Richard Feynman：全世界最會解釋的人</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">1965 年諾貝爾物理學獎得主的學習哲學</div>
+                <p>Richard Feynman（1918-1988）是歷史上最偉大的物理學家之一。他研究的是量子電動力學——聽起來就很嚇人對吧？</p>
+                <p style="margin-top: 1rem;"><strong>但 Feynman 有超能力</strong>：能把任何複雜的東西，用小學生聽得懂的方式解釋。</p>
+                <p style="margin-top: 1rem;"><strong>他的名言</strong>：</p>
+                <blockquote style="font-size: 1.05rem; font-style: italic; color: #d97706; border-left: 4px solid #f59e0b; padding-left: 1rem; margin: 1rem 0;">
+                    「如果你沒辦法用簡單的話解釋一件事，代表你還不夠了解它。」
+                </blockquote>
+                <p style="margin-top: 1rem;"><strong>他的習慣</strong>：隨身帶一本筆記本，標題就是「我不知道的事情」。每次遇到不懂的東西，他就寫下來，然後花好幾週去拆解那個概念——拆到他能用最簡單的語言解釋為止。</p>
+                <p style="margin-top: 1rem;"><strong>他的發明</strong>：「費曼圖」——用簡單的線條和箭頭，取代複雜的數學公式來解釋粒子物理學。這個發明後來成了整個物理學界的標準工具。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📝 費曼技巧四步驟</h2>
+
+            <div class="four-steps">
+                <div class="step-box">
+                    <div class="step-box-num">1️⃣</div>
+                    <div class="step-box-text"><strong>選一個概念</strong><br>比如「光合作用」</div>
+                </div>
+                <div class="step-box">
+                    <div class="step-box-num">2️⃣</div>
+                    <div class="step-box-text"><strong>用簡單語言講</strong><br>如同教十歲小朋友</div>
+                </div>
+                <div class="step-box">
+                    <div class="step-box-num">3️⃣</div>
+                    <div class="step-box-text"><strong>找出卡住點</strong><br>那就是你真正不懂的</div>
+                </div>
+                <div class="step-box">
+                    <div class="step-box-num">4️⃣</div>
+                    <div class="step-box-text"><strong>簡化再簡化</strong><br>直到毫不費力地講完</div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">詳細版</span>
+                    怎麼執行費曼技巧
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">Step 1：選一個概念</div>
+                        <div class="step-content">你今天學了什麼？挑一個。比如：光合作用、供需平衡、Python 迴圈</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">Step 2：用小學生聽得懂的話解釋</div>
+                        <div class="step-content">
+                            假裝你面前坐著一個十歲小朋友。<strong>不能用專業術語</strong>。<br><br>
+                            ❌ 不要說：「葉綠體利用光能將二氧化碳和水轉化為葡萄糖」<br>
+                            ✅ 要說：「植物用陽光當能量，把空氣裡的東西和水變成食物。就像你用微波爐把冷的飯變熱一樣——植物用太陽把簡單的東西變成它需要的營養。」
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">Step 3：找出你卡住的地方</div>
+                        <div class="step-content">解釋的過程中，你一定會在某些地方卡住。比如你發現你不知道「為什麼只有綠色的植物能做光合作用」。<br><br><span class="highlight-text">太好了。你剛剛找到了你真正不懂的地方。</span></div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">Step 4：簡化再簡化</div>
+                        <div class="step-content">回去讀資料、問老師、問 AI——但<strong>只針對那個特定的卡住點</strong>。然後重新解釋一次。這次應該更流暢了。如果哪裡還是卡，重複 Step 3。直到你能像講故事一樣，毫不費力地從頭說到尾。那時候你就真的懂了。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🧬 科學支撐：為什麼「教別人」效果最好？</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">三個科學效應疊加</div>
+                <p>費曼技巧的核心其實就是「教別人」。而「教別人」之所以效果最好，有三個科學原因：</p>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>效應 1：生成效應——自己產生答案比被動接收有效</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p>還記得學習法 05 講過的生成效應嗎？自己產生答案比被動接收記憶力好<span class="highlight-text">20-40%</span>。</p>
+                    <p style="margin-top: 1rem;">「解釋」就是一種生成——你在用自己的話產生內容。大腦要搜索、組織、連結。這個過程本身就在強化記憶。</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>效應 2：自我解釋效應——說出來 vs 看別人的答案</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p><strong>Michelene Chi 的經典實驗（1994）</strong></p>
+                    <p style="margin-top: 1rem;">她讓兩組學生讀同一篇關於人體循環系統的文章：</p>
+                    <ul class="content-list">
+                        <li><strong>A 組</strong>：讀完每一段之後，自己解釋一遍這段在說什麼</li>
+                        <li><strong>B 組</strong>：讀同一篇文章兩遍</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>結果</strong>：A 組不只記得更多——他們<span class="highlight-text">全部建立了正確的心智模型</span>。B 組很多人的理解是錯的。</p>
+                    <p style="margin-top: 1rem;"><strong>為什麼</strong>：自我解釋的威力在於：它逼你的大腦去檢查自己的理解。不是「看起來懂了」，而是「真的能說出來」。</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>效應 3：師徒效應——準備教別人，你學得比為自己學更認真</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p><strong>Nestojko 等人的研究（2014）</strong></p>
+                    <p style="margin-top: 1rem;">被告知「你等一下要教別人」的學生，考試表現明顯優於只被告知「你等一下要考試」的學生。</p>
+                    <p style="margin-top: 1rem;"><strong>更有趣的是</strong>：學生為「可教代理」（如 AI 學生）花的時間和精力，比為自己學還多。</p>
+                    <p style="margin-top: 1rem;"><strong>這代表什麼</strong>：當你知道有人在等你的解釋，你的大腦會自動切換到更高品質的學習模式。</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">💡 簡單說：為什麼解釋能逼出深度理解</div>
+                <p>
+                    當你讀書時，你的大腦可以「跳過」不懂的地方。但當你要向別人解釋時，每一個「跳過」都會被暴露。你必須面對你的理解漏洞。這種「被迫面對」，就是學習發生的地方。
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🤖 AI 時代的應用：讓 AI 當你永遠不厭煩的學生</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 1</span>
+                    AI 扮演十歲好奇學生
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">Prompt 範本</div>
+                        <div class="step-content">
+                            「你扮演一個十歲的好奇小朋友。我要解釋一個概念給你聽。請你每聽完一段就問我：『為什麼？』『那個是什麼意思？』『可以舉個例子嗎？』如果我的解釋不夠清楚，就說：『我還是不太懂。』」
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">怎麼做</div>
+                        <div class="step-content">
+                            1️⃣ 貼上 Prompt<br>
+                            2️⃣ 開始解釋你要講的概念<br>
+                            3️⃣ AI 會不斷追問<br>
+                            4️⃣ 每一個「為什麼」都在幫你挖得更深
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 2</span>
+                    AI 找你的邏輯漏洞
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">解釋完之後，問 AI</div>
+                        <div class="step-content">「我剛才的解釋裡，有沒有邏輯不通的地方？有沒有我以為我懂但其實跳過了的步驟？請直接指出來。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">為什麼這步重要</div>
+                        <div class="step-content">AI 會像一個嚴格的老師，幫你檢查每一個環節。你會發現，有些地方你「覺得自己懂」，但實際上邏輯有漏洞。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 3</span>
+                    費曼技巧 + PME 組合拳
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">P（Plan）</div>
+                        <div class="step-content">我今天要用費曼技巧解釋什麼概念？</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">M（Monitor）</div>
+                        <div class="step-content">解釋的過程中，我卡在哪裡了？</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">E（Evaluate）</div>
+                        <div class="step-content">解釋完之後，我真的從頭到尾都說得清楚嗎？</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">威力</div>
+                        <div class="step-content">費曼技巧 + PME = 最強的理解力檢測工具</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📊 2025 年最新研究：AI 蘇格拉底式教學</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Science Reports 2025 多項研究整合</div>
+                <p><strong>AI 蘇格拉底式教學</strong>（AI 問你問題，不給答案）的效果：</p>
+                <ul class="content-list">
+                    <li>學習效果 = <span class="highlight-text">傳統課堂的 2 倍以上</span></li>
+                    <li>花的時間<span class="highlight-text">更少</span></li>
+                    <li>參與度<span class="highlight-text">更高</span></li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>另一項研究數據</strong>：<span class="highlight-text">77.8%</span> 的學生覺得 AI 問問題比傳統教學更有效。</p>
+                <p style="margin-top: 1rem;"><strong>關鍵洞見</strong>：這不就是費曼技巧的 AI 版本嗎？不是 AI 教你。是 AI 問你。你自己教會了自己。</p>
+                <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    🏆 <strong>Bloom 的「兩個 Sigma」回響</strong>：1984 年 Bloom 發現，一對一教學能讓學生表現超越 98% 的一般課堂學生。現在 AI 能做這件事。
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🔍 理解的五個層級</h2>
+
+            <div class="understanding-level">
+                <div class="level-item">
+                    <strong>❌ 層級 1：完全不懂</strong><br>
+                    連基本概念都不知道
+                </div>
+                <div class="level-item">
+                    <strong>⚠️ 層級 2：好像懂了</strong>（流暢性錯覺！）<br>
+                    讀過幾遍，感覺記住了，但其實沒有真的理解
+                </div>
+                <div class="level-item">
+                    <strong>🟡 層級 3：可以背出來</strong><br>
+                    會複述教科書上的話，但不代表理解
+                </div>
+                <div class="level-item">
+                    <strong>✅ 層級 4：可以用自己的話說</strong><br>
+                    能用自己的例子和語言解釋
+                </div>
+                <div class="level-item">
+                    <strong>🏆 層級 5：可以教十歲小朋友</strong>（費曼標準）<br>
+                    能把複雜的東西用最簡單的方式講得讓別人懂
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">💡 關鍵認知</div>
+                <p>大部分人卡在「層級 2」就以為自己學會了。<strong>費曼技巧幫你突破到最高層級</strong>。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📥 輸入 vs 📤 輸出：你花了多少時間在錯的事上？</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">學習時間分配的真相</div>
+                <p>大部分人花 <span class="highlight-text">80% 時間在輸入</span>（讀、聽、看）</p>
+                <p style="margin-top: 1rem;">但真正讓你學會的是 <span class="highlight-text">輸出</span>（說、寫、教）</p>
+                <p style="margin-top: 1rem;"><strong>費曼技巧 = 把輸入翻轉成輸出</strong></p>
+                <p style="margin-top: 1rem;">你不需要讀更多。你需要<span class="highlight-text">說更多</span>。</p>
+                <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;">
+                    💡 <strong>最好的學習方式</strong>：讀一段 → 合上書 → 用自己的話說一遍
+                </p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🎓 真實案例：王芸昕的化學突破</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">高一學生，從「假懂」到「真懂」</div>
+                <p><strong>背景</strong>：王芸昕是高一學生，學習科目是化學。她讀了氧化還原反應的課本三遍，覺得自己懂了。</p>
+                <p style="margin-top: 1rem;"><strong>現實檢驗</strong>：被老師問「為什麼金屬會被氧化」時，發現完全講不清楚，只能說出教科書上的字句。</p>
+                <p style="margin-top: 1rem;"><strong>轉變</strong>：用費曼技巧，跟 AI 對話五分鐘。AI 追問「為什麼」四次，她才發現自己的理解有三個漏洞。</p>
+                <p style="margin-top: 1rem;"><strong>後來</strong>：針對那些漏洞補習後，不只會做題，更能解釋原因。</p>
+                <p style="margin-top: 1rem;"><strong>關鍵</strong>：「費曼技巧暴露了我的無知。然後我才真的學會了。」</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📋 60 秒行動：現在就試費曼技巧</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">行動</span>
+                    立刻開始
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">步驟 1：選一個「你覺得自己懂了」的概念</div>
+                        <div class="step-content">什麼都行——光合作用、經濟學的供需、Python 迴圈</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 2：打開手機錄音</div>
+                        <div class="step-content">假裝你在跟一個十歲的小朋友解釋。說出來。<strong>不看筆記</strong>。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 3：聽回放，找出卡住點</div>
+                        <div class="step-content">卡住的地方？恭喜你，那就是你其實還沒真正懂的地方。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 4（可選）：打開你的 AI 工具</div>
+                        <div class="step-content">「我剛用費曼技巧解釋了 [概念]，我卡在 [卡住的地方]。請用簡單的方式幫我理解這個部分，然後問我三個問題來確認我真的懂了。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✅ 記住</div>
+                        <div class="step-content">費曼說：「如果你不能用簡單的話解釋它，你就還沒真正理解它。」每一次卡住，都是你變強的機會。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">📝</div>
+                <div class="resource-title">費曼技巧教學框架</div>
+                <div class="resource-desc">4 步驟完整範本</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-title">費曼技巧 AI Skill</div>
+                <div class="resource-desc">AI 扮演十歲學生問你</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">📊</div>
+                <div class="resource-title">理解度檢查清單</div>
+                <div class="resource-desc">5 層級評估工具</div>
+            </div>
+        </div>
+
+        <div class="next-section">
+            <div class="next-title">🎓 總結：三個學習法的完整迴圈</div>
+            <div class="next-content">
+                現在你已經學完「速學」三部曲：<br><br>
+                <strong>學習法 10：間隔重複與提取練習</strong>——怎麼不忘記？<br>
+                <strong>學習法 11：刻意練習</strong>——怎麼練才有效？<br>
+                <strong>學習法 12：費曼技巧</strong>——怎麼真正懂？<br><br>
+                三個方法結合起來，就是完整的聰明學習系統：記住 → 精通 → 深度理解。<br><br>
+                下次當你說「我要多讀幾遍」時，停下來。改成「我要用費曼技巧講一遍」。你會發現，一遍抵十遍。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

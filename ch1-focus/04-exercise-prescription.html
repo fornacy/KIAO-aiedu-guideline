@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 04：運動處方 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb span {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .progress-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .core-statement {
+            background: linear-gradient(135deg, #fff5f7 0%, #f0e6ff 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #764ba2;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Data Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #10b981; }
+        .stat-card:nth-child(4) { border-top-color: #ec4899; }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #10b981; }
+        .stat-card:nth-child(4) .stat-number { color: #ec4899; }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section-container {
+            margin-bottom: 3rem;
+        }
+
+        /* Expandable Sections */
+        .expandable-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .expand-header {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .expand-header:hover {
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: #667eea;
+        }
+
+        .expandable-section.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .expandable-section.active .expand-content {
+            max-height: 3000px;
+            padding: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .content-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .content-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Practice Cards */
+        .practice-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .practice-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .practice-number {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-right: 0.8rem;
+            font-weight: 700;
+        }
+
+        .practice-content {
+            padding: 1.5rem;
+        }
+
+        .practice-step {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .practice-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .step-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .sub-step {
+            margin-top: 0.8rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid #f59e0b;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+
+        /* Key Concepts */
+        .concept-card {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .concept-content {
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .concept-highlight {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Download Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .resource-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .resource-desc {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Next Section */
+        .next-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .next-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .next-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .next-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            .course-title {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        /* Quick Exercise Box */
+        .quick-exercise {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .quick-exercise-title {
+            font-weight: 700;
+            color: #d97706;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .quick-exercise-content {
+            color: #78350f;
+            line-height: 1.8;
+        }
+
+        /* Dopamine Comparison */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        .good-dopamine {
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .bad-dopamine {
+            color: #dc2626;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">🎯 Kiao | 總校長的 AI 教育寶典｜掌握未來 30 年必備的聰明學習力！</div>
+            <div class="course-title">CH1 專注力——修好你的杯子 | 學習法 04：運動處方</div>
+            <div class="breadcrumb">
+                <span>📚 課程教材</span>
+                <span>/</span>
+                <span>💪 身體動起來</span>
+            </div>
+            <div class="progress-indicator">⏳ 學習法 04 / 20</div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Core Statement -->
+        <div class="core-statement">
+            「運動 20 分鐘帶來的專注力，比任何補習班、營養品或意志力訓練都有效——而且免費。」
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">⏱️ 20</div>
+                <div class="stat-label">一次運動帶來的<br>專注力提升持續時間（分鐘）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">⏱️ 10</div>
+                <div class="stat-label">每天最低有效<br>運動劑量（分鐘）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">🥇 #1</div>
+                <div class="stat-label">Naperville 學區<br>TIMSS 科學排名</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">🧠 BDNF</div>
+                <div class="stat-label">大腦的<br>奇蹟肥料</div>
+            </div>
+        </div>
+
+        <!-- Why It Matters Section -->
+        <div class="section-container">
+            <h2 class="section-title">💡 為什麼它重要</h2>
+            <ul class="content-list">
+                <li>運動不只是身體的事，它是大腦最強的修復開關</li>
+                <li><span class="concept-highlight">BDNF（腦源性神經營養因子）</span>= 大腦的「奇蹟肥料」(miracle-gro for the brain)</li>
+                <li>運動 20 分鐘 = 大腦獲得約 2 小時的專注力提升</li>
+                <li>有氧運動能促進海馬迴神經新生（neurogenesis）——真的會長出新的腦細胞</li>
+            </ul>
+        </div>
+
+        <!-- Key Concepts Section -->
+        <div class="section-container">
+            <h2 class="section-title">🧪 核心概念</h2>
+
+            <!-- Concept 1: BDNF -->
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>a) BDNF——大腦的奇蹟肥料 🌱</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <div class="concept-card">
+                        <ul class="content-list">
+                            <li>運動時肌肉釋放分子，刺激大腦產生 BDNF</li>
+                            <li>BDNF 促進神經元生長、強化突觸連結、改善記憶與學習效率</li>
+                            <li>John Ratey《Spark》：運動是大腦的「肥料」，沒有它，大腦會萎縮</li>
+                            <li>BDNF 濃度越高 = 更強的學習能力、更好的記憶保留、更強的專注力</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 2: Naperville -->
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>b) Naperville 學區奇蹟 🏆</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <div class="concept-card">
+                        <div class="concept-content">
+                            <p style="margin-bottom: 1rem;"><strong>背景故事：</strong></p>
+                            <ul class="content-list">
+                                <li>美國伊利諾州 Naperville 學區實驗</li>
+                                <li>讓學生在上課前做 20 分鐘有氧運動</li>
+                                <li>實驗對象：一般公立學校學生（不是資優班）</li>
+                            </ul>
+                            <p style="margin: 1rem 0; font-weight: 600;"><strong>驚人結果：</strong></p>
+                            <ul class="content-list">
+                                <li>該學區在國際 TIMSS（國際數學與科學教學成就趨勢調查）評比中：</li>
+                                <li style="margin-left: 2rem;">✓ 科學排名全球第一</li>
+                                <li style="margin-left: 2rem;">✓ 數學排名全球第六</li>
+                                <li>注意：這些不是資優學生，是一般公立學校學生</li>
+                            </ul>
+                            <p style="margin-top: 1rem; color: #667eea; font-weight: 600;">💭 這告訴我們什麼？20 分鐘的運動，能改變整個學區的學習成績。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 3: Dopamine -->
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>c) 「優質多巴胺」vs.「垃圾多巴胺」 ⚖️</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <div class="concept-card">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>垃圾多巴胺</th>
+                                    <th>優質多巴胺</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="bad-dopamine">短影音、社群通知、遊戲</span></td>
+                                    <td><span class="good-dopamine">運動、閱讀、創意工作</span></td>
+                                </tr>
+                                <tr>
+                                    <td>短暫刺激，越用越鈍</td>
+                                    <td>穩定釋放，同時搭配血清素、腦內啡</td>
+                                </tr>
+                                <tr>
+                                    <td>快速上升快速下降（成癮循環）</td>
+                                    <td>真正的滿足感，可持續 2 小時+</td>
+                                </tr>
+                                <tr>
+                                    <td>多巴胺受體逐漸鈍化</td>
+                                    <td>多巴胺受體敏感度逐漸恢復</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p style="margin-top: 1.5rem; color: #667eea; font-weight: 600;">🔑 核心洞見：運動是「多巴胺受體的復健師」——幫助鈍化的受體重新恢復敏感度。</p>
+                        <p style="margin-top: 1rem; color: #374151; font-size: 0.95rem;">當你長期被短影音轟炸，你的多巴胺受體會逐漸失去反應。運動則透過穩定、自然的多巴胺釋放，幫助你的受體「重新學會敏感」。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concept 4: Minimum Effective Dose -->
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>d) 最低有效劑量 ⚡</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <div class="concept-card">
+                        <ul class="content-list">
+                            <li>不需要去健身房練到爆汗</li>
+                            <li><strong>最低有效劑量：每天 10 分鐘中等強度活動</strong>
+                                <ul style="margin-top: 0.5rem; margin-left: 2rem;">
+                                    <li>快走</li>
+                                    <li>跳繩</li>
+                                    <li>爬樓梯</li>
+                                    <li>原地跳躍</li>
+                                </ul>
+                            </li>
+                            <li>關鍵指標：「能說話但不能唱歌」的強度就夠了</li>
+                            <li style="color: #059669; font-weight: 600;">「任何運動都比沒有運動好」——完美主義是運動的最大敵人</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Exercises Section -->
+        <div class="section-container">
+            <h2 class="section-title">🏃 實踐練習——設計你的運動處方</h2>
+
+            <!-- Practice 1 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">① </span>設計你的運動處方
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">步驟一：選擇你「最不討厭」的運動</div>
+                        <div class="step-content">
+                            不是最有效的，是最不抗拒的。如果你討厭跑步，那就別跑步。騎腳踏車、游泳、跳舞、散步都可以。關鍵是你能持續做，而不是練到放棄。
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟二：設定最低劑量</div>
+                        <div class="step-content">
+                            先從每天 10 分鐘開始。不是 10 分鐘到 30 分鐘，就是 10 分鐘。
+                            <div class="sub-step">📝 原因：低門檻 = 高堅持率。你會更容易建立習慣。</div>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟三：綁定到固定時段</div>
+                        <div class="step-content">
+                            建議：上課/上班前，效果最好。為什麼？因為運動帶來的專注力提升，正好用來應對課程或工作。
+                            <div class="sub-step">📍 例子：早上 7:30 快走 10 分鐘 → 8:00 開始上課 / 開始工作</div>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟四：記錄「運動後的感覺」</div>
+                        <div class="step-content">
+                            而不是運動時的辛苦。運動後你感覺如何？更清醒？更專注？更有精力？把這個正面感受記下來。這樣下次你就會想起「啊，運動讓我感覺很好」，而不是「又要累死我」。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice 2 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">② </span>用 AI 當私人健身教練
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">第 1 步：告訴 AI 你的基本條件</div>
+                        <div class="step-content">
+                            年齡、體能狀況、可用時間、偏好的運動類型。例：「我 25 歲，完全沒運動習慣，每天只有 15 分鐘，討厭跑步但喜歡跳舞」
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第 2 步：請 AI 設計一份 7 天入門運動計畫</div>
+                        <div class="step-content">
+                            告訴 AI：「根據我的條件，幫我設計一份 7 天的入門運動計畫，每天 10 分鐘」。AI 會根據你的需求，產出具體的每日課表。
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第 3 步：每週回報執行狀況</div>
+                        <div class="step-content">
+                            「這週我完成了 5 天，星期五沒運動。今天感覺哪天最有精力」。讓 AI 幫你調整難度。太簡單就增加時間，太累就降低強度。
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">重點</div>
+                        <div class="step-content">
+                            用 AI 消除「不知道該做什麼」的心理摩擦。當你有具體的計畫，執行就容易 10 倍。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice 3 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">③ </span>三種快速運動方案（各 10 分鐘）
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">🌅 晨起版</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>快走 8 分鐘（或室內踏步）</li>
+                                <li>簡易伸展 2 分鐘（肩膀、腰部、雙腿）</li>
+                            </ul>
+                            <div class="sub-step">💡 適合：需要快速清醒的早晨</div>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🕐 課間版</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>原地跳 3 分鐘</li>
+                                <li>深蹲 3 分鐘</li>
+                                <li>開合跳 4 分鐘</li>
+                            </ul>
+                            <div class="sub-step">💡 適合：課堂間隔、工作午休時間</div>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🏠 居家版</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>爬樓梯 4 分鐘</li>
+                                <li>波比跳 3 分鐘</li>
+                                <li>瑜珈伸展 3 分鐘</li>
+                            </ul>
+                            <div class="sub-step">💡 適合：下班後、晚上、無法外出的日子</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice 4 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">④ </span>運動處方規劃模板使用
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">📊 每日記錄</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>運動類型（例：快走、跳繩）</li>
+                                <li>時長（10 分鐘、15 分鐘）</li>
+                                <li>強度（低、中、高）</li>
+                                <li>運動後專注力自評（1-10 分）</li>
+                                <li>當天課程/工作表現（有無進步？）</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">📈 每週回顧</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>哪天最容易執行？為什麼？</li>
+                                <li>哪天最容易跳過？原因是什麼？</li>
+                                <li>這週有無感受到專注力的提升？</li>
+                                <li>整週平均「運動後專注力」評分是多少？</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">📅 月度調整</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>根據數據逐步增加時間（10 分 → 15 分 → 20 分）</li>
+                                <li>調整運動時段（如果晨起版效果最好，就持續晨起版）</li>
+                                <li>改變運動方式（保持新鮮感，防止厭倦）</li>
+                                <li>設定下個月的目標（例：達到 20 天 / 月）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Exercise -->
+            <div class="quick-exercise">
+                <div class="quick-exercise-title">⚡ 5 分鐘快速行動</div>
+                <div class="quick-exercise-content">
+                    <p><strong>現在就做：</strong></p>
+                    <p style="margin-top: 0.5rem;">1. 選擇一個你「最不討厭」的運動（走樓梯、快走、跳舞都可以）</p>
+                    <p style="margin-top: 0.5rem;">2. 設定明天的運動時間（建議在課程或工作前 20 分鐘）</p>
+                    <p style="margin-top: 0.5rem;">3. 設個手機鬧鐘提醒你</p>
+                    <p style="margin-top: 0.5rem; color: #d97706; font-weight: 600;">就這樣。明天早上 10 分鐘，你就會感受到不同。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Downloadable Resources Section -->
+        <div class="section-container">
+            <h2 class="section-title">📥 下載資源</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">運動處方規劃模板</div>
+                    <div class="resource-desc">每日記錄表 + 每週回顧 + 月度調整指南</div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🤖</div>
+                    <div class="resource-title">AI 健身教練提示詞</div>
+                    <div class="resource-desc">複製貼上，請 AI 幫你設計個人運動計畫</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Takeaways -->
+        <div class="section-container">
+            <h2 class="section-title">🎯 核心重點速記</h2>
+            <div class="concept-card">
+                <ul class="content-list">
+                    <li><strong>運動 = 大腦的肥料</strong>。20 分鐘運動 = 2 小時的專注力提升。</li>
+                    <li><strong>最低劑量就夠了</strong>。10 分鐘中等強度運動，効果已經很好。完美主義只會讓你放棄。</li>
+                    <li><strong>優質多巴胺 > 垃圾多巴胺</strong>。運動是恢復多巴胺受體敏感度的最好方式。</li>
+                    <li><strong>綁定時段最重要</strong>。在課程/工作前運動，效果最好。</li>
+                    <li><strong>用 AI 消除心理摩擦</strong>。不知道該做什麼？問 AI。讓 AI 設計你的計畫。</li>
+                    <li><strong>記錄感受，不記錄痛苦</strong>。運動後你感覺如何？正面感受會強化習慣。</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Next Section -->
+        <div class="next-section">
+            <div class="next-title">🔗 下一步：環境設計</div>
+            <div class="next-content">
+                身體動起來之後，最後一步是重新設計你的環境——讓專注變成預設值，而不是靠意志力。
+            </div>
+            <div class="next-content">
+                環境是最強大的行為設計工具。當環境支持你，專注就不再是一種痛苦的選擇，而是自然而然的結果。
+            </div>
+            <a href="#" class="next-button">→ 進入學習法 05：環境設計</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © KIAO · 總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力
+    </footer>
+
+    <script>
+        // Expandable sections functionality
+        const expandHeaders = document.querySelectorAll('.expand-header');
+
+        expandHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.closest('.expandable-section');
+                section.classList.toggle('active');
+            });
+        });
+
+        // Resource cards click handler (for future implementation)
+        const resourceCards = document.querySelectorAll('.resource-card');
+        resourceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Placeholder for download functionality
+                alert('此資源將在課程平台下載');
+            });
+        });
+    </script>
+</body>
+</html>

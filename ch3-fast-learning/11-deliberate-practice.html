@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 11：刻意練習 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%); color: #2c3e50; line-height: 1.8; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 2rem 0; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(30px); } }
+        .header-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .platform-badge { display: inline-block; background: rgba(255, 255, 255, 0.25); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+        .course-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .breadcrumb { font-size: 0.95rem; opacity: 0.95; margin-bottom: 1.5rem; }
+        .progress-indicator { background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 12px; display: inline-block; font-weight: 600; margin-top: 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .core-statement { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 5px solid #ef4444; padding: 2rem; border-radius: 12px; margin-bottom: 3rem; font-size: 1.1rem; font-weight: 600; color: #dc2626; line-height: 1.8; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-top: 4px solid #ef4444; transition: transform 0.3s ease; }
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #3b82f6; }
+        .stat-card:nth-child(4) { border-top-color: #10b981; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #ef4444; margin-bottom: 0.5rem; }
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #3b82f6; }
+        .stat-card:nth-child(4) .stat-number { color: #10b981; }
+        .stat-label { font-size: 0.95rem; color: #6b7280; font-weight: 500; }
+        .section-title { font-size: 1.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid #ef4444; display: inline-block; }
+        .section-container { margin-bottom: 3rem; }
+        .expandable-section { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .expand-header { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); padding: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 1.05rem; color: #2c3e50; }
+        .expand-icon { font-size: 1.5rem; color: #ef4444; transition: transform 0.3s ease; }
+        .expandable-section.active .expand-icon { transform: rotate(180deg); }
+        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .expandable-section.active .expand-content { max-height: 2500px; padding: 1.5rem; }
+        .content-list { list-style: none; margin: 1rem 0; }
+        .content-list li { padding: 0.8rem 0; padding-left: 2rem; position: relative; color: #374151; }
+        .content-list li::before { content: '→'; position: absolute; left: 0; color: #ef4444; font-weight: bold; }
+        .practice-container { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .practice-header { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 1.5rem; font-size: 1.1rem; font-weight: 700; }
+        .practice-number { display: inline-block; background: rgba(255, 255, 255, 0.3); padding: 0.3rem 0.8rem; border-radius: 20px; margin-right: 0.8rem; font-weight: 700; }
+        .practice-content { padding: 1.5rem; }
+        .practice-step { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
+        .practice-step:last-child { border-bottom: none; }
+        .step-label { font-weight: 700; color: #2c3e50; margin-bottom: 0.5rem; }
+        .step-content { color: #374151; }
+        .concept-card { background: linear-gradient(135deg, #fee2e2 0%, #fed7d7 100%); border-left: 4px solid #ef4444; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .concept-title { font-weight: 700; color: #dc2626; margin-bottom: 1rem; }
+        .evidence-block { background: linear-gradient(135deg, #fef2f2 0%, #fde8e8 100%); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border-left: 4px solid #ef4444; }
+        .evidence-title { font-weight: 700; color: #dc2626; margin-bottom: 0.8rem; }
+        .highlight-text { background-color: #fef3c7; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600; color: #92400e; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .resource-card { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; cursor: pointer; transition: transform 0.3s ease; }
+        .resource-card:hover { transform: translateY(-5px); }
+        .resource-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .resource-title { font-weight: 700; margin-bottom: 0.5rem; }
+        .next-section { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 2rem; border-radius: 12px; margin: 3rem 0; }
+        .next-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+        .next-content { font-size: 1rem; line-height: 1.8; }
+        .zone-diagram { background: linear-gradient(135deg, #fee2e2 0%, #fed7d7 100%); padding: 2rem; border-radius: 12px; margin: 1.5rem 0; text-align: center; }
+        .zone-item { display: inline-block; margin: 1rem; padding: 1rem 1.5rem; background: white; border-radius: 8px; border-left: 4px solid #ef4444; min-width: 150px; }
+        .zone-item:nth-child(2) { border-left-color: #fbbf24; }
+        .zone-item:nth-child(3) { border-left-color: #f87171; }
+        .table-wrapper { overflow-x: auto; margin: 1.5rem 0; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+        th { background: #ef4444; color: white; padding: 1rem; text-align: left; font-weight: 700; }
+        td { padding: 1rem; border-bottom: 1px solid #e5e7eb; }
+        tr:last-child td { border-bottom: none; }
+    </style>
+    <script>
+        function toggleExpand(element) {
+            element.parentElement.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">Kiao｜總校長的 AI 教育寶典</div>
+            <div class="course-title">學習法 11：刻意練習</div>
+            <div class="breadcrumb"><span>CH3 速學——鍛鍊你的肌肉</span> / <span>怎麼練才有效？</span></div>
+            <div class="progress-indicator">🔨 核心概念：練習的方式，比練習的時間重要一萬倍</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="core-statement">
+            ⚡ <strong>核心洞見</strong>：你練了很久但沒進步？問題不是你不努力。問題是你的練習方式錯了。刻意練習不是「多練」，而是「練對的地方」，得到「有用的反饋」。
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">1-1.5</div>
+                <div class="stat-label">頂尖音樂家每天高強度練習時間（小時）</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">64%</div>
+                <div class="stat-label">延遲 AI 介入的學習進步</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2x</div>
+                <div class="stat-label">一對一指導的效果倍數</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">Bloom 的兩個 Sigma</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">78分→</div>
+                <div class="stat-label">6 週內從 62 分進步</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">刻意練習案例</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">⏰ 迷思破解：「一萬小時定律」是假的</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Ericsson 的聲明：我沒說「一萬小時就夠了」</div>
+                <p>Malcolm Gladwell 在《異數》中說：任何領域成為專家需要一萬小時練習。這句話被瘋狂引用。但原始研究者 Anders Ericsson 親自出來澄清：<strong>「這個定律被誤解了。」</strong></p>
+                <p style="margin-top: 1rem;"><strong>Ericsson 的真實發現（柏林音樂學院 1993）</strong>：</p>
+                <ul class="content-list">
+                    <li><strong>世界級小提琴家</strong>：約一萬小時</li>
+                    <li><strong>優秀小提琴家</strong>：約八千小時</li>
+                    <li><strong>普通小提琴家</strong>：約四千小時</li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;"><strong>Ericsson 的真正要點</strong>：不是時間。<span class="highlight-text">是練習的品質</span>。如果你每天走同一條路上班，走十年、走一萬小時——你會變成「走路專家」嗎？不會。你只是一個走了很久的普通人。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📊 三種練習等級：你在哪一種？</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Ericsson 的練習階層模型</div>
+                <p>Ericsson 把所有練習分成三個等級。大部分人卡在第一級，一直在重複已經會的東西。</p>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <tr>
+                        <th>等級</th>
+                        <th>特徵</th>
+                        <th>進度</th>
+                        <th>例子</th>
+                    </tr>
+                    <tr>
+                        <td><strong>🔻 天真練習</strong></td>
+                        <td>做完就好，重複已會的，零計劃</td>
+                        <td><span style="color: #dc2626; font-weight: 700;">零進步</span></td>
+                        <td>彈鋼琴永遠彈同幾首曲子</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🔸 有目的練習</strong></td>
+                        <td>有目標、有計劃、有追蹤，但缺反饋</td>
+                        <td><span style="color: #f59e0b; font-weight: 700;">緩慢進步</span></td>
+                        <td>設定「提升英文寫作」但不知怎樣改進</td>
+                    </tr>
+                    <tr>
+                        <td><strong>🔶 刻意練習</strong></td>
+                        <td>目的 + 反饋 + 針對弱點設計</td>
+                        <td><span style="color: #10b981; font-weight: 700;">快速進步</span></td>
+                        <td>專練「時態」，AI 每次給反饋「為什麼錯」</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">🎯 刻意練習三要素</div>
+                <p>① <strong>專門練你不會的</strong>（不是重複已會的）<br>② <strong>有人看著你給反饋</strong>（老師、教練或 AI）<br>③ <strong>目標在你的能力邊界之外</strong>（夠難，但可以突破）</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">⭕ 三個區域模型：成長發生在哪裡？</h2>
+
+            <div class="zone-diagram">
+                <div class="zone-item">
+                    🔵 <strong>舒適圈</strong><br>
+                    已經會的<br>
+                    輕鬆不成長
+                </div>
+                <div class="zone-item">
+                    🟢 <strong>學習圈</strong><br>
+                    剛好難<br>
+                    成長發生這裡
+                </div>
+                <div class="zone-item">
+                    🔴 <strong>恐慌圈</strong><br>
+                    太難了<br>
+                    崩潰、放棄
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>怎麼找到你的「學習圈」？實例說明</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p><strong>健身例子</strong>：你能輕鬆做 20 個伏地挺身</p>
+                    <ul class="content-list">
+                        <li>❌ <strong>20 個 = 舒適圈</strong>。你不會變強</li>
+                        <li>✅ <strong>25 個 = 學習圈</strong>。會很吃力，但做得到。下週能做 26 個，然後 27 個...這是成長</li>
+                        <li>❌ <strong>100 個 = 恐慌圈</strong>。你可能會受傷。大腦當機</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>學習例子</strong>：你的英文寫作出錯率 40%</p>
+                    <ul class="content-list">
+                        <li>❌ 再做同樣簡單的練習 = 舒適圈</li>
+                        <li>✅ 做難度稍高一點的（50% 出錯率）= 學習圈</li>
+                        <li>❌ 直接做高級寫作（90% 出錯率）= 恐慌圈</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">⚠️ AI 時代的陷阱：AI 拿走掙扎 = 拿走學習</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">2025 年研究：「自由用 AI」vs「延遲介入」</div>
+                <p>Bastani 等人在《美國國家科學院院刊》（PNAS）發表研究，比較兩組學生：</p>
+                <ul class="content-list">
+                    <li><strong>A 組（自由使用 ChatGPT）</strong>：遇到困難立刻找 AI。練習表現好 ✓</li>
+                    <li><strong>B 組（延遲 AI 介入）</strong>：先自己想 3 分鐘，再找 AI。練習表現較差 ✗</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>但是...</strong></p>
+                <ul class="content-list">
+                    <li><strong>A 組後測進步</strong>：30%</li>
+                    <li><strong>B 組後測進步</strong>：64%</li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fee2e2; padding: 1rem; border-radius: 8px; border-left: 4px solid #dc2626;">
+                    ⚠️ <strong>原因</strong>：掙扎本身就是學習。當你卡住時，你的大腦在全力運作，在搜索、測試、思考。AI 太快介入，剝奪了你這個寶貴的過程。
+                </p>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">解法</span>
+                    「延遲 AI 介入」的三步驟
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">步驟 1：遇到困難</div>
+                        <div class="step-content">不要馬上求救。先自己想至少 3 分鐘（或更久）</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 2：完全卡住</div>
+                        <div class="step-content">才打開 AI——但請求提示，<span class="highlight-text">不是答案</span></div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 3：拿到提示後</div>
+                        <div class="step-content">再花 3 分鐘自己想，用提示去推敲答案。不要看 AI 的正確答案直接複製</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🧠 為什麼有效</div>
+                        <div class="step-content">就像好的教練：不幫你舉啞鈴。站在旁邊說「再撐一下，你做得到」。掙扎的過程，才是大腦真正變強的時刻。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🌊 心流：最強的學習狀態</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Mihaly Csikszentmihalyi（1975）的心流理論</div>
+                <p>你有沒有試過玩遊戲忘記時間？畫畫畫到不知道已經過三小時？寫程式寫到忘了吃飯？那就是心流。</p>
+                <p style="margin-top: 1rem;"><strong>心流發生的條件</strong>：<span class="highlight-text">挑戰程度 = 技能水準</span></p>
+                <ul class="content-list">
+                    <li>太簡單 → 無聊</li>
+                    <li>太難 → 焦慮</li>
+                    <li>剛剛好 → 心流 🔥</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>關鍵洞見</strong>：心流發生在學習圈。刻意練習、學習圈、心流——三個概念指向同一件事：找到那個「剛好夠難」的甜蜜點。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🏆 Bloom 的發現：天才是練出來的</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">120 位世界級人才的秘密</div>
+                <p>Benjamin Bloom 研究了 120 位世界級人才，橫跨六個極差異的領域：鋼琴、雕塑、游泳、網球、數學、神經外科。</p>
+                <p style="margin-top: 1rem;"><strong>驚人發現</strong>：儘管領域完全不同，<span class="highlight-text">卓越的發展過程幾乎一樣</span>：</p>
+                <ul class="content-list">
+                    <li>① 初期接觸和興趣培養</li>
+                    <li>② 有教練指導的專注練習</li>
+                    <li>③ 高階專業訓練</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>結論</strong>：<span class="highlight-text">卓越是被發展出來的，不是天生的</span>。天才不是天生的。是由於「系統化的練習 + 專家指導 + 對困難的執著」。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🔧 五步設計你的刻意練習</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">五步</span>
+                    完整的刻意練習框架
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">第一步：找出弱點</div>
+                        <div class="step-content">不要練你已經會的。<strong>專門找你最容易犯錯的地方</strong>。<br>問自己：「我在哪個環節最常失敗？」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第二步：設定具體目標</div>
+                        <div class="step-content">❌ 模糊目標：「今天練英文」<br>✅ 具體目標：「今天練習英文時態，目標是做 20 題零失誤」<br><br>越具體，效果越好。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第三步：專注練習 45-90 分鐘</div>
+                        <div class="step-content">刻意練習需要高度專注。Ericsson 的研究顯示：<strong>頂尖音樂家每天只做 1-1.5 小時的高強度練習</strong>——不是八小時。<br><br>品質遠比數量重要。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第四步：尋求反饋</div>
+                        <div class="step-content">你看不見自己的盲點。你需要教練、老師或 AI。<br><br>提示詞範本：「我寫了以下文章。請不要幫我改，只告訴我：哪裡有問題、為什麼有問題、怎麼改進。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第五步：記錄和反思</div>
+                        <div class="step-content">練完花 3 分鐘回顧：今天哪裡進步？哪裡還卡？下次要調整什麼？<br><br>這就是 PME 的 E（Evaluate）——反思帶來改善。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🤖 讓 AI 當你的反饋教練</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">AI 角色</span>
+                    教練，不是代練
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">❌ AI 當代練（錯誤用法）</div>
+                        <div class="step-content">「幫我寫」「幫我解」「幫我改」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✅ AI 當教練（正確用法）</div>
+                        <div class="step-content">「我寫了以下內容。不要幫我改。只告訴我哪裡有問題、為什麼、怎麼改進。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">💡 區別</div>
+                        <div class="step-content">教練指出問題。<strong>由你自己</strong>來修正。這樣你的大腦在工作，不是 AI 在工作。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">📊 效果對比</div>
+                        <div class="step-content">「AI 幫改」組：短期進步快，長期遺忘快<br>「AI 給反饋」組：短期慢，長期進步 2-3 倍</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">🏆 Bloom 的「兩個 Sigma」問題</div>
+                <p>接受一對一指導 + 精熟學習的學生，表現超過 <span class="highlight-text">98%</span> 的一般課堂學生。現在 AI 可以成為你的一對一教練。但記住——AI 給反饋，不是給答案。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🎓 真實案例：劉子軒的突破</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">國中一年級，數學從 62 分進步到 78 分</div>
+                <p><strong>背景</strong>：劉子軒每天做一小時數學作業，但題型稍微變一下就不會。月考成績停留在 62 分。</p>
+                <p style="margin-top: 1rem;"><strong>轉變</strong>：用刻意練習法，專門練習「應用題」這個弱點。不是做更多題目，而是「有計畫地針對應用題設計練習」。</p>
+                <p style="margin-top: 1rem;"><strong>六週後</strong>：月考進步到 78 分。更重要的是，新題型也開始能解。</p>
+                <p style="margin-top: 1rem;"><strong>關鍵</strong>：從「無差別大量練習」改成「有針對性的刻意練習」。時間投入可能更少，但品質更高。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📋 60 秒行動：設計你的刻意練習</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">行動</span>
+                    現在就開始
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">步驟 1：選一個技能</div>
+                        <div class="step-content">英文寫作、程式、數學、任何你想進步的技能</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 2：找出最弱的一個環節</div>
+                        <div class="step-content">填空：「我最弱的部分是________」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 3：設定明確目標</div>
+                        <div class="step-content">填空：「明天我要花 15 分鐘專門練________，目標是________」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 4：打開 AI</div>
+                        <div class="step-content">貼上這段 Prompt：「我正在學 [你的技能]，我覺得自己最弱的部分是 [子技能]。請幫我設計一個 15 分鐘的刻意練習計畫，要有：明確目標、練習步驟、自我檢查方式。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✅ 記住</div>
+                        <div class="step-content">刻意練習不是「多練」，是「練對的地方」。15 分鐘的刻意練習，勝過 2 小時的無意識重複。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">📋</div>
+                <div class="resource-title">刻意練習進度追蹤表</div>
+                <div class="resource-desc">每週檢查你的進步百分比</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-title">有益困難 AI Skill</div>
+                <div class="resource-desc">AI 幫你診斷練習品質</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">📊</div>
+                <div class="resource-title">五步計畫模板</div>
+                <div class="resource-desc">直接套用設計你的練習</div>
+            </div>
+        </div>
+
+        <div class="next-section">
+            <div class="next-title">➡️ 下堂課預告</div>
+            <div class="next-content">
+                <strong>學習法 12：費曼技巧——輸出是最好的輸入</strong><br><br>
+                你跟朋友解釋一個概念，講到一半發現自己根本講不清楚？恭喜你——你剛發現自己真正不懂的地方。<br><br>
+                費曼技巧是最強的「理解力檢測工具」。如果你說不清楚，就代表你還沒真正懂。下堂課教你怎麼用這個方法，讓 AI 當你的永遠不厭煩的學生。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

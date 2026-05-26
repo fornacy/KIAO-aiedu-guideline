@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 07：PME 教練 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand {
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.95;
+            margin-bottom: 15px;
+        }
+
+        .course-title {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .chapter-info {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .learning-method {
+            font-size: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 50px 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-icon {
+            font-size: 28px;
+        }
+
+        .core-statement {
+            font-size: 20px;
+            font-weight: 600;
+            color: #764ba2;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .subsection {
+            margin-bottom: 30px;
+        }
+
+        .subsection-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .subsection-content {
+            margin-left: 20px;
+            line-height: 1.9;
+        }
+
+        .subsection-content p {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #764ba2;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #764ba2;
+            margin-bottom: 12px;
+        }
+
+        .card-content {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .data-card {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .data-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #764ba2;
+            margin-bottom: 10px;
+        }
+
+        .data-label {
+            font-size: 14px;
+            color: #667eea;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .data-source {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
+        }
+
+        .pme-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border: 2px solid #667eea;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .pme-box h3 {
+            color: #667eea;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pme-box p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .pme-box ul {
+            margin-left: 25px;
+            line-height: 1.9;
+        }
+
+        .pme-box ul li {
+            margin-bottom: 8px;
+        }
+
+        .practice-steps {
+            margin: 30px 0;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+
+        .step-number {
+            min-width: 50px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .example-box {
+            background: white;
+            border-left: 3px solid #667eea;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .resources {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .resources h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .resource-item {
+            padding: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .resource-item::before {
+            content: '📥';
+            position: absolute;
+            left: 0;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 35%;
+            border-radius: 10px;
+        }
+
+        .progress-label {
+            font-size: 13px;
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .key-takeaways {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .key-takeaways h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .takeaway-item {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .takeaway-item::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #764ba2;
+            font-weight: 700;
+        }
+
+        .next-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+        }
+
+        .next-section h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .next-section p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .footer {
+            background: #f5f7fa;
+            padding: 30px 40px;
+            text-align: center;
+            font-size: 13px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-content {
+            margin-bottom: 15px;
+        }
+
+        .footer-divider {
+            margin: 15px 0;
+        }
+
+        .warning-box {
+            background: #ffe0e0;
+            border-left: 3px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: #e0f0e0;
+            border-left: 3px solid #4caf50;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .chapter-info {
+                font-size: 22px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="brand">Kiao 平台</div>
+                <div class="course-title">總校長的 AI 教育寶典</div>
+                <div class="chapter-info">CH2 護腦——學會正確的倒水方式</div>
+                <div class="learning-method">掌握未來 30 年必備的聰明學習力</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Progress Bar -->
+            <div style="margin-bottom: 40px;">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-label">學習法 07 / 20</div>
+            </div>
+
+            <!-- Section 1: 一句話核心 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">💡</span>
+                    一句話核心
+                </div>
+                <div class="core-statement">
+                    學習品管的三道過濾網：Plan（計畫前問自己）→ Monitor（過程中檢查自己）→ Evaluate（結束後回顧）。用 PME，確保你真的學會了——而不是只是「覺得學會了」。
+                </div>
+            </div>
+
+            <!-- Section 2: 為什麼重要 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🔬</span>
+                    為什麼重要
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">⚠️ 你真的「懂了」嗎？</div>
+                    <div class="subsection-content">
+                        <p>有個很常見的經驗：上課都聽懂了，但考試全忘了。</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>老師在台上講，你在下面點頭</li>
+                            <li>每句話都聽懂了。筆記抄得漂漂亮亮</li>
+                            <li>下課的時候你覺得：「嗯，今天的課我掌握了」</li>
+                            <li>然後考試卷發下來，你看著題目，腦袋一片空白</li>
+                        </ul>
+                        <p style="margin-top: 15px;">「我明明懂了啊？怎麼會想不出來？」</p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">💭 流暢性錯覺</div>
+                    <div class="subsection-content">
+                        <p>心理學家叫它<span class="highlight">「流暢性錯覺」——Fluency Illusion</span>。</p>
+                        <p style="margin-top: 12px;">你的大腦把「聽起來很熟悉」誤判成「我已經學會了」。就像你在書店翻了一本書，覺得每個字都認得，就以為自己讀完了。</p>
+                        <div class="data-card">
+                            <div class="data-number">83%</div>
+                            <div class="data-label">無法回憶</div>
+                            <div class="data-source">AI 使用者無法回憶自己剛用 AI 完成的內容 | Gerlich 2025</div>
+                        </div>
+                        <p style="margin-top: 15px; padding: 15px; background: #ffe0e0; border-left: 3px solid #ff6b6b; border-radius: 6px;">
+                            <strong>更恐怖的是：他們以為自己記住了。</strong> 平均高估自己表現 4 分左右。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">📊 PME 的科學威力</div>
+                    <div class="subsection-content">
+                        <p>英國教育捐贈基金會（Education Endowment Foundation）做了一項大規模的統合分析，回顧了 355 項獨立研究：</p>
+                        <div class="data-card">
+                            <div class="data-number">7-8</div>
+                            <div class="data-label">個月</div>
+                            <div class="data-source">學習進度快於沒有接受訓練的學生</div>
+                        </div>
+                        <p style="margin-top: 15px;">系統性地教導<span class="highlight">後設認知策略（包含 PME）</span>的學生，學習進度平均快了七到八個月。</p>
+                        <div class="data-card">
+                            <div class="data-number">1.11</div>
+                            <div class="data-label">效果量</div>
+                            <div class="data-source">數學領域 | 超級大效果（>0.4 算大效果）</div>
+                        </div>
+                        <p style="margin-top: 15px;">而且<span class="highlight">這個效果跨越年齡、跨越學科</span>。不管你是小學生還是大學生、學數學還是學歷史——PME 都有效。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: 核心觀念 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">🧠</span>
+                    核心觀念：PME 三道過濾網
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">🎯 什麼是 PME？</div>
+                    <div class="subsection-content">
+                        <p>PME 是認知科學裡「後設認知」——Metacognition——的核心架構。</p>
+                        <p style="margin-top: 12px;"><span class="highlight">後設認知是什麼？簡單說就是：「想你自己在想什麼」。</span></p>
+                        <ul style="margin-left: 20px; margin-top: 15px;">
+                            <li><strong>正常的認知：</strong> 你在想數學</li>
+                            <li><strong>後設認知：</strong> 你在想「我到底懂不懂這個數學」</li>
+                        </ul>
+                        <p style="margin-top: 15px;">後設認知就是你大腦的品管部門。負責檢查：「等等，我真的學會了嗎？還是我只是覺得我學會了？」</p>
+                        <p style="margin-top: 15px; padding: 15px; background: #f0f4ff; border-left: 3px solid #667eea; border-radius: 6px;">
+                            <strong>PME 就是品管部門的三道檢查流程。</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">P - Plan：開始之前先問自己</div>
+                    <div class="subsection-content">
+                        <p style="margin-bottom: 15px;">在你開始任何學習任務之前——不管是念書、寫報告、還是請 AI 幫忙——先暫停 30 秒，問自己<span class="highlight">三個問題</span>：</p>
+
+                        <div class="pme-box">
+                            <h3>❶ 我要學什麼？</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                （不是「我要交什麼作業」，是「我要學什麼」。這兩個問題的答案通常不一樣。）
+                            </p>
+                        </div>
+
+                        <div class="pme-box">
+                            <h3>❷ 我目前知道多少？</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                （這就是上堂課的認知快照。你現在在哪裡？起點在哪？）
+                            </p>
+                        </div>
+
+                        <div class="pme-box">
+                            <h3>❸ 我打算用什麼策略？</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                （我要先自己讀？先嘗試解題？還是先問 AI 給我一個方向？）
+                            </p>
+                        </div>
+
+                        <p style="margin-top: 20px; padding: 15px; background: #f0f4ff; border-left: 3px solid #667eea; border-radius: 6px;">
+                            <strong>Plan 的重點：</strong> 讓你帶著意識去學習，而不是無意識地自動駕駛。<br><br>
+                            大部分人學習的方式是什麼？打開課本 → 開始看 → 看到哪算哪 → 看累了就停。這叫自動駕駛。你的大腦根本沒有在掌舵。<br><br>
+                            Plan 就是讓你重新坐到駕駛座上。知道自己要去哪、現在在哪、打算怎麼走。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">M - Monitor：學習中不斷檢查自己</div>
+                    <div class="subsection-content">
+                        <p style="margin-bottom: 15px;">這是三道裡面<span class="highlight">最重要的一道</span>。因為大部分人完全不做這件事。</p>
+
+                        <p style="margin-bottom: 15px;">Monitor 就是在你學習的「過程中」，不斷問自己：</p>
+                        <div class="pme-box">
+                            <h3>「我真的懂了嗎？還是我只是覺得懂了？」</h3>
+                            <p style="margin-top: 15px;"><strong>怎麼測試？很簡單。</strong></p>
+                            <ul style="margin-left: 0;">
+                                <li>蓋上課本。關掉 AI。</li>
+                                <li>然後用你自己的話，把剛剛學到的東西說一遍。</li>
+                            </ul>
+                        </div>
+
+                        <p style="margin-top: 15px;"><strong>如果你能用自己的話清楚地解釋出來——恭喜你，你真的懂了。</strong></p>
+
+                        <div class="success-box">
+                            ✓ 清楚解釋 = 真的懂了
+                        </div>
+
+                        <p style="margin-top: 15px;"><strong>如果你說到一半卡住了、含糊了、或者只能背出原文但不能換個方式講——那你只是「覺得懂了」。</strong></p>
+
+                        <div class="warning-box">
+                            ✗ 說不出來 = 流暢性錯覺 = 還沒懂
+                        </div>
+
+                        <p style="margin-top: 20px; padding: 15px; background: #f0f4ff; border-left: 3px solid #667eea; border-radius: 6px;">
+                            <strong>Monitor 的實戰方法：</strong> 每隔 10 到 15 分鐘，暫停一下。問自己：「我剛剛學了什麼？我能不能用自己的話說出來？」<br><br>
+                            特別是在你使用 AI 之後。AI 給了你一個答案。你讀完了。你覺得懂了。<br><br>
+                            停。<br><br>
+                            關掉 AI。用你自己的話重新說一遍。如果說不出來——你就知道了：那個「懂了」是假的。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">E - Evaluate：結束後回頭看</div>
+                    <div class="subsection-content">
+                        <p style="margin-bottom: 15px;">在你完成一個學習任務之後，花<span class="highlight">三分鐘</span>做一個「學習回顧」：</p>
+
+                        <div class="pme-box">
+                            <h3>❶ 計畫 vs 實際</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                我原本計畫學什麼？我實際學到了什麼？有落差嗎？
+                            </p>
+                        </div>
+
+                        <div class="pme-box">
+                            <h3>❷ 真懂 vs 假懂</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                哪些部分我真正理解了？哪些部分其實還模糊？
+                            </p>
+                        </div>
+
+                        <div class="pme-box">
+                            <h3>❸ 下次改善</h3>
+                            <p style="margin-left: 20px; font-size: 13px;">
+                                如果再來一次，我會怎麼調整我的學習策略？
+                            </p>
+                        </div>
+
+                        <p style="margin-top: 20px; padding: 15px; background: #f0f4ff; border-left: 3px solid #667eea; border-radius: 6px;">
+                            <strong>Evaluate 做的事很簡單：</strong> 讓你從「做完就算了」變成「做完還要想一想」。<br><br>
+                            大部分人學完、寫完、交完，就結束了。大腦自動關機。<br><br>
+                            但最好的學習者，都有一個共同特徵：他們會「回頭看」。就像開車之後看一眼後照鏡。不是為了回去，是為了知道自己走過的路長什麼樣。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: 練習方案 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">✍️</span>
+                    練習方案
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">🎯 用 PME 改造你的 AI 使用習慣</div>
+                    <div class="subsection-content">
+
+                        <div style="margin-bottom: 30px;">
+                            <h4 style="color: #667eea; font-weight: 700; margin-bottom: 15px;">使用 AI 之前（Plan）</h4>
+                            <div class="pme-box">
+                                <p style="margin-left: 0;">拿出一張紙或備忘錄。寫下：</p>
+                                <ul style="margin-left: 0;">
+                                    <li>我要學什麼？（不是「我要完成什麼」）</li>
+                                    <li>我目前知道什麼？</li>
+                                    <li>我打算讓 AI 幫我什麼？（是教練，不是代練）</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 30px;">
+                            <h4 style="color: #667eea; font-weight: 700; margin-bottom: 15px;">使用 AI 的過程中（Monitor）</h4>
+                            <div class="pme-box">
+                                <p style="margin-left: 0;">每一次 AI 回覆之後：</p>
+                                <ul style="margin-left: 0;">
+                                    <li>暫停。不要急著讀下一段。</li>
+                                    <li>用自己的話，重新說一遍 AI 剛告訴你的東西。</li>
+                                    <li>如果說不出來 → 你還沒懂。回去再看，或請 AI 用更簡單的方式解釋。</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 30px;">
+                            <h4 style="color: #667eea; font-weight: 700; margin-bottom: 15px;">使用 AI 之後（Evaluate）</h4>
+                            <div class="pme-box">
+                                <p style="margin-left: 0;">關掉 AI。花三分鐘回顧：</p>
+                                <ul style="margin-left: 0;">
+                                    <li>我計畫學 XX。我實際學到了什麼？</li>
+                                    <li>哪些部分我真正理解？哪些還模糊？</li>
+                                    <li>下次我會怎麼調整？</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <p style="margin-top: 20px; padding: 15px; background: #e0f0e0; border-left: 3px solid #4caf50; border-radius: 6px;">
+                            <strong>三個階段，加起來不到十分鐘。</strong> 但長期累積下來，你和那些「用完 AI 就關掉、什麼都沒學到」的人，差距會像雪球一樣越滾越大。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">🤖 可以直接用的 AI Prompt</div>
+                    <div class="subsection-content">
+                        <div class="example-box" style="background: white; border: 2px solid #667eea;">
+                            <strong>你是我的 PME 教練。我現在要用你幫我檢查學習品質。</strong><br><br>
+                            以下是我對這個主題的目前理解：「＿＿＿」<br><br>
+                            請分三個階段幫我：<br><br>
+                            <strong>【Plan 階段】- 開始前</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>我實際上想學什麼？</li>
+                                <li>我最多只需要花多少時間在這個主題？</li>
+                                <li>我應該用什麼策略來學？</li>
+                            </ul><br>
+                            <strong>【Monitor 階段】- 學習過程中</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>在我讀完你的解釋後，問我：「你能用自己的話解釋一下剛才的重點嗎？」</li>
+                                <li>如果我說不出來或說不清楚，幫我找出我沒理解的地方，而不是直接給答案</li>
+                            </ul><br>
+                            <strong>【Evaluate 階段】- 結束後</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>比較「我開始時說我想學什麼」vs「我實際學到了什麼」</li>
+                                <li>問我：「有哪些部分你真的理解了？哪些還很模糊？」</li>
+                                <li>建議：「下次如果再學類似的東西，你會怎麼調整方式？」</li>
+                            </ul><br>
+                            記住：讓我自己說出來，比你直接告訴我更有效。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 關鍵數據 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📊</span>
+                    關鍵數據
+                </div>
+
+                <div class="card-grid">
+                    <div class="data-card">
+                        <div class="data-number">7-8</div>
+                        <div class="data-label">個月進度提升</div>
+                        <div class="data-source">後設認知訓練 | EEF 355 項研究</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-number">1.11</div>
+                        <div class="data-label">效果量（數學）</div>
+                        <div class="data-source">超級大效果</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-number">83%</div>
+                        <div class="data-label">無法回憶</div>
+                        <div class="data-source">AI 使用者無法回憶自己剛做的事</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: 帶走資源 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📥</span>
+                    帶走資源
+                </div>
+
+                <div class="resources">
+                    <h3>課程提供的工具和素材</h3>
+                    <div class="resource-item">
+                        <strong>PME 教練檢查清單</strong> - Plan-Monitor-Evaluate 三步驟的完整工作表
+                    </div>
+                    <div class="resource-item">
+                        <strong>PME AI Skill</strong> - 自動引導你完成 Plan、Monitor、Evaluate 的工具
+                    </div>
+                    <div class="resource-item">
+                        <strong>每週追蹤表</strong> - 記錄你的「Monitor 階段發現沒懂的次數」，看進步有沒有發生
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: 本堂重點回顧 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📋</span>
+                    本堂重點回顧
+                </div>
+
+                <div class="key-takeaways">
+                    <h3>四個核心認識</h3>
+                    <div class="takeaway-item">
+                        <strong>AI 答案太流暢，讓你的大腦產生假象：</strong> 83% 的 AI 使用者無法回憶自己剛才用 AI 完成了什麼，而且他們以為自己記住了。這叫流暢性錯覺。
+                    </div>
+                    <div class="takeaway-item">
+                        <strong>PME 是學習的品質管控系統：</strong> Plan（開始前問自己三問）、Monitor（過程中檢查自己）、Evaluate（結束後回顧）。三個簡單問題，但威力巨大。
+                    </div>
+                    <div class="takeaway-item">
+                        <strong>科學證據驚人：</strong> EEF 355 項研究統合分析發現，系統性教導後設認知的學生，學習進度快了 7-8 個月。數學領域效果量 1.11（超級大效果）。跨越年齡、跨越學科有效。
+                    </div>
+                    <div class="takeaway-item">
+                        <strong>最關鍵的不是努力，是覺察：</strong> 會用 PME 的人跟不會用的人，差距不是「努不努力」——是「知不知道自己在幹嘛」。學習品管部門，不能外包給 AI。
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: 真實案例 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">📖</span>
+                    真實案例
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-title">王琪文的轉變：從流暢性錯覺到真正理解</div>
+                    <div class="subsection-content">
+                        <p><strong>起點：</strong> 王琪文是大一經濟系。她用 ChatGPT 讀了一週的總體經濟學章節，每天看 AI 寫的解析，覺得「太清楚了，我完全懂」。</p>
+
+                        <div class="warning-box">
+                            <strong>小考成績：58 分</strong><br>
+                            「怎麼可能？我明明用 ChatGPT 讀了一週啊？」
+                        </div>
+
+                        <p style="margin-top: 15px;"><strong>發現問題：</strong> 絕望中她發現了 PME 框架。她意識到：她只是「看懂」了 AI 的解釋，並沒有「學會」經濟學。</p>
+
+                        <p style="margin-top: 15px;"><strong>轉變：</strong> 從第二個單元開始，她改變方法：</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li><strong>Plan：</strong> 在使用 AI 前先寫出「我要學什麼」、「我知道多少」</li>
+                            <li><strong>Monitor：</strong> 看完 AI 的回答後會關掉 AI，用自己的話重新說一遍</li>
+                            <li>第一次只能講出 40%，但她發現了：「那些說不出來的地方就是還沒懂」</li>
+                        </ul>
+
+                        <div class="success-box">
+                            <strong>期中考經濟學：78 分</strong><br>
+                            而且是真的理解，不是死背。
+                        </div>
+
+                        <p style="margin-top: 15px;">她說最有收穫的不是成績，而是「<span class="highlight">終於知道自己是真的懂還是假裝懂</span>」。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: 今天就能做的行動 -->
+            <div class="section">
+                <div class="section-title">
+                    <span class="section-icon">⚡</span>
+                    今天就能做的行動
+                </div>
+
+                <div class="subsection">
+                    <div class="subsection-content">
+                        <div class="step" style="border-left: 5px solid #764ba2;">
+                            <div class="step-number" style="background: #764ba2;">1</div>
+                            <div class="step-content">
+                                <h4>60 秒內完成</h4>
+                                <p>拿出一張紙。寫下：「我要學什麼」、「我知道多少」、「我用什麼策略」。這就是 Plan。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" style="border-left: 5px solid #764ba2; margin-top: 15px;">
+                            <div class="step-number" style="background: #764ba2;">2</div>
+                            <div class="step-content">
+                                <h4>然後打開 AI，讀完一段回答後，關掉 AI</h4>
+                                <p>用自己的話說一遍。今天就做一次。這就是 Monitor。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" style="border-left: 5px solid #764ba2; margin-top: 15px;">
+                            <div class="step-number" style="background: #764ba2;">3</div>
+                            <div class="step-content">
+                                <h4>花三分鐘回顧</h4>
+                                <p>「我計畫學 XX。我實際學到了什麼？哪些部分我真正理解？哪些還模糊？下次怎麼調整？」</p>
+                                <p style="margin-top: 10px; color: #667eea; font-weight: 600;">就這樣。不到十分鐘，但改變你對學習的理解。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: 下一步 -->
+            <div class="section">
+                <div class="next-section">
+                    <h3>CH2 護腦篇完結回顧</h3>
+                    <p style="margin-top: 10px;">
+                        你在 CH2 學了三個保護大腦的方法：<br><br>
+                        <strong>學習法 05 先人後機</strong>：問 AI 前先自己想<br>
+                        <strong>學習法 06 蘇格拉底教練</strong>：讓 AI 問你問題<br>
+                        <strong>學習法 07 PME 教練</strong>：Plan-Monitor-Evaluate 三道品質管控<br><br>
+                        三個方法，一個核心：<span class="highlight">人類先決定方向，AI 負責加速。</span><br><br>
+                        你的杯子修好了（CH1），水也倒對了（CH2）。下一章，我們要真正鍛鍊肌肉。在 CH3 速學篇，你會學到如何用 AI 加速你的學習。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                © KIAO · 總校長的 AI 教育寶典<br>
+                掌握未來 30 年必備的聰明學習力
+            </div>
+            <div class="footer-divider"></div>
+            <div style="font-size: 12px; color: #bbb;">
+                學習法 07：PME 教練 | CH2 護腦篇 | 更新於 2026年3月
+            </div>
+        </div>
+    </div>
+</body>
+</html>

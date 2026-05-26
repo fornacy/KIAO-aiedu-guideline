@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 10：間隔重複與提取練習 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%); color: #2c3e50; line-height: 1.8; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 2rem 0; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(30px); } }
+        .header-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .platform-badge { display: inline-block; background: rgba(255, 255, 255, 0.25); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; }
+        .course-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.6; }
+        .breadcrumb { font-size: 0.95rem; opacity: 0.95; margin-bottom: 1.5rem; }
+        .progress-indicator { background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 12px; display: inline-block; font-weight: 600; margin-top: 1rem; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+        .core-statement { background: linear-gradient(135deg, #d1fae5 0%, #d1f9e0 100%); border-left: 5px solid #10b981; padding: 2rem; border-radius: 12px; margin-bottom: 3rem; font-size: 1.1rem; font-weight: 600; color: #059669; line-height: 1.8; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease; border-top: 4px solid #10b981; }
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #ec4899; }
+        .stat-card:nth-child(4) { border-top-color: #3b82f6; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem; }
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #ec4899; }
+        .stat-card:nth-child(4) .stat-number { color: #3b82f6; }
+        .stat-label { font-size: 0.95rem; color: #6b7280; font-weight: 500; }
+        .section-title { font-size: 1.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid #10b981; display: inline-block; }
+        .section-container { margin-bottom: 3rem; }
+        .expandable-section { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .expand-header { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); padding: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 1.05rem; color: #2c3e50; transition: background 0.3s ease; user-select: none; }
+        .expand-header:hover { background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%); }
+        .expand-icon { font-size: 1.5rem; transition: transform 0.3s ease; color: #10b981; }
+        .expandable-section.active .expand-icon { transform: rotate(180deg); }
+        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 1.5rem; }
+        .expandable-section.active .expand-content { max-height: 2500px; padding: 1.5rem; animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .content-list { list-style: none; margin: 1rem 0; }
+        .content-list li { padding: 0.8rem 0; padding-left: 2rem; position: relative; color: #374151; line-height: 1.8; }
+        .content-list li::before { content: '→'; position: absolute; left: 0; color: #10b981; font-weight: bold; }
+        .practice-container { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .practice-header { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 1.5rem; font-size: 1.1rem; font-weight: 700; }
+        .practice-number { display: inline-block; background: rgba(255, 255, 255, 0.3); padding: 0.3rem 0.8rem; border-radius: 20px; margin-right: 0.8rem; font-weight: 700; }
+        .practice-content { padding: 1.5rem; }
+        .practice-step { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; }
+        .practice-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .step-label { font-weight: 700; color: #2c3e50; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .step-content { color: #374151; line-height: 1.8; font-size: 0.95rem; }
+        .concept-card { background: linear-gradient(135deg, #d1f9e0 0%, #d1f5e0 100%); border-left: 4px solid #10b981; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .concept-title { font-weight: 700; color: #059669; margin-bottom: 1rem; font-size: 1.05rem; }
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .resource-card { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; cursor: pointer; transition: transform 0.3s ease; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+        .resource-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4); }
+        .resource-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .resource-title { font-weight: 700; margin-bottom: 0.5rem; font-size: 1rem; }
+        .resource-desc { font-size: 0.85rem; opacity: 0.9; }
+        .next-section { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 2rem; border-radius: 12px; margin: 3rem 0; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+        .next-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+        .next-content { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }
+        .highlight-text { background-color: #fef3c7; padding: 0.2rem 0.4rem; border-radius: 4px; font-weight: 600; color: #92400e; }
+        .evidence-block { background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border-left: 4px solid #10b981; }
+        .evidence-title { font-weight: 700; color: #059669; margin-bottom: 0.8rem; font-size: 1rem; }
+        .timeline { position: relative; padding: 1.5rem 0 1.5rem 3rem; }
+        .timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #10b981, #d1fae5); }
+        .timeline-item { margin-bottom: 1.5rem; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -2.1rem; top: 0.3rem; width: 1rem; height: 1rem; background: #10b981; border-radius: 50%; border: 3px solid white; }
+        .timeline-label { font-weight: 700; color: #059669; margin-bottom: 0.3rem; font-size: 0.95rem; }
+        .timeline-content { color: #374151; font-size: 0.95rem; }
+    </style>
+    <script>
+        function toggleExpand(element) {
+            element.parentElement.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">Kiao｜總校長的 AI 教育寶典</div>
+            <div class="course-title">學習法 10：間隔重複與提取練習</div>
+            <div class="breadcrumb"><span>CH3 速學——鍛鍊你的肌肉</span> / <span>怎麼不忘記？</span></div>
+            <div class="progress-indicator">📚 核心概念：考試比重讀有效 3 倍</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="core-statement">
+            ⚡ <strong>核心洞見</strong>：你一直在用效率最低的複習方法——重複閱讀。科學已經找到了一個效率高三倍的替代方案。不是「多看幾遍」，而是「用對方法考自己」。
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50%</div>
+                <div class="stat-label">一週後多記憶</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">提取練習 vs 重讀</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">66%</div>
+                <div class="stat-label">一天後遺忘率</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">Ebbinghaus 遺忘曲線</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">35%</div>
+                <div class="stat-label">節省讀書時間</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">使用間隔重複</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0.4分</div>
+                <div class="stat-label">GPA 提升</div>
+                <div style="font-size: 0.85rem; color: #999; margin-top: 0.5rem;">同等學習時間下</div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🧠 科學基礎：遺忘曲線的真相</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Hermann Ebbinghaus（1885）的發現</div>
+                <p>德國心理學家 Ebbinghaus 用自己當實驗品，記了大堆無意義的音節，測量自己多快忘記。結果觸目驚心：</p>
+                <ul class="content-list">
+                    <li><strong>1 小時後</strong>：忘了 56%</li>
+                    <li><strong>1 天後</strong>：忘了 66%</li>
+                    <li><strong>6 天後</strong>：忘了 75%</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>比喻</strong>：你的記憶像寫在沙灘上的字。如果不做任何處理，海浪會在幾天之內把它全部沖掉。你背的單字、讀的課文、理解的公式——如果只看一遍就不管，<span class="highlight-text">一週後只剩四分之一</span>。</p>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>為什麼重複閱讀最沒效？</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p>當你「重讀」時，發生了什麼：</p>
+                    <ul class="content-list">
+                        <li><strong>眼睛在動</strong>，但大腦在打瞌睡</li>
+                        <li>你看到熟悉的文字，大腦說「嗯，我認得」</li>
+                        <li>但你根本沒有真正「拉」出那段記憶</li>
+                        <li>這給了你一種虛假的熟悉感——感覺你懂了，實際上沒有</li>
+                    </ul>
+                    <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;">💡 <strong>重讀的陷阱</strong>：心理學叫這個「流暢性錯覺」（Fluency Illusion）。你「看起來」記得，但實際上不記得。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🧪 科學突破：「考自己」比「重讀」有效</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Roediger & Karpicke 的經典實驗（2006）</div>
+                <p><strong>華盛頓大學</strong>的研究改變了教育界。他們把學生分成兩組，讀同一篇文章：</p>
+                <ul class="content-list">
+                    <li><strong>A 組</strong>：讀一遍，然後再讀一遍（重複閱讀）</li>
+                    <li><strong>B 組</strong>：讀一遍，然後做一次回憶測驗（不看書，自己想）</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>結果</strong>：</p>
+                <ul class="content-list">
+                    <li><strong>第二天測驗</strong>：兩組成績差不多</li>
+                    <li><strong>一週後再測</strong>：<span class="highlight-text">B 組比 A 組多記了 50%</span></li>
+                </ul>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>為什麼提取練習這麼有效？神經科學解釋</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p>當你「考自己」時，你的大腦在做什麼：</p>
+                    <ul class="content-list">
+                        <li><strong>搜索</strong>：主動在記憶中尋找那段資訊</li>
+                        <li><strong>提取</strong>：把它「拉」出來</li>
+                        <li><strong>重新組織</strong>：用自己的方式表達</li>
+                        <li><strong>檢查</strong>：驗證答案的正確性</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">這個過程——<strong>哪怕你答錯了</strong>——都在強化神經連結。你的大腦不是被動地「看」，而是主動地「用功」。就像健身——你不能躺著看別人舉啞鈴，然後期望自己長肌肉。</p>
+                    <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;">🧬 <strong>神經科學發現</strong>：提取練習會促進大腦髓鞘質變厚，增強神經信號的傳導速度和品質。這就是為什麼「用過」的東西記得比「看過」的東西久得多。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📊 十種學習法大排名：你最愛的排最後</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Dunlosky et al.（2013）的大規模研究</div>
+                <p>心理學家 John Dunlosky 回顧了半世紀的學習研究，對十種最常見的學習方法排名：</p>
+                <p style="margin-top: 1rem;"><strong>效果最好的兩個：</strong></p>
+                <ul class="content-list">
+                    <li>🏆 <strong>第 1 名：提取練習</strong>（考自己）</li>
+                    <li>🥈 <strong>第 2 名：間隔重複</strong>（分散複習）</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>效果最差的兩個：</strong></p>
+                <ul class="content-list">
+                    <li>❌ <strong>第 9 名：畫重點</strong></li>
+                    <li>❌ <strong>第 10 名：重複閱讀</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fee2e2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">⚠️ <strong>衝擊性結論</strong>：全世界學生最愛用的兩招——畫重點和重複閱讀——是效果最差的。這不是你記性差。這是你被迫用了效率最低的方法。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🌱 間隔重複：把遺忘曲線踩平</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Piotr Wozniak & SuperMemo（1987）</div>
+                <p>波蘭分子生物學學生 Wozniak 發明了世界上第一個間隔重複軟體，並用數學模型計算出最佳複習時間點。</p>
+                <p style="margin-top: 1rem;"><strong>最簡單的版本</strong>（1-3-7-14-30 法則）：</p>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 0（學完當天）</div>
+                        <div class="timeline-content">立刻做一次提取練習（提高初始記憶強度）</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 1（第 1 次複習）</div>
+                        <div class="timeline-content">關鍵時刻——快要忘記的邊界。此時複習效果最好</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 3（第 2 次複習）</div>
+                        <div class="timeline-content">記憶進一步強化，遺忘曲線開始變平</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 7（第 3 次複習）</div>
+                        <div class="timeline-content">長期記憶逐漸形成，遺忘速度大幅減緩</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 14（第 4 次複習）</div>
+                        <div class="timeline-content">記憶變得穩固，遺忘曲線基本平坦</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-label">Day 30（第 5 次複習）</div>
+                        <div class="timeline-content">幾乎永久記憶。此後可以拉長間隔或停止複習</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header" onclick="toggleExpand(this)">
+                    <span>為什麼這些時間點這麼神奇？</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p><strong>神經科學原理</strong>：每次你成功「拉」出一段記憶，那段記憶的神經連結就會變強一點點。但關鍵是——<strong>時機</strong>。</p>
+                    <ul class="content-list">
+                        <li><strong>如果隔太短時間復習</strong>（比如隔一天）：你的大腦根本還沒忘，所以根本沒有「拉」的感覺。你只是在看一遍，回到被動模式。<strong>效果不佳</strong>。</li>
+                        <li><strong>如果隔太長時間復習</strong>（比如一個月後）：你可能已經忘得差不多了，復習效率低。</li>
+                        <li><strong>「恰好」的時間點</strong>：快要忘記但還沒完全忘的時刻——這時候複習，你必須費力「拉」，而費力就等於強化。</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><strong>簡單說</strong>：不是把東西裝進去得更多，而是每次拉出來的時候，連結變得更深。</p>
+                </div>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">🌳 種樹比喻</div>
+                <p>記憶像剛種的樹。<strong>少量多次澆水</strong>（間隔複習），根會扎得深，樹長得高大茂盛。<strong>第一天倒十桶水然後不管</strong>（臨時抱佛腳），樹會枯死。少量多次 > 一次猛灌。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📈 2024 年大規模研究：花更少時間，成績更好</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">800 名大學生，4 學期追蹤研究</div>
+                <p>一項針對大學生的實證研究追蹤了使用間隔重複 vs 傳統學習方法的效果差異：</p>
+                <p style="margin-top: 1rem;"><strong>使用間隔重複的學生：</strong></p>
+                <ul class="content-list">
+                    <li>📉 <strong>讀書時間少 35%</strong></li>
+                    <li>📈 <strong>GPA 高 0.4 分</strong></li>
+                    <li>🧠 <strong>六個月後記憶保留率：80-90%</strong></li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>傳統死背的學生：</strong></p>
+                <ul class="content-list">
+                    <li>⏰ 花更多時間，成績更差</li>
+                    <li>🧠 <strong>兩週後只剩 20-30% 的記憶</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;">💡 <strong>這就是聰明學習 vs 蠻力學習的差距</strong>。80-90% vs 20-30% 的長期差距足以改變你整個人生。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🎯 實戰系統：怎麼結合提取練習 + 間隔重複？</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">系統 1</span>
+                    每堂課後立刻做一次提取
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">⏱️ 時間：上完課或讀完一章後的 10-15 分鐘</div>
+                        <div class="step-content">不要馬上去做別的。趁記憶最新鮮的時候立刻複習。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✏️ 方法選一種：</div>
+                        <div class="step-content">
+                            <ul class="content-list">
+                                <li>把課本蓋起來，自己做一份重點整理</li>
+                                <li>做練習題（不看課本）</li>
+                                <li>對著空氣講一遍核心概念</li>
+                                <li>寫一份簡短的自我測驗</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">💡 為什麼有效</div>
+                        <div class="step-content">這是最有效的第一次複習——因為記憶最新鮮，但你還是得努力「拉」。你的大腦在做實實在在的工作。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">系統 2</span>
+                    用間隔重複的時間表複習
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">📅 遵循 1-3-7-14-30 天的時間表</div>
+                        <div class="step-content">在你的日曆上標記出複習日期。設定手機提醒。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">⚠️ 複習 ≠ 重讀</div>
+                        <div class="step-content">複習的時候，<strong>不要再讀一遍課本</strong>。最好的複習方式是：
+                            <ul class="content-list">
+                                <li>看著題目或關鍵詞，試著回答（不看答案）</li>
+                                <li>自己講一遍核心概念</li>
+                                <li>做一份簡短的自我測驗</li>
+                                <li>用新的例子或情境來應用這個知識</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✅ 每次複習後問自己</div>
+                        <div class="step-content">「我這次記對了幾個？有沒有遺漏的部分？」這就是後設認知——對自己的理解進行監控。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">系統 3</span>
+                    考試前的衝刺策略
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">⏰ 三週以上前開始複習</div>
+                        <div class="step-content">這樣考試前一週你只需要輕輕複習一下，而不是狂背。你的大腦已經有深層的記憶痕跡了。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🎯 第一週：廣度複習</div>
+                        <div class="step-content">把所有內容快速掃過，喚起記憶。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🎯 第二週：深度練習</div>
+                        <div class="step-content">專門練習你不會的部分。做錯的題目要深入思考「為什麼錯」。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">🎯 考試前一週：保持記憶新鮮</div>
+                        <div class="step-content">輕輕複習，確保記憶還在。不要過度複習或焦慮。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">💡 為什麼這三層這麼有效</div>
+                        <div class="step-content">第一層建立初始連結，第二層定期強化，第三層確保記憶仍然新鮮。而每一次複習，都是提取練習——都在拉，都在強化。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">💡 有益困難：越痛苦越有效</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">Robert Bjork 的「有益困難」理論</div>
+                <p>UCLA 的認知心理學家 Bjork 提出了一個反直覺的發現：<strong>讓學習變得「剛好夠難」，長期效果反而最好</strong>。</p>
+                <p style="margin-top: 1rem;"><strong>經典實驗：畫家作品風格辨認</strong></p>
+                <ul class="content-list">
+                    <li><strong>A 組（集中學習）</strong>：先看完畫家 A 的所有作品，再看畫家 B 的，再看 C 的</li>
+                    <li><strong>B 組（交錯學習）</strong>：A、B、C 的作品混在一起看</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>驚人結果</strong>：</p>
+                <ul class="content-list">
+                    <li><strong>短期測驗</strong>：A 組覺得自己學得比較好</li>
+                    <li><strong>長期測驗</strong>：B 組的正確率是 63%，A 組只有 20%</li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fee2e2; padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">⚠️ <strong>最大矛盾</strong>：感覺最輕鬆的方法，效果最差。感覺最吃力的方法，效果最好。「不舒服」= 你的大腦正在變強。</p>
+            </div>
+
+            <div class="concept-card">
+                <div class="concept-title">📝 為什麼間隔重複和提取練習都是「有益困難」</div>
+                <p><strong>考自己很痛苦</strong>——你不知道答案，必須費力想。但正是這種「不舒服」，在強化你的記憶。<br><br><strong>隔幾天再複習很不舒服</strong>——你覺得自己可能已經忘了，有種擔心感。但這種擔心讓你更用心去複習。<br><br>這些不舒服感，其實是你進步的信號。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🤖 AI 時代的實現方式</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 1</span>
+                    AI 幫你生成自測題
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">提示詞範本</div>
+                        <div class="step-content">「根據以下內容，幫我出 10 道自測題。包含 5 道選擇題和 5 道簡答題，難度由易到難。」</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">執行流程</div>
+                        <div class="step-content">1️⃣ 貼入課文或重點<br>2️⃣ 關掉 AI<br>3️⃣ 自己做題（提取練習）<br>4️⃣ 再打開 AI 對答案<br>5️⃣ 答錯的題目，三天後再做一次</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">為什麼有效</div>
+                        <div class="step-content">AI 確保題目真的在考提取，不是填空。你省時間，品質還更高。</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 2</span>
+                    每日三問儀式（5 分鐘）
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">三個問題</div>
+                        <div class="step-content"><strong>1. 昨天學了什麼？</strong>（提取練習）<br><strong>2. 三天前學了什麼？</strong>（間隔重複）<br><strong>3. 哪裡還模糊？</strong>（後設認知）</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">執行方式</div>
+                        <div class="step-content">每天花 5 分鐘，在紙上或腦子裡快速回答這三個問題。答不出來？太好了。那就是你需要重新複習的地方。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">為什麼這是最強的習慣</div>
+                        <div class="step-content"><strong>零成本</strong>——不需要任何工具<br><strong>最容易養成</strong>——每天只需 5 分鐘<br><strong>直接訓練後設認知</strong>——讓你知道自己真的懂了沒</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">方法 3</span>
+                    用 Anki 或 AI 建立卡片庫
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">什麼是 Anki？</div>
+                        <div class="step-content">全世界最受歡迎的間隔重複軟體。背後用的就是 Wozniak 的演算法。它會自動幫你安排複習時間：記得的卡片間隔拉長，忘記的卡片隔天再來。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">執行流程</div>
+                        <div class="step-content">1️⃣ <strong>先自己寫一遍卡片</strong>（這本身就是提取練習）<br>2️⃣ 匯入 Anki（軟體會自動管理複習時間）<br>3️⃣ 或者讓 AI 幫你把筆記轉成 Anki 格式<br>4️⃣ 每天複習 Anki 推薦的卡片</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">⚠️ 記住：先人後機</div>
+                        <div class="step-content">先自己寫卡片（提取練習），再讓 AI 補充你漏掉的。不要讓 AI 完全代勞——那樣你就失去了寫卡片本身的學習價值。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📋 完整實施計畫（60 秒行動）</h2>
+
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">行動</span>
+                    現在就開始設置你的系統
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">步驟 1：選一個科目</div>
+                        <div class="step-content">拿出你現在在讀的科目（國文、數學、英文，什麼都可以）。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 2：讀完一個章節或單元</div>
+                        <div class="step-content">馬上（不看書）寫出三個重點。這是第一次提取。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 3：標記複習日期</div>
+                        <div class="step-content">打開你的日曆或日記。在以下日期寫上「複習」：<br>• 3 天後<br>• 7 天後<br>• 14 天後</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">步驟 4：設定手機提醒</div>
+                        <div class="step-content">在這些日期設定手機提醒。標題：「複習 [科目] [單元名稱]」。</div>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">✅ 恭喜</div>
+                        <div class="step-content">你剛踏出了改變學習人生的第一步。科學證實，這一個小動作，會讓你的長期記憶提升三倍。不要低估小事。小事累積，就變成大改變。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🔗 跨課連結：學習地圖</h2>
+
+            <div class="concept-card">
+                <div class="concept-title">前後課程的關係</div>
+                <p><strong>上堂課（學習法 09）的雙重編碼</strong>幫你「編碼」記憶——把資訊放進大腦。<br><br><strong>今堂課（學習法 10）的間隔重複與提取練習</strong>幫你「鞏固」記憶——讓它不消失。<br><br><strong>一個負責存進去，一個負責不讓它消失</strong>——兩者合作，才能真正掌握知識。<br><br><strong>下堂課（學習法 11）的刻意練習</strong>會進一步教你怎麼「精通」——從「記住」進階到「會用」。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">📊 進度追蹤：你的改善指標</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">四週內追蹤的關鍵指標</div>
+                <p><strong>第 1 週</strong></p>
+                <ul class="content-list">
+                    <li>✅ 完成第一次課後提取練習</li>
+                    <li>✅ 標記好複習日期</li>
+                    <li>✅ 做第一次複習（第 1 天）</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>第 2 週</strong></p>
+                <ul class="content-list">
+                    <li>✅ 完成第 2 次和第 3 天複習</li>
+                    <li>✅ 開始每日三問儀式</li>
+                    <li>📊 對比：第 3 天複習時，記得多少百分比？</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>第 3-4 週</strong></p>
+                <ul class="content-list">
+                    <li>✅ 完成第 3、4、5 次複習</li>
+                    <li>📊 對比：第 7 天時還記得多少？（應該比第 3 天更多）</li>
+                </ul>
+                <p style="margin-top: 1rem; background: #fef3c7; padding: 1rem; border-radius: 8px;">💡 <strong>成功指標</strong>：在應該遺忘的時刻，你卻記得。這就是間隔重複的魔力。</p>
+            </div>
+        </div>
+
+        <div class="section-container">
+            <h2 class="section-title">🎓 真實案例</h2>
+
+            <div class="evidence-block">
+                <div class="evidence-title">賴昱辰的故事：從 6.0 到 7.5</div>
+                <p><strong>背景</strong>：賴昱辰是上班族，準備考 IELTS。他過去的複習方式是「考前一週狂背、狂刷題」。結果分數一直卡在 6.0，怎麼都進不了 7.0。</p>
+                <p style="margin-top: 1rem;"><strong>轉變</strong>：我教他用今天講的方法。他決定試試看。他拿出一份 IELTS 參考書，選了一個單元。</p>
+                <ul class="content-list">
+                    <li>課後<strong>立刻</strong>做了一份提取練習（自己寫重點和造句）</li>
+                    <li>然後設定了手機提醒</li>
+                    <li>3 天後，花 10 分鐘複習</li>
+                    <li>7 天後，再花 10 分鐘</li>
+                    <li>14 天後，又花 10 分鐘</li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>結果</strong>：一年後他的 IELTS 分數變成 7.5。關鍵是：不是他更努力了（他花的總時間其實更少）。是他用對了方法。</p>
+            </div>
+        </div>
+
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">📥</div>
+                <div class="resource-title">間隔複習日程表</div>
+                <div class="resource-desc">直接下載列印，貼在讀書桌前</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">📋</div>
+                <div class="resource-title">提取練習題目範本</div>
+                <div class="resource-desc">5 種題型，應對各種科目</div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">🤖</div>
+                <div class="resource-title">間隔複習教練 AI Skill</div>
+                <div class="resource-desc">自動生成並追蹤你的複習計畫</div>
+            </div>
+        </div>
+
+        <div class="next-section">
+            <div class="next-title">➡️ 下堂課預告</div>
+            <div class="next-content">
+                <strong>學習法 11：刻意練習——怎麼練才有效？</strong><br><br>
+                你有沒有遇過那種「練了很久但沒進步」的挫折？彈鋼琴練了五年，還是只會那幾首。英文讀了十年，還是開不了口。<br><br>
+                問題不是你不努力。<strong>問題是你的練習方式錯了</strong>。下堂課告訴你：練習的「方式」比「時間」重要一萬倍。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

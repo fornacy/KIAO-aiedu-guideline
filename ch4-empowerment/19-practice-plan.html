@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法19 - 練習方案 | AI煉金術 Step 4 學習系統</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; line-height: 1.8; color: #333; background: linear-gradient(135deg, #f5f7fa 0%, #f0f4f8 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 60px 40px; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 10px 40px rgba(249, 115, 22, 0.3); text-align: center; }
+        header h1 { font-size: 3em; margin-bottom: 10px; font-weight: 900; }
+        header .subtitle { font-size: 1.8em; margin-bottom: 15px; opacity: 0.95; font-weight: 600; }
+        header .branding { font-size: 0.95em; opacity: 0.85; margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.3); padding-top: 15px; }
+        header .course-number { display: inline-block; background: rgba(255,255,255,0.25); padding: 8px 16px; border-radius: 25px; margin-bottom: 15px; font-size: 0.9em; font-weight: 600; }
+        .core-statement { background: white; border-left: 6px solid #f97316; padding: 25px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+        .core-statement h2 { color: #f97316; font-size: 1.3em; margin-bottom: 12px; }
+        .core-statement p { font-size: 1.1em; color: #555; font-weight: 500; }
+        .section { background: white; margin-bottom: 30px; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .section-header { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 25px 30px; cursor: pointer; user-select: none; display: flex; justify-content: space-between; align-items: center; }
+        .section-header h3 { font-size: 1.5em; font-weight: 700; }
+        .section-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .section.active .section-content { max-height: 3500px; padding: 30px; }
+        .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .concept-card { background: linear-gradient(135deg, #fed7aa 0%, #ffedd5 100%); padding: 25px; border-radius: 12px; border-left: 5px solid #f97316; }
+        .concept-card h4 { color: #ea580c; margin-bottom: 12px; font-size: 1.2em; }
+        .step { display: flex; gap: 20px; margin-bottom: 20px; padding: 20px; background: #fed7aa; border-radius: 10px; border-left: 4px solid #ea580c; }
+        .step-number { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3em; flex-shrink: 0; }
+        .data-card { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 25px; border-radius: 12px; margin: 20px 0; text-align: center; }
+        .data-card .number { font-size: 2.5em; font-weight: 900; margin-bottom: 10px; }
+        .progress { background: white; padding: 20px 30px; border-radius: 12px; margin-bottom: 30px; text-align: center; }
+        .progress-bar { background: #e0e0e0; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 10px; }
+        .progress-fill { background: linear-gradient(90deg, #f97316 0%, #ea580c 100%); height: 100%; width: 95%; transition: width 0.3s; }
+        .key-data { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 30px; border-radius: 15px; margin: 30px 0; }
+        .key-data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .key-data-item { background: rgba(255,255,255,0.15); padding: 20px; border-radius: 10px; text-align: center; }
+        .next-steps { background: linear-gradient(135deg, #fed7aa 0%, #ffedd5 100%); padding: 30px; border-radius: 15px; margin: 30px 0; border: 2px solid #f97316; }
+        .next-steps h3 { color: #f97316; margin-bottom: 20px; font-size: 1.4em; }
+        .resources { background: #fed7aa; padding: 25px; border-radius: 12px; margin: 20px 0; }
+        .resources h4 { color: #f97316; margin-bottom: 15px; font-size: 1.2em; }
+        .resource-item { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #e0e0e0; }
+        .resource-item strong { color: #ea580c; display: block; margin-bottom: 5px; }
+        footer { text-align: center; padding: 30px; color: #999; border-top: 1px solid #e0e0e0; margin-top: 50px; font-size: 0.95em; }
+        @media (max-width: 768px) { header h1 { font-size: 2em; } .concept-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="course-number">學習法 19 / 20</div>
+            <h1>練習方案</h1>
+            <div class="subtitle">AI煉金術 Step 4 - 學習系統</div>
+            <div class="branding">Kiao | 總校長的 AI 教育寶典｜掌握未來 30 年必備的聰明學習力！| CH4 賦能</div>
+        </header>
+
+        <div class="progress">
+            <div class="progress-label">課程進度</div>
+            <div class="progress-bar"><div class="progress-fill"></div></div>
+            <div class="progress-text">學習法 19 / 20（95% 完成 - CH4 煉金術第四步）</div>
+        </div>
+
+        <div class="core-statement">
+            <h2>一句話核心</h2>
+            <p>方法再好，不變成系統就是散落的零件。用 PME（計劃-監控-評估）作引擎，五層架構作框架，30 天啟動計畫，把 AI 學習變成你的「學習刷牙」——自動化的日常習慣。</p>
+        </div>
+
+        <div class="section active">
+            <div class="section-header">
+                <h3>為什麼重要？</h3>
+                <span class="toggle">▲</span>
+            </div>
+            <div class="section-content">
+                <p>過去三堂課你學了：SCRF 提問法、三層驗證、五種深度學習法。但問題是——它們分散在不同的課裡。你知道每一個怎麼用，但不知道怎麼把它們串在一起，變成每天的習慣。</p>
+
+                <div class="data-card">
+                    <div style="margin-top: 15px; line-height: 1.8;">
+                        <p><strong>方法再好，不變成系統就是散落的零件。今天我們把零件組裝成一台機器。</strong></p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;">Ericsson 等人 1993 年的研究確立了「刻意練習」的科學基礎。頂尖表現者不是天生的，而是透過有目的、有反饋、在能力邊緣的練習累積而成。AI 可以設計完美的練習菜單，但髓鞘質只有你自己練才會長。</p>
+            </div>
+        </div>
+
+        <div class="section active">
+            <div class="section-header">
+                <h3>核心觀念 - 五層架構 + PME 引擎 + 30天計畫</h3>
+                <span class="toggle">▲</span>
+            </div>
+            <div class="section-content">
+                <h4 style="color: #f97316; margin-bottom: 20px;">五層學習架構</h4>
+
+                <div class="concept-card" style="margin-bottom: 15px;">
+                    <h4>① 輸入層</h4>
+                    <p>讀書、看影片、上課。AI 的角色：不是摘要，而是測試——「我剛看了 XX 的影片。請問我三個問題，確認我抓到重點。」</p>
+                </div>
+
+                <div class="concept-card" style="margin-bottom: 15px;">
+                    <h4>② 理解層</h4>
+                    <p>確認你真的懂了。AI 的角色：蘇格拉底問答 + 多角度解釋。你用費曼技巧解釋給 AI 聽。</p>
+                </div>
+
+                <div class="concept-card" style="margin-bottom: 15px;">
+                    <h4>③ 記憶層</h4>
+                    <p>把理解的東西存進長期記憶。AI 的角色：間隔提取練習，按 1-3-7-14 天出題。</p>
+                </div>
+
+                <div class="concept-card" style="margin-bottom: 15px;">
+                    <h4>④ 應用層</h4>
+                    <p>把知識用出來。AI 的角色：設計練習場景。「請設計一個情境，讓我用剛學到的 XX 概念來解決問題。不要給我答案，讓我自己想。」</p>
+                </div>
+
+                <div class="concept-card" style="margin-bottom: 20px;">
+                    <h4>⑤ 監控層</h4>
+                    <p>了解你整體的學習狀態。AI 的角色：後設認知教練。每週跟 AI 做一次學習回顧。</p>
+                </div>
+
+                <h4 style="color: #f97316; margin-bottom: 20px;">PME 是系統的引擎</h4>
+
+                <div style="background: #fed7aa; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <p style="margin-bottom: 15px;"><strong>P（Plan）- 計劃：</strong>每天2分鐘——今天學什麼？用什麼方法？</p>
+                    <p style="margin-bottom: 15px;"><strong>M（Monitor）- 監控：</strong>學的過程中用番茄鐘監控注意力</p>
+                    <p><strong>E（Evaluate）- 評估：</strong>學完做「每日三問」。每週做校準測試。</p>
+                </div>
+
+                <h4 style="color: #f97316; margin-bottom: 20px;">每天只要 30 分鐘</h4>
+
+                <div style="background: white; border: 2px solid #f97316; padding: 25px; border-radius: 12px; margin-bottom: 20px;">
+                    <p style="margin-bottom: 15px;"><strong>前20分鐘：學習 + 理解</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px; color: #555;">
+                        <li>讀/看新內容（10分鐘）</li>
+                        <li>蘇格拉底問答或費曼技巧（10分鐘）</li>
+                    </ul>
+
+                    <p style="margin-bottom: 15px;"><strong>後10分鐘：複習 + 測試</strong></p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px; color: #555;">
+                        <li>AI間隔複習題目（5分鐘）</li>
+                        <li>每日三問（5分鐘）</li>
+                    </ul>
+
+                    <p style="color: #999;"><strong>每週加碼20分鐘：</strong>後設認知對話 + 調整計畫</p>
+                </div>
+
+                <h4 style="color: #f97316; margin-bottom: 20px;">30天啟動計畫</h4>
+
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>第一週：建立觸發</h5>
+                        <p>固定時間 + 固定動作 + 只做15分鐘。重點是讓身體記住流程。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>第二週：加入 AI</h5>
+                        <p>每天至少用一次 SCRF + 一次費曼技巧。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>第三週：加入間隔複習</h5>
+                        <p>AI 排程出題 + 紅綠燈追蹤進度。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>第四週：完整系統運轉</h5>
+                        <p>五層都跑起來 + 微調找到你的節奏。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section active">
+            <div class="section-header">
+                <h3>練習方案 - 從今天開始的行動</h3>
+                <span class="toggle">▲</span>
+            </div>
+            <div class="section-content">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>今天開始，固定一個時間</h5>
+                        <p>早上7點？晚上8點？選一個你能堅持的時間。這就是你的「學習時間」。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>第一週目標：極簡版（15分鐘）</h5>
+                        <p>坐下來 + 學一點 + 問 AI 一個問題。就這樣。不需要完美。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>第二週：加 SCRF + 費曼</h5>
+                        <p>學完用 SCRF 問 AI 一個問題，用費曼技巧解釋給 AI 聽。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>第三週：加間隔複習</h5>
+                        <p>問 AI 按 1-3-7-14 出題。執行第一個完整循環。</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h5>第四週：完整30分鐘流程</h5>
+                        <p>前20分鐘學+理解，後10分鐘複習+測試。加入每日三問。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="key-data">
+            <h3>關鍵數據</h3>
+            <div class="key-data-grid">
+                <div class="key-data-item">
+                    <div class="number">5</div>
+                    <div class="label">學習架構層級</div>
+                </div>
+                <div class="key-data-item">
+                    <div class="number">3</div>
+                    <div class="label">PME 核心要素</div>
+                </div>
+                <div class="key-data-item">
+                    <div class="number">30分</div>
+                    <div class="label">每天所需時間</div>
+                </div>
+                <div class="key-data-item">
+                    <div class="number">30天</div>
+                    <div class="label">系統啟動週期</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section active">
+            <div class="section-header">
+                <h3>帶走資源</h3>
+                <span class="toggle">▲</span>
+            </div>
+            <div class="section-content">
+                <div class="resources">
+                    <div class="resource-item">
+                        <strong>1. AI 學習系統 30 天啟動手冊</strong>
+                        <p>詳細的日誌版本，每天填寫計劃、執行、評估。</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>2. 五層架構完整工作表</strong>
+                        <p>每層有引導問題和 AI Prompt，直接套用。</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>3. 每日三問模板</strong>
+                        <p>每天評估用的三個問題。可列印貼在書桌。</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>4. PME 監控表</strong>
+                        <p>計劃、監控、評估的具體執行步驟 + 檢核表。</p>
+                    </div>
+
+                    <div class="resource-item">
+                        <strong>5. 一個月進度追蹤表</strong>
+                        <p>每週評估你是否維持習慣、系統是否運行順暢。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-steps">
+            <h3>下一步</h3>
+            <ul>
+                <li><strong>立即選定時間</strong>：選一個每天都能執行的 15-30 分鐘時段。這是成功的第一步。</li>
+                <li><strong>下載 30 天手冊</strong>：列印或數位化，明天開始填寫。</li>
+                <li><strong>記住核心態度</strong>：不要追求完美。先追求「每天都做」。系統會慢慢長出來。</li>
+                <li><strong>下堂課預告</strong>：下堂課是最後一步——「未來學習力」。從「怎麼學」升級到「學什麼」。看見你在 AI 時代的完整路線圖。</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>© KIAO · 總校長的 AI 教育寶典</p>
+            <p>掌握未來 30 年必備的聰明學習力！</p>
+            <p>CH4 賦能 - 學習法 19 / 20</p>
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const section = header.closest('.section');
+                section.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

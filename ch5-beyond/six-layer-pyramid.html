@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>六層金字塔 - CH5 超越｜總校長的AI教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --warm: #ff9a56;
+            --light-bg: #f5f7ff;
+            --dark-text: #2d3748;
+            --border: #e2e8f0;
+            --success: #48bb78;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .branding {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 50px 30px;
+            background: white;
+            margin: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Core Concept */
+        .core-concept {
+            background: linear-gradient(135deg, var(--light-bg) 0%, rgba(240, 147, 251, 0.1) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .one-liner {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Section Heading */
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Pyramid Visualization */
+        .pyramid-container {
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+            perspective: 1000px;
+        }
+
+        .pyramid-layer {
+            width: 100%;
+            margin: -1px 0 0 0;
+            padding: 25px 20px;
+            border-top: 2px solid rgba(255,255,255,0.5);
+            text-align: center;
+            color: white;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .pyramid-layer:hover {
+            transform: scaleX(1.05);
+        }
+
+        .layer-1 {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
+            max-width: 100%;
+        }
+
+        .layer-2 {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff8a42 100%);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .layer-3 {
+            background: linear-gradient(135deg, #ffd93d 0%, #ffca28 100%);
+            color: #333;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .layer-4 {
+            background: linear-gradient(135deg, #6bcf7f 0%, #52c769 100%);
+            color: white;
+            max-width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .layer-5 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            max-width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .layer-6 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            max-width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.1rem;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .layer-title {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .layer-description {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Layer Details */
+        .layer-details-container {
+            margin-bottom: 50px;
+        }
+
+        .layer-detail {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .layer-detail:hover {
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .layer-detail.layer1 {
+            border-left-color: #ff6b6b;
+        }
+
+        .layer-detail.layer2 {
+            border-left-color: #ff9a56;
+        }
+
+        .layer-detail.layer3 {
+            border-left-color: #ffd93d;
+        }
+
+        .layer-detail.layer4 {
+            border-left-color: #6bcf7f;
+        }
+
+        .layer-detail.layer5 {
+            border-left-color: var(--primary);
+        }
+
+        .layer-detail.layer6 {
+            border-left-color: #f5576c;
+        }
+
+        .layer-num {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 12px;
+        }
+
+        .layer-detail.layer1 .layer-num {
+            background: #ff6b6b;
+        }
+
+        .layer-detail.layer2 .layer-num {
+            background: #ff9a56;
+        }
+
+        .layer-detail.layer3 .layer-num {
+            background: #ffd93d;
+            color: #333;
+        }
+
+        .layer-detail.layer4 .layer-num {
+            background: #6bcf7f;
+        }
+
+        .layer-detail.layer6 .layer-num {
+            background: #f5576c;
+        }
+
+        .layer-detail h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .layer-content {
+            margin-left: 52px;
+        }
+
+        .layer-detail p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            background: #f5f7ff;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .skills-list strong {
+            color: var(--secondary);
+        }
+
+        /* Collapsible */
+        .collapsible-group {
+            margin-bottom: 40px;
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--secondary);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            padding-left: 24px;
+        }
+
+        .collapsible-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 25px;
+            background: #fafbff;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .collapsible-content.active {
+            display: block;
+        }
+
+        .collapsible-content p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Congratulations Section */
+        .congratulations {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 50px 0;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .congratulations h2 {
+            color: white;
+            border-bottom-color: rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+        }
+
+        .congratulations p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .achievement {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #f093fb;
+        }
+
+        /* Reflection Exercise */
+        .reflection {
+            background: #fff9f0;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--warm);
+            margin-bottom: 40px;
+        }
+
+        .reflection h3 {
+            color: var(--warm);
+            margin-bottom: 20px;
+        }
+
+        .reflection-questions {
+            display: grid;
+            gap: 15px;
+        }
+
+        .reflection-question {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--warm);
+        }
+
+        .reflection-question strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .reflection-question p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Connection Section */
+        .connection-section {
+            background: #f0f4ff;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .connection-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .connection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .connection-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .connection-item strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .connection-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Flywheel */
+        .flywheel-section {
+            background: linear-gradient(135deg, #f0e7fe 0%, #e0f2fe 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .flywheel-section h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .flywheel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .flywheel-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--secondary);
+            position: relative;
+        }
+
+        .flywheel-item strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+
+        .flywheel-item p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .flywheel-item::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .flywheel-item:last-child::after {
+            content: '';
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .next-steps h3 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .next-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Progress Badge */
+        .progress-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .main {
+                padding: 25px 15px;
+                margin: 15px;
+            }
+
+            .pyramid-layer {
+                font-size: 0.9rem;
+                padding: 18px 15px;
+            }
+
+            .layer-content {
+                margin-left: 0;
+            }
+
+            .layer-detail h3 {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .layer-num {
+                margin-bottom: 10px;
+            }
+
+            .connection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flywheel {
+                grid-template-columns: 1fr;
+            }
+
+            .flywheel-item::after {
+                content: '↓';
+                right: auto;
+                bottom: -25px;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main {
+            animation: fadeIn 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="branding">Kiao | 總校長的 AI 教育寶典</div>
+                <h1>六層金字塔</h1>
+                <p class="tagline">你的 AI 時代完整裝備｜從專注力到飛輪：整合所有拼圖的最後一塊</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="progress-badge">CH5 模組 C：六層金字塔與完整賦能</div>
+
+            <!-- Core Concept -->
+            <section class="core-concept">
+                <h2 class="concept-title">最大的頓悟時刻</h2>
+                <p class="one-liner">你有沒有覺得，這門課的五章好像是五個獨立的主題？專注、護腦、速學、賦能、超越——看起來像五堂不同的課。但現在我要告訴你一件事：它們不是五個主題。它們是一座金字塔的六層。每一層都在支撐上一層。沒有地基就蓋不了頂層。而你，已經從地基開始，一層一層蓋上來了。</p>
+            </section>
+
+            <!-- Pyramid Visualization -->
+            <section class="pyramid-container">
+                <h2>你的六層金字塔</h2>
+                <div class="pyramid">
+                    <div class="pyramid-layer layer-1">
+                        <span class="layer-title">第一層：注意力管理</span>
+                        <span class="layer-description">一切的地基｜CH1 專注</span>
+                    </div>
+                    <div class="pyramid-layer layer-2">
+                        <span class="layer-title">第二層：認知防護</span>
+                        <span class="layer-description">保護你的處理器｜CH2 護腦</span>
+                    </div>
+                    <div class="pyramid-layer layer-3">
+                        <span class="layer-title">第三層：學習方法</span>
+                        <span class="layer-description">加速你的成長｜CH3 速學</span>
+                    </div>
+                    <div class="pyramid-layer layer-4">
+                        <span class="layer-title">第四層：AI 協作</span>
+                        <span class="layer-description">倍增你的能力｜CH4 賦能</span>
+                    </div>
+                    <div class="pyramid-layer layer-5">
+                        <span class="layer-title">第五層：技能樹（49 項）</span>
+                        <span class="layer-description">真正的高速公路｜CH5 超越</span>
+                    </div>
+                    <div class="pyramid-layer layer-6">
+                        <span class="layer-title">第六層：飛輪與意義</span>
+                        <span class="layer-description">金字塔的動力源｜永恆的循環</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detailed Layer Information -->
+            <section class="layer-details-container">
+                <h2 style="margin-bottom: 40px;">六層詳解：每一層在做什麼</h2>
+
+                <!-- Layer 1 -->
+                <div class="layer-detail layer1">
+                    <h3>
+                        <span class="layer-num">1</span>
+                        <span>注意力管理——一切的地基</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>你還記得嗎？</strong>課程一開始，我們比喻：「接收器壞了，再好的音響也沒用。」</p>
+                        <p>注意力就是你的接收器。在 CH1，我們學過：盒式呼吸、無聊罐、環境設計。這三個工具指向同一個東西：讓你的注意力變成可靠的。</p>
+                        <p><strong>對應技能樹：</strong>臨在與真實連結 + 後設認知監控</p>
+                        <p><strong>沒有這一層會怎樣：</strong>你的神經系統就像沒有制動器的列車。什麼都無法沉靜下來學。</p>
+                        <div class="skills-list">
+                            <strong>關鍵工具：</strong>盒式呼吸（4-4-4-4）、無聊罐、番茄工作法、環境設計（刪除誘惑而不是依賴意志力）
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 2 -->
+                <div class="layer-detail layer2">
+                    <h3>
+                        <span class="layer-num">2</span>
+                        <span>認知防護——保護你的處理器</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>假設你的大腦是一台電腦。</strong>注意力是接收器，那認知防護就是防火牆。</p>
+                        <p>為什麼需要防火牆？因為有太多東西想溜進來——社交媒體演算法、新聞焦慮、他人的意見、自己的偏見。如果不防護，你就會成為一個被動的存在。</p>
+                        <p><strong>對應技能樹：</strong>分析推理 + 證據評估 + 決策判斷 + 自我覺察 + 批判思考</p>
+                        <p><strong>沒有這一層會怎樣：</strong>你被信息操控。你永遠不知道什麼是你自己的想法，什麼是被灌輸進去的。</p>
+                        <div class="skills-list">
+                            <strong>關鍵工具：</strong>先人後機、蘇格拉底教練法、反思習慣、開放心態+批判性思考
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 3 -->
+                <div class="layer-detail layer3">
+                    <h3>
+                        <span class="layer-num">3</span>
+                        <span>學習方法——加速你的成長引擎</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>現在你有了好的接收器和防火牆。</strong>接下來的問題是：你怎麼快速成長？</p>
+                        <p>答案：用正確的學習方法。在 CH3，我們拿到了起重機——DiSSS 框架、費曼技巧、間隔重複、刻意練習。用對了，你的學習速度可以快 3 倍、5 倍。</p>
+                        <p><strong>對應技能樹：</strong>觀察力 + 表達能力 + 行動力 + 後設認知</p>
+                        <p><strong>沒有這一層會怎樣：</strong>你努力，但低效。像在用手挖洞，而不是用鏟子。最終放棄。</p>
+                        <div class="skills-list">
+                            <strong>關鍵工具：</strong>DiSSS 框架、費曼技巧、間隔重複、刻意練習、學習監控、時間設計
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 4 -->
+                <div class="layer-detail layer4">
+                    <h3>
+                        <span class="layer-num">4</span>
+                        <span>AI 協作——倍增你的能力</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>到了第四層，事情變得有趣起來。</strong>你有了基礎、有了防護、有了高效的學習方法。現在，AI 來了。</p>
+                        <p>但這裡有個很重要的點：AI 在第四層，不在第一層。如果注意力很差、認知防護很弱、學習方法很低效，然後去用 AI，會發生什麼？AI 會放大你的弱點。</p>
+                        <p><strong>對應技能樹：</strong>好奇心 + 批判性思考 + 批判性提問</p>
+                        <p><strong>沒有這一層會怎樣：</strong>你能手動做的事，現在用 AI 做得更快。但改變不了本質。AI 只是加速，不是轉向。</p>
+                        <div class="skills-list">
+                            <strong>關鍵工具：</strong>AI 煉金術五步驟（定義問題、拆解問題、調研、生成、評估迭代）、提問的品質、批判眼光
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 5 -->
+                <div class="layer-detail layer5">
+                    <h3>
+                        <span class="layer-num">5</span>
+                        <span>技能樹（四層結構，49 項）——真正的高速公路</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>現在到了第五層。這是一個重大的轉變。</strong>前四層是「基礎設施」。第五層是「你要往哪裡走」。</p>
+                        <p>49 項技能按照四個層級組織：地基層（14 項）→ 核心層（19 項）→ 進階層（10 項）→ 湧現層（6 項）。每一層都在支撐上一層。沒有「地基層的專注力」就沒有「核心層的後設認知」。</p>
+                        <p><strong>妙的地方是：</strong>金字塔的前四層實際上就是在為你打好技能樹的地基和核心層。注意力 → 專注力（G01）；認知防護 → 批判思考（C04）；學習方法 → 後設認知（C03）；AI 協作 → 好奇心（C05）。</p>
+                        <p><strong>沒有這一層會怎樣：</strong>你很有效率，但不知道往哪走。像開著跑車在沙漠裡轉圈。</p>
+                        <div class="skills-list">
+                            <strong>四層結構：</strong>地基層（意義建構、專注力、傾聽等 14 項）→ 核心層（自我覺察、批判思考、好奇心等 19 項）→ 進階層（批判性提問、多元視角、知識遷移等 10 項）→ 湧現層（跨域創新、系統設計、領導力等 6 項）
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layer 6 -->
+                <div class="layer-detail layer6">
+                    <h3>
+                        <span class="layer-num">6</span>
+                        <span>飛輪與意義——金字塔的動力源</span>
+                    </h3>
+                    <div class="layer-content">
+                        <p><strong>最後一層。</strong>在舊版金字塔裡，塔尖是「希望與意義」。這是對的，但太模糊。</p>
+                        <p>在新版裡，我們把它具體化了——五個飛輪：<strong>意義飛輪、成長飛輪、連接飛輪、創新飛輪、影響飛輪。</strong></p>
+                        <p><strong>意義飛輪最關鍵：</strong>貢獻 → 行動 → 使命感 → 希望 → 更多貢獻。你開始貢獻時，會發現自己的行動帶來了改變。這個改變給了你使命感。使命感帶來希望。希望推動你做更多貢獻。</p>
+                        <p><strong>沒有這一層會怎樣：</strong>金字塔只是一個靜止的結構。有了飛輪，它變成了一個永動機。</p>
+                        <div class="skills-list">
+                            <strong>五個飛輪：</strong>意義飛輪（你為什麼做）、成長飛輪（你怎麼變強）、連接飛輪（你怎麼連結）、創新飛輪（你怎麼創造）、影響飛輪（你怎麼改變世界）
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Congratulations -->
+            <section class="congratulations">
+                <h2>你做到了</h2>
+                <p>恭喜你。你走完了整個課程。</p>
+
+                <div class="achievement">
+                    <p><strong>你學了什麼？</strong></p>
+                    <p>20 種科學學習法（CH1-CH3）+ 5 步 AI 煉金術（CH4）+ 5 項 EPOCH 超能力（CH5）+ 38 項持久技能 + 49 項細化能力 + 6 層完整架構。</p>
+                </div>
+
+                <div class="achievement">
+                    <p><strong>更重要的是，你建立了什麼？</strong></p>
+                    <p>一個「自我改進系統」。金字塔的前四層教你「怎麼有效地學」。第五層的技能樹教你「學什麼」。第六層的飛輪教你「為什麼學」。三個問題答上了，你就有了一套「永遠不會過時」的學習系統。</p>
+                </div>
+
+                <div class="achievement">
+                    <p><strong>最後，你掌握了什麼心態？</strong></p>
+                    <p>AI 越強大，人類越需要做到 AI 做不到的事。你現在知道那些「AI 做不到的事」是什麼。你知道該往哪個方向發展。你知道怎麼發展。</p>
+                </div>
+            </section>
+
+            <!-- Without Lower Foundations -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>沒有下層基礎，上層能力無法發展</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>一個真實的故事：</strong></p>
+                    <p>小李是一個天才。他聰明、有創意、想法超前。但他一直在跳過下層基礎。</p>
+                    <p>他沒有建立注意力。所以他分心，學得不深。</p>
+                    <p>他沒有建立認知防護。所以他被網路謠言影響，判斷力很差。</p>
+                    <p>他沒有掌握高效學習方法。所以他的創意想法，經常在執行時失敗。</p>
+                    <p>他一個人黑屏寫代碼，從來不用 AI。所以他的速度比會用 AI 的人慢 10 倍。</p>
+                    <p><strong>結果：</strong>他的天才一直沒有綻放。因為基礎層沒建好。</p>
+
+                    <p style="margin-top: 15px;"><strong>反面故事：</strong>小王不是最聰明的，但他：</p>
+                    <p>第一步：建立注意力（三個月）</p>
+                    <p>第二步：學會質疑信息（三個月）</p>
+                    <p>第三步：掌握費曼技巧和間隔重複（三個月）</p>
+                    <p>第四步：學會和 AI 協作（兩個月）</p>
+                    <p>第五步：用 49 項技能有意識地發展自己（持續）</p>
+
+                    <p style="margin-top: 15px;"><strong>結果：</strong>三年後，他成了技術領袖。不是因為他最聰明，而是因為他一層一層地蓋。</p>
+
+                    <p style="margin-top: 15px;"><strong>關鍵洞察：</strong>如果你最弱的層是 L2 認知防護，加強 L5 技能樹是沒用的。你首先要回到 L2，把防火牆建好。否則，你學的再多，也會被操控。</p>
+                </div>
+            </section>
+
+            <!-- Reflection Questions -->
+            <section class="reflection">
+                <h3>自我診斷：你的金字塔現在在哪？</h3>
+                <p style="margin-bottom: 20px;">花 5 分鐘誠實地回答這些問題。沒有對錯，只有真實。</p>
+
+                <div class="reflection-questions">
+                    <div class="reflection-question">
+                        <strong>L1 注意力：</strong>
+                        <p>你能否連續專注 25 分鐘不分心？你的環境設計對了嗎？（是/否）</p>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>L2 認知防護：</strong>
+                        <p>你能否在看到一個信息時，先停下來問「這是真的嗎」？你有習慣反思自己的假設嗎？（是/否）</p>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>L3 學習方法：</strong>
+                        <p>你是否有一套系統化的學習流程？你學完一個東西能否用自己的話講出來？（是/否）</p>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>L4 AI 協作：</strong>
+                        <p>你是否能清楚地定義問題再給 AI？你能判斷 AI 的回答靠不靠譜嗎？（是/否）</p>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>L5 技能樹：</strong>
+                        <p>你現在掌握的核心層技能有幾項？你知道自己的弱項在哪裡嗎？</p>
+                    </div>
+
+                    <div class="reflection-question">
+                        <strong>L6 飛輪：</strong>
+                        <p>你對自己的未來有希望嗎？你知道自己為什麼學這些東西嗎？</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px; padding-top: 25px; border-top: 2px solid var(--warm);"><strong>診斷結果：</strong></p>
+                <p>如果前四層裡有超過兩層你回答「否」，那就意味著你需要回頭鞏固基礎。不用著急。因為第五層再高，也蓋不了一個地基不穩的房子。</p>
+                <p style="margin-top: 12px;">如果前四層都是「是」，但第五層你很模糊，那就開始仔細研究技能樹。把 49 項技能逐一對應到自己的生活。</p>
+                <p style="margin-top: 12px;">如果所有層級都清楚，但第六層你沒有感受到希望，那就是時候停下來想一個問題——你到底想用這套裝備做什麼？</p>
+            </section>
+
+            <!-- Connection to Previous Chapters -->
+            <section class="connection-section">
+                <h3>跨課連結：整個課程的脈絡</h3>
+                <div class="connection-grid">
+                    <div class="connection-item">
+                        <strong>CH1 專注力</strong>
+                        <p>教你「怎麼沉靜下來」。盒式呼吸、無聊罐、環境設計。金字塔第一層。</p>
+                    </div>
+
+                    <div class="connection-item">
+                        <strong>CH2 護腦</strong>
+                        <p>教你「怎麼保護自己的思維」。先人後機、蘇格拉底教練。金字塔第二層。</p>
+                    </div>
+
+                    <div class="connection-item">
+                        <strong>CH3 速學</strong>
+                        <p>教你「怎麼快速成長」。DiSSS、費曼技巧、間隔重複。金字塔第三層。</p>
+                    </div>
+
+                    <div class="connection-item">
+                        <strong>CH4 賦能</strong>
+                        <p>教你「怎麼和 AI 協作」。煉金術五步驟。金字塔第四層。</p>
+                    </div>
+
+                    <div class="connection-item">
+                        <strong>CH5 超越</strong>
+                        <p>教你「往哪裡走」。EPOCH 五能力、38 項持久技能、49 項細化能力。金字塔第五層。</p>
+                    </div>
+
+                    <div class="connection-item">
+                        <strong>CH6 應用</strong>
+                        <p>（在這個課程之後）教你「怎麼用這套系統改變家庭教育」。金字塔第六層的飛輪。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flywheel -->
+            <section class="flywheel-section">
+                <h3>五個飛輪：永遠轉動的系統</h3>
+                <p style="margin-bottom: 20px;">有了金字塔，事還沒完。金字塔加上飛輪，才是一個永動系統。五個飛輪互相推動：</p>
+
+                <div class="flywheel">
+                    <div class="flywheel-item">
+                        <strong>意義飛輪</strong>
+                        <p>貢獻 → 改變 → 使命感 → 希望 → 更多貢獻</p>
+                    </div>
+                    <div class="flywheel-item">
+                        <strong>成長飛輪</strong>
+                        <p>努力 → 進步 → 信心 → 更多努力</p>
+                    </div>
+                    <div class="flywheel-item">
+                        <strong>連接飛輪</strong>
+                        <p>傾聽 → 理解 → 連結 → 合作 → 更多成果</p>
+                    </div>
+                    <div class="flywheel-item">
+                        <strong>創新飛輪</strong>
+                        <p>問題 → 創意 → 試驗 → 反饋 → 更好的創意</p>
+                    </div>
+                    <div class="flywheel-item">
+                        <strong>影響飛輪</strong>
+                        <p>領導 → 啟發 → 追隨 → 一起做 → 更大的影響</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px; padding-top: 20px; border-top: 2px solid var(--secondary);"><strong>最妙的地方：</strong>這五個飛輪互相推動。當你的意義飛輪轉起來時，你的成長飛輪也會加速。當你的創新飛輪轉起來時，你的影響飛輪也會跟著轉。三年後、五年後、十年後，你會發現自己身處一個「正向循環」。</p>
+            </section>
+
+            <!-- Final Practice -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>最後的練習：規劃你的個人發展路徑</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>60 秒快速行動（現在就做）：</strong></p>
+                    <p style="margin-top: 12px;">1. 在紙上或電腦上，畫一個六層的金字塔。（用紙、用 Figma、用 Excalidraw，無所謂。但一定要畫出來。）</p>
+                    <p>2. 在每一層，寫下一句話。不是理論，是「你自己現在的狀況」。</p>
+                    <p style="margin: 12px 0;">• L1：我的注意力現在如何？(很分散/可以/還不錯/很強)</p>
+                    <p style="margin: 12px 0;">• L2：我的認知防護現在如何？</p>
+                    <p style="margin: 12px 0;">• L3：我的學習方法現在如何？</p>
+                    <p style="margin: 12px 0;">• L4：我現在怎麼和 AI 互動？</p>
+                    <p style="margin: 12px 0;">• L5：我掌握的核心技能有幾項？</p>
+                    <p style="margin: 12px 0;">• L6：我對未來有希望嗎？</p>
+
+                    <p style="margin-top: 12px;">3. 選最弱的那一層，決定「未來 30 天要怎麼強化它」。寫下具體行動（不是宣言，是可執行的行動）。</p>
+
+                    <p style="margin-top: 20px;"><strong>90 天完整計畫：</strong></p>
+                    <p style="margin-top: 12px;">• 第一個月：聚焦 L1 或 L2。每天 20 分鐘練習。</p>
+                    <p>• 第二個月：聚焦 L3 或 L4。每天 20 分鐘練習。</p>
+                    <p>• 第三個月：開始在 L5 挑選 3-5 項技能深化。每天 30 分鐘練習。</p>
+                    <p>• 從第四個月開始：維持習慣，加上 L6 的飛輪實踐。（開始貢獻、開始創新、開始影響。）</p>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="next-steps">
+                <h3>接下來該怎麼做？</h3>
+                <ul>
+                    <li>第一步：用「自我診斷」找出你金字塔最弱的層。</li>
+                    <li>第二步：在最弱的那層開始 30 天實驗。</li>
+                    <li>第三步：30 天後，如果進步明顯，保持這個習慣。如果卡住，改變練習方法。</li>
+                    <li>第四步：完成前四層，開始系統化地發展第五層的 49 項技能。</li>
+                    <li>第五步：在實踐中啟動第六層的飛輪。從貢獻開始，看著飛輪慢慢轉動。</li>
+                    <li>第六步：進入 CH6（家長教育篇）。把你學到的東西，教給你身邊的人——孩子、學生、朋友。因為教會別人，是最高級的學習。</li>
+                </ul>
+            </section>
+
+            <!-- Final Encouragement -->
+            <section style="background: linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(102, 126, 234, 0.2)); padding: 30px; border-radius: 10px; margin: 40px 0; border-left: 4px solid var(--secondary);">
+                <h3 style="color: var(--secondary); margin-bottom: 15px;">寫給你的一句話</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">你已經擁有完整的裝備。六層金字塔 + 四層技能樹 + 五個飛輪。從注意力到飛輪，從地基到湧現，每一層都連接著，每一個飛輪都在運轉。</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">但是——而且這是最重要的「但是」——<strong>裝備只是裝備。</strong></p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">你可以有世界上最好的吉他，但如果你不彈，吉他就是木頭。你可以有世界上最好的跑鞋，但如果你不跑，鞋就是布和膠。同樣，你可以有最完整的成長框架，但如果你不開始，框架就是理論。</p>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">所以現在只有一個問題：<strong>你願意開始嗎？</strong></p>
+                <p style="font-size: 1rem; line-height: 1.8; margin-top: 15px; color: var(--warm);">不是「你準備好了嗎」。是「你願意開始嗎」。</p>
+                <p style="font-size: 1rem; line-height: 1.8; margin-top: 15px;">最好的時間是十年前。第二好的時間是現在。</p>
+            </section>
+
+        </main>
+
+        <footer>
+            © Kiao · 總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力 | CH5 超越——打造 AI 無法取代的核心競爭力
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.collapsible-icon');
+                content.classList.toggle('active');
+                icon.textContent = content.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>

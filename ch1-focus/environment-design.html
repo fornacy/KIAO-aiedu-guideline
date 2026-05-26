@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>環境設計 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb span {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .progress-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .core-statement {
+            background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 100%);
+            border-left: 5px solid #3b82f6;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e40af;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Data Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #3b82f6;
+        }
+
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #10b981; }
+        .stat-card:nth-child(4) { border-top-color: #ec4899; }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #10b981; }
+        .stat-card:nth-child(4) .stat-number { color: #ec4899; }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            display: inline-block;
+        }
+
+        .section-container {
+            margin-bottom: 3rem;
+        }
+
+        /* Expandable Sections */
+        .expandable-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .expand-header {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .expand-header:hover {
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: #3b82f6;
+        }
+
+        .expandable-section.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .expandable-section.active .expand-content {
+            max-height: 3000px;
+            padding: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .content-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .content-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Practice Cards */
+        .practice-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .practice-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .practice-number {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-right: 0.8rem;
+            font-weight: 700;
+        }
+
+        .practice-content {
+            padding: 1.5rem;
+        }
+
+        .practice-step {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .practice-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .step-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Checkbox Styling */
+        .checkbox-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .checkbox-list li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #374151;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .checkbox-list li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .checkbox-list li:hover {
+            color: #3b82f6;
+        }
+
+        /* Key Concepts */
+        .concept-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #f0e6ff 100%);
+            border-left: 4px solid #3b82f6;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-title {
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Layer Cards */
+        .layer-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3b82f6;
+        }
+
+        .layer-card:nth-child(2) { border-left-color: #f59e0b; }
+        .layer-card:nth-child(3) { border-left-color: #10b981; }
+
+        .layer-header {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+
+        .layer-content {
+            padding: 1.5rem;
+        }
+
+        /* Download Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .resource-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .resource-desc {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
+            border-left: 5px solid #10b981;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .case-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 1rem;
+        }
+
+        /* Ch1 Wrap-up */
+        .ch1-wrapup {
+            background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+        }
+
+        .wrapup-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 1.5rem;
+        }
+
+        .wrapup-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .wrapup-list li {
+            padding: 0.8rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            color: #78350f;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .wrapup-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .wrapup-footer {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(245, 158, 11, 0.3);
+            color: #92400e;
+            font-weight: 600;
+        }
+
+        .next-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .next-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .next-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .next-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Utilities */
+        .emoji {
+            margin-right: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(59, 130, 246, 0.2), rgba(30, 64, 175, 0.2));
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #3b82f6;
+            padding-left: 1rem;
+            border-left: 3px solid #3b82f6;
+            margin: 1rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            .header-content {
+                padding: 0 1.5rem;
+            }
+
+            .course-title {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expand-header {
+                font-size: 0.95rem;
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .core-statement {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
+
+            .practice-header {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">🎓 Kiao 平台</div>
+            <div class="course-title">總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力！</div>
+            <div class="breadcrumb">
+                <span>CH1 專注力——修好你的杯子</span>
+                <span>›</span>
+                <span><strong>環境設計</strong></span>
+            </div>
+            <div class="progress-indicator">
+                📊 進度：CH1 環境設計（學習法 04+）/ 20
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Core Statement -->
+        <div class="core-statement">
+            <span class="emoji">🏗️</span>
+            別再靠意志力了——把環境設計好，讓分心變得困難，讓專注變成最輕鬆的選擇。
+        </div>
+
+        <!-- Key Statistics -->
+        <section class="section-container">
+            <h2 class="section-title">📊 關鍵數據</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">秒</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">改變行為的魔法門檻</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">層</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">物理 + 數位 + 社會</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1.5→4</div>
+                    <div class="stat-label">小時</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">環境改造後的學習時間提升</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">意志力</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">環境設計的真正目標</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why It Matters -->
+        <section class="section-container">
+            <h2 class="section-title">🎯 為什麼重要</h2>
+
+            <div class="expandable-section active">
+                <div class="expand-header">
+                    <span>環境如何改變行為</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <ul class="content-list">
+                        <li><span class="highlight">Adrian Ward（UT Austin）研究</span>：手機光是放在桌上（即使關機），就會降低認知能力。你根本不需要看它，光是「知道它在那裡」就足以佔用你的認知資源。</li>
+                        <li><span class="highlight">意志力是有限資源</span>（Roy Baumeister 的「自我耗竭」研究）：每一次抵抗誘惑都在消耗意志力。最好的策略不是擁有更強的意志力，而是直接移除誘惑。</li>
+                        <li><span class="highlight">每一次抵抗誘惑都在消耗認知資源</span>：你每天做幾百次「要不要拿手機」的決定，這些都在持續消耗你的注意力。</li>
+                        <li><span class="highlight">Thaler & Sunstein 的《推力》（Nudge）理論</span>：選擇架構（choice architecture）——改變環境就能改變行為，而不需要改變人心。</li>
+                        <li>頂尖運動員和企業家的秘密不是意志力更強，而是<span class="highlight">環境設計更好</span>。馬克．祖克柏、巴拉克．歐巴馬這樣的人物都從簡化選擇出發（歐巴馬只穿灰色或藍色西裝 = 減少決策疲勞）。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="expandable-section active">
+                <div class="expand-header">
+                    <span>三層摩擦設計的邏輯</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p style="margin-bottom: 1rem; color: #374151;">不是所有的誘惑都來自同一個地方。要有效阻止分心，你需要同時在三個層面設計環境：</p>
+                    <ul class="content-list">
+                        <li><strong>物理層</strong>：手機、零食、遊戲機這些東西在不在你的視野和臂膀範圍內</li>
+                        <li><strong>數位層</strong>：通知、應用程式、網站這些東西有多容易被啟動</li>
+                        <li><strong>社會層</strong>：你身邊有沒有人在做同樣的事，有沒有人在監督你的承諾</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: #374151;">這三層缺一不可。只做物理層改造，數位誘惑依然存在。只做數位層改造，但你一個人獨自奮鬥，長期堅持會很困難。最強大的環境設計是三層同時啟動。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Concepts -->
+        <section class="section-container">
+            <h2 class="section-title">🔑 核心概念</h2>
+
+            <!-- Three-Layer Framework -->
+            <div style="margin-bottom: 2rem;">
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.5rem;">三層摩擦設計框架（核心框架）</h3>
+
+                <!-- Physical Layer -->
+                <div class="layer-card">
+                    <div class="layer-header">
+                        🏠 物理層（Physical Layer）
+                    </div>
+                    <div class="layer-content">
+                        <p style="margin-bottom: 1rem; color: #374151; font-weight: 600;">讓壞習慣需要多花時間和力氣才能啟動：</p>
+                        <ul class="content-list">
+                            <li><span class="highlight">手機離開視線</span>——不是「翻面」，而是「離開房間」。放在另一間房間充電是更好的選擇。</li>
+                            <li><span class="highlight">學習空間只放學習用品</span>——書、筆、筆記本。其他東西都移出去。</li>
+                            <li><span class="highlight">零食、遊戲機、漫畫移出學習區域</span>——不要存放在書桌附近，距離越遠越好。</li>
+                            <li><span class="highlight">20 秒法則（Shawn Achor）</span>：讓壞習慣需要多花 20 秒才能啟動，好習慣減少 20 秒啟動時間。</li>
+                            <li>準備好所有學習用品，減少「起身找東西」的理由——起身一次就可能引發分心。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Digital Layer -->
+                <div class="layer-card">
+                    <div class="layer-header">
+                        📱 數位層（Digital Layer）
+                    </div>
+                    <div class="layer-content">
+                        <p style="margin-bottom: 1rem; color: #374151; font-weight: 600;">讓通知和應用程式無法輕易打擾你：</p>
+                        <ul class="content-list">
+                            <li><span class="highlight">關閉所有非必要通知</span>——只留電話和家人訊息這種真正緊急的聯繫方式。</li>
+                            <li><span class="highlight">刪除社群 App 或移到手機最後一頁</span>——需要多步驟才能開啟（手機設定 → 應用程式資料夾 → 社群 → 打開 APP）。</li>
+                            <li><span class="highlight">使用「專注模式」或「勿擾模式」</span>——iOS 和 Android 都有內建功能。設定時間段，在那個時間只有重要聯繫人能打進來。</li>
+                            <li><span class="highlight">學習時間使用網站封鎖工具</span>——Freedom、Cold Turkey、Focus@Will 這類應用程式可以封鎖特定網站。</li>
+                            <li><span class="highlight">設定 App 使用時間限制</span>——iOS「螢幕使用時間」、Android「Digital Wellbeing」可以限制每日使用時長。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Social Layer -->
+                <div class="layer-card">
+                    <div class="layer-header">
+                        👥 社會層（Social Layer）
+                    </div>
+                    <div class="layer-content">
+                        <p style="margin-bottom: 1rem; color: #374151; font-weight: 600;">利用他人的存在和承諾來維持專注：</p>
+                        <ul class="content-list">
+                            <li><span class="highlight">Body Doubling（共同在場效應）</span>：找一個人一起唸書，不需要互動，只要存在就有效。無形中，知道別人也在努力會產生「不能鬆懈」的心理。</li>
+                            <li><span class="highlight">宣告機制</span>：告訴別人「我接下來 1 小時要專注」。公開宣告會增加承諾感。</li>
+                            <li><span class="highlight">問責夥伴（Accountability Partner）</span>：互相報告每天的專注時間。知道要向別人報告，會增加遵守承諾的動力。</li>
+                            <li><span class="highlight">家庭約定</span>：全家人在某個時段一起放下手機。共同的環境改造會更容易維持。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Willpower Fails -->
+            <div class="concept-card">
+                <div class="concept-title">為什麼意志力不是答案</div>
+                <ul class="content-list">
+                    <li><span class="highlight">自我耗竭實驗</span>（Roy Baumeister）：一組人被要求抵抗巧克力的誘惑，之後在另一個困難的任務中，他們比沒有受過抵抗考驗的人更早放棄。抵抗誘惑消耗了他們的認知資源。</li>
+                    <li><span class="highlight">日常決策的累積成本</span>：你每天做幾百次「要不要拿手機」的決定。每一次決定都消耗認知資源，到了下午你就身心俱疲。</li>
+                    <li><span class="highlight">意志力是有限資源</span>：研究顯示，意志力在白天逐漸枯竭。下午和晚上時，你的自我控制能力遠不如早上。</li>
+                    <li><span class="highlight">環境改造的優勢</span>：如果壞習慣根本無法啟動（手機在另一間房間），你就不需要消耗任何意志力來抵抗它。</li>
+                </ul>
+            </div>
+
+            <!-- Sleep Environment -->
+            <div class="concept-card">
+                <div class="concept-title">睡眠環境優化（環境設計的延伸）</div>
+                <p style="margin-bottom: 1rem; color: #374151;">優質睡眠是專注力的基礎。一個好的睡眠環境甚至比清醒時的環境設計更重要：</p>
+                <ul class="content-list">
+                    <li><span class="highlight">手機充電站設在臥室外</span>——不要把手機帶進臥室。誘惑遠離，睡眠品質自動提升。</li>
+                    <li><span class="highlight">睡前 1 小時減少藍光</span>——關閉所有螢幕，使用護眼模式，或戴藍光眼鏡。</li>
+                    <li><span class="highlight">固定睡眠時間</span>——你的大腦需要充足睡眠來鞏固記憶。每晚在同一時間睡覺，大腦就會形成習慣，更容易入睡。</li>
+                    <li>優質睡眠直接影響白天的專注力。缺乏睡眠的一天，你的認知能力會下降 30% 以上。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="section-container">
+            <h2 class="section-title">✍️ 實踐練習</h2>
+
+            <!-- Exercise 1: Three-Layer Implementation -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">1</span>
+                    三層摩擦設計實作
+                </div>
+                <div class="practice-content">
+                    <div class="practice-step">
+                        <div class="step-label">物理層改造（今天就能做）：</div>
+                        <ul class="checkbox-list">
+                            <li>準備一個「手機停車場」（固定放手機的地方，不在書桌上）</li>
+                            <li>清空學習桌面，只留當下需要的東西</li>
+                            <li>把零食和飲料移到另一個房間</li>
+                            <li>準備好所有學習用品，減少「起身找東西」的理由</li>
+                            <li>檢查學習座位周邊 1.5 米内，移除所有分散注意力的物品</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">數位層改造（今天就能做）：</div>
+                        <ul class="checkbox-list">
+                            <li>進入手機設定，關閉社群 App 通知</li>
+                            <li>把社群 App 移到手機最後一頁、放進資料夾</li>
+                            <li>開啟螢幕時間追蹤，設定每日上限</li>
+                            <li>下載一個專注計時 App（Pomodoro Timer）或使用手機內建專注模式</li>
+                            <li>設定勿擾模式時段（學習時間自動啟動）</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">社會層改造（本週內完成）：</div>
+                        <ul class="checkbox-list">
+                            <li>找一個問責夥伴，約定每天互報專注時間</li>
+                            <li>和家人討論「共同放下手機」的時段（例如晚餐時間、睡前 1 小時）</li>
+                            <li>建立 Body Doubling 習慣——去圖書館、自習室、或線上共學平台</li>
+                            <li>在某個地方（家裡牆上、日曆上）記錄每天的「有效專注時間」</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 2: Environment Renovation Checklist -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">2</span>
+                    環境改造實作清單
+                </div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151;">不需要一次全部改完。每天改一項，逐項檢核。完成後拍「改造前 vs. 改造後」的照片，視覺化你的進步。</p>
+                    <div class="practice-step">
+                        <div class="step-label">第 1 週：物理環境</div>
+                        <ul class="checkbox-list">
+                            <li>Day 1：清理學習桌面</li>
+                            <li>Day 2：設置手機停車場</li>
+                            <li>Day 3：移除零食誘惑</li>
+                            <li>Day 4：整理書籍和筆記</li>
+                            <li>Day 5：檢查光線和溫度</li>
+                            <li>Day 6-7：維持並拍照記錄</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第 2 週：數位環境</div>
+                        <ul class="checkbox-list">
+                            <li>Day 1：關閉所有通知</li>
+                            <li>Day 2：重組手機 App 排列</li>
+                            <li>Day 3：設定螢幕時間限制</li>
+                            <li>Day 4：安裝專注工具</li>
+                            <li>Day 5：設定勿擾時間</li>
+                            <li>Day 6-7：調整並觀察效果</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">第 3 週：社會環境</div>
+                        <ul class="checkbox-list">
+                            <li>Day 1：找到問責夥伴</li>
+                            <li>Day 2：第一次 Body Doubling 體驗</li>
+                            <li>Day 3：和家人協定共同時段</li>
+                            <li>Day 4-7：每日記錄並向夥伴報告</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 3: Weekly Audit -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">3</span>
+                    環境設計檢核表（每週使用）
+                </div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151;">每週檢視一次：哪些設計有效？哪些被繞過了？「被繞過」不是失敗，是系統需要升級的訊號。</p>
+                    <div class="practice-step">
+                        <div class="step-label">物理層檢核：</div>
+                        <ul class="checkbox-list">
+                            <li>☐ 手機有沒有偷偷回到書桌？（如果有，改為放在另一間房間）</li>
+                            <li>☐ 學習空間有沒有新增誘惑物品？（零食、玩具、漫畫）</li>
+                            <li>☐ 是否有「起身」導致的分心？（如果有，增加物品的可得性）</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">數位層檢核：</div>
+                        <ul class="checkbox-list">
+                            <li>☐ 有沒有不自覺地開啟社群 App？（如果有，需要更深度的封鎖）</li>
+                            <li>☐ 通知有沒有在干擾？（如果有，檢查是否還有漏掉的通知）</li>
+                            <li>☐ 勿擾模式有沒有正常運作？</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">社會層檢核：</div>
+                        <ul class="checkbox-list">
+                            <li>☐ 有沒有和問責夥伴保持聯繫？</li>
+                            <li>☐ Body Doubling 的頻率是否足夠？（目標：一週至少 3 次）</li>
+                            <li>☐ 家人有沒有一起守持共同時段？</li>
+                        </ul>
+                    </div>
+                    <div class="practice-step">
+                        <div class="step-label">持續迭代：</div>
+                        <p style="color: #374151; margin-bottom: 0.8rem;">根據檢核結果，做出微調：</p>
+                        <ul class="checkbox-list">
+                            <li>如果物理層被繞過，加深摩擦（從「另一間房間」升級到「鎖在抽屜裡」）</li>
+                            <li>如果數位層仍有誘惑，使用更強力的工具（不只是移除 App，而是徹底刪除）</li>
+                            <li>如果社會層效果不佳，尋找志同道合的社群（線上課程、自習室、讀書會）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Case Study -->
+        <section class="section-container">
+            <h2 class="section-title">📖 真實案例</h2>
+            <div class="case-study">
+                <div class="case-title">三層摩擦設計的實驗結果</div>
+                <p style="margin-bottom: 1rem; color: #374151;"><strong>學生個案：</strong></p>
+                <ul class="content-list">
+                    <li><span class="highlight">物理層改造</span>：把手機鎖在鞋櫃裡（放在房間另一端不夠有效，必須物理隔離）</li>
+                    <li><span class="highlight">數位層改造</span>：刪除 Instagram、TikTok（移除 App 不夠，完全刪除才有效）</li>
+                    <li><span class="highlight">社會層改造</span>：和室友約定共同自習時間（下午 2-4 點，一起去圖書館）</li>
+                </ul>
+                <p style="margin-top: 1.5rem; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600;">結果：</p>
+                <p style="color: #374151; font-size: 1.1rem;"><span class="highlight">每日有效學習時間從 1.5 小時提升到 4 小時</span>——沒有任何超人的意志力，只是改變了環境。</p>
+                <p style="margin-top: 1rem; color: #6b7280; font-size: 0.95rem;">注：這名學生最初試過「只」做數位層改造（刪除 App），結果失敗了。因為手機還在身邊，他會上網瀏覽。只有三層同時改造，才真正有效。</p>
+            </div>
+        </section>
+
+        <!-- Downloadable Resources -->
+        <section class="section-container">
+            <h2 class="section-title">📥 可下載資源</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">環境設計檢核表</div>
+                    <div class="resource-desc">每週自我評估清單</div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">✅</div>
+                    <div class="resource-title">環境改造實作清單</div>
+                    <div class="resource-desc">21 天逐步改造指南</div>
+                </div>
+                <div class="resource-card">
+                    <div class="resource-icon">🎯</div>
+                    <div class="resource-title">三層摩擦設計規劃卡</div>
+                    <div class="resource-desc">個人化環境設計工作表</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CH1 Wrap-up -->
+        <section class="section-container">
+            <div class="ch1-wrapup">
+                <div class="wrapup-title">🎓 恭喜你完成了 CH1 的所有學習法！</div>
+                <p style="color: #78350f; margin-bottom: 1.5rem;">你已經學會了五件事：</p>
+                <ul class="wrapup-list">
+                    <li><strong>學習法 01</strong> — 診斷自己的專注力漏洞</li>
+                    <li><strong>學習法 02</strong> — 用盒式呼吸讓大腦冷靜</li>
+                    <li><strong>學習法 03</strong> — 用無聊練習修復多巴胺系統</li>
+                    <li><strong>學習法 04</strong> — 用運動從生理層面修復大腦</li>
+                    <li><strong>環境設計</strong> — 用環境設計讓專注變成預設值</li>
+                </ul>
+                <div class="wrapup-footer">
+                    杯子修好了，接下來 CH2 要教你怎麼正確地倒水——在 AI 時代保護你的大腦！
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Section -->
+        <div class="next-section">
+            <div class="next-title">🚀 準備好進入 CH2 了嗎？</div>
+            <div class="next-content">
+                CH2：<strong>深度學習法</strong>——在 AI 時代，你的學習方式需要改變。我們將深入探討如何在充滿干擾的環境中建立深度思考的能力。
+            </div>
+            <a href="#" class="next-button">前往 CH2 深度學習法 →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        © KIAO · 總校長的 AI 教育寶典
+        <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+            進度：CH1 環境設計（學習法 04+）/ 20
+        </div>
+    </footer>
+
+    <script>
+        // Expandable sections toggle
+        document.querySelectorAll('.expand-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.parentElement;
+                section.classList.toggle('active');
+            });
+        });
+
+        // Interactive checkbox behavior (visual feedback only)
+        document.querySelectorAll('.checkbox-list li').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.style.opacity = this.style.opacity === '0.5' ? '1' : '0.5';
+                this.style.textDecoration = this.style.textDecoration === 'line-through' ? 'none' : 'line-through';
+            });
+        });
+
+        // Resource cards - placeholder interaction
+        document.querySelectorAll('.resource-card').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('資源下載將在未來推出！');
+            });
+        });
+    </script>
+</body>
+</html>

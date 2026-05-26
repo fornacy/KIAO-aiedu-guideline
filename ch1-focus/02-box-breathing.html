@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 02：盒式呼吸｜總校長的 AI 教育寶典</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background-color: #fafbfc;
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            color: #1a3a52;
+            line-height: 1.3;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1.5rem 0;
+            color: #2c5aa0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 1.8rem 0 1rem 0;
+            color: #1a3a52;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.8rem 0;
+            color: #2c5aa0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.9;
+            color: #2c3e50;
+        }
+
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-title {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+        }
+
+        .chapter-info {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin-top: 1.5rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 10%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 3px;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            opacity: 0.85;
+            text-align: right;
+            padding-right: 1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Core Statement */
+        .core-statement {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.8;
+            color: #1a3a52;
+        }
+
+        /* Data Highlight Cards */
+        .data-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .data-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .data-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Collapsible Sections */
+        .collapsible-section {
+            margin: 2rem 0;
+            border-radius: 8px;
+            border: 1px solid #e0e7ff;
+            background: white;
+            overflow: hidden;
+        }
+
+        .collapsible-header {
+            background-color: #f0f4ff;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid #e0e7ff;
+        }
+
+        .collapsible-header:hover {
+            background-color: #e8eeff;
+        }
+
+        .collapsible-header.active {
+            background-color: #f0f4ff;
+        }
+
+        .collapsible-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c5aa0;
+        }
+
+        .collapsible-icon {
+            font-size: 1.5rem;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-header.active .collapsible-icon {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .collapsible-content.active {
+            max-height: 2000px;
+            padding: 1.5rem;
+        }
+
+        .collapsible-content p {
+            margin-bottom: 1rem;
+        }
+
+        .collapsible-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .collapsible-content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        /* Practice Steps */
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .practice-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .practice-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .practice-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .practice-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1a3a52;
+        }
+
+        .practice-desc {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* Icon boxes */
+        .icon-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .icon-box-title {
+            font-weight: 600;
+            color: #2c5aa0;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .icon-box-content {
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2.5rem 0;
+            border-left: 5px solid #f59e0b;
+        }
+
+        .case-study h3 {
+            color: #92400e;
+            margin-top: 0;
+        }
+
+        .case-study p {
+            color: #78350f;
+        }
+
+        .case-study .metric {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin-right: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Resources Section */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .resource-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px dashed #667eea;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .resource-box:hover {
+            border-style: solid;
+            background-color: #f8f9ff;
+        }
+
+        .resource-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c5aa0;
+        }
+
+        .resource-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .cta-section p {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: white;
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #f0f4ff;
+            padding: 2rem;
+            text-align: center;
+            color: #666;
+            font-size: 0.95rem;
+            margin-top: 4rem;
+            border-top: 1px solid #e0e7ff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .data-highlights {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .header {
+                padding: 1.5rem;
+            }
+
+            .progress-text {
+                text-align: center;
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .data-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .data-number {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Smooth animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .collapsible-content.active {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Utility */
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-2 {
+            margin-top: 2rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            background-color: #fef3c7;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="platform-badge">🎓 Kiao 平台</div>
+        <div class="course-title">總校長的 AI 教育寶典｜掌握未來 30 年必備的聰明學習力！</div>
+        <div class="chapter-info">CH1 專注力——修好你的杯子</div>
+        <h1 class="section-title">🎯 學習法 02：盒式呼吸</h1>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <div class="progress-text">進度 02 / 20</div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Core Statement -->
+        <div class="core-statement">
+            💡 「30 秒的呼吸，就能騙過你的大腦，把焦慮模式切換成專注模式。」
+        </div>
+
+        <!-- Key Data Points -->
+        <h2>⚡ 核心數據</h2>
+        <div class="data-highlights">
+            <div class="data-card">
+                <div class="data-number">30秒</div>
+                <div class="data-label">呼吸產生效果的最短時間</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">23-30%</div>
+                <div class="data-label">皮質醇降低幅度</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">16秒</div>
+                <div class="data-label">一個盒式呼吸循環</div>
+            </div>
+            <div class="data-card">
+                <div class="data-number">20→45分鐘</div>
+                <div class="data-label">小月的專注時間提升</div>
+            </div>
+        </div>
+
+        <!-- Why It Matters -->
+        <h2>🧠 為什麼它很重要</h2>
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🎬 大腦的兩角色演義：CEO vs. 警衛</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>你的大腦裡住著兩個人：</strong></p>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">👔 前額葉皮質 = CEO（理性領導者）</div>
+                    <div class="icon-box-content">
+                        負責計畫、決策、專注、學習、邏輯思考。CEO 的工作就是把你的目標轉化成行動。當 CEO 在線時，你能讀書、能思考、能做複雜的決定。
+                    </div>
+                </div>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">🚨 杏仁核 = 警衛（危機反應器）</div>
+                    <div class="icon-box-content">
+                        負責偵測威脅、啟動戰逃反應。警衛的工作是在 0.5 秒內判斷「這是危險嗎？」。當警衛嚇到時，它不會客氣地把 CEO 趕下來。
+                    </div>
+                </div>
+
+                <h4>當壓力來臨時發生什麼：</h4>
+                <ol style="margin-left: 2rem;">
+                    <li><strong>觸發</strong>：一個新通知、考試通知、社群比較，甚至是一句責備</li>
+                    <li><strong>警衛被驚動</strong>：「危險！」警衛大喊</li>
+                    <li><strong>釋放皮質醇（煙霧彈）</strong>：警衛立即向你的血液中注入皮質醇</li>
+                    <li><strong>CEO 下線</strong>：高濃度皮質醇讓 CEO 暫時失效</li>
+                    <li><strong>後果</strong>：你越想專注，越讀不進去。考前越緊張，考試越糟</li>
+                </ol>
+
+                <p style="margin-top: 1.5rem;"><strong>🎯 這就是為什麼「越焦慮越讀不進去」：</strong>你的大腦在試著保護你，但現代生活中，這套機制被誤觸了。通知聲、考試倒數、社群比較——這些都不是生死威脅，但你的警衛卻當它們是。</p>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">💨 盒式呼吸如何重啟你的 CEO</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>盒式呼吸是一個快速的「冷靜開關」。</strong> 它在 30 秒內啟動迷走神經（vagus nerve），觸發副交感神經系統。這就像按下一個按鈕，告訴警衛：「放心，現在不危險。」</p>
+
+                <h4>科學機制：</h4>
+                <div class="icon-box">
+                    <div class="icon-box-title">🔄 迷走神經 = 大腦的高速公路</div>
+                    <div class="icon-box-content">
+                        從你的腦幹一路延伸到腹部，掌管你的心率、消化、鎮定。刻意延長吐氣能直接刺激迷走神經。
+                    </div>
+                </div>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">⬇️ 副交感神經系統 = 「休息與消化」模式</div>
+                    <div class="icon-box-content">
+                        當副交感神經激活時，你的心率下降、皮質醇下降、前額葉重新上線。你從「戰」模式切換回「思考」模式。
+                    </div>
+                </div>
+
+                <p><strong>關鍵公式：</strong> 刻意延長吐氣 → 刺激迷走神經 → 啟動副交感神經 → 降低心率和皮質醇 → CEO 重新上線</p>
+            </div>
+        </div>
+
+        <!-- Key Concepts -->
+        <h2>🔑 核心概念</h2>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">📋 盒式呼吸的四步驟（最簡單的版本）</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>想象一個正方形的四條邊，每條邊 4 秒：</strong></p>
+
+                <div style="background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%); padding: 2rem; border-radius: 8px; margin: 1.5rem 0; border-left: 5px solid #0284c7;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; font-size: 1rem;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #0284c7;">📥</div>
+                            <div style="font-weight: 600; color: #0c4a6e; margin-top: 0.5rem;">吸氣</div>
+                            <div style="font-size: 0.9rem; color: #334155;">4 秒</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #0284c7;">⏸️</div>
+                            <div style="font-weight: 600; color: #0c4a6e; margin-top: 0.5rem;">屏住</div>
+                            <div style="font-size: 0.9rem; color: #334155;">4 秒</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #0284c7;">📤</div>
+                            <div style="font-weight: 600; color: #0c4a6e; margin-top: 0.5rem;">吐氣</div>
+                            <div style="font-size: 0.9rem; color: #334155;">4 秒</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 2.5rem; font-weight: 700; color: #0284c7;">⏸️</div>
+                            <div style="font-weight: 600; color: #0c4a6e; margin-top: 0.5rem;">屏住</div>
+                            <div style="font-size: 0.9rem; color: #334155;">4 秒</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h4>時間計算：</h4>
+                <ul>
+                    <li><strong>一個循環</strong>= 4 + 4 + 4 + 4 = 16 秒</li>
+                    <li><strong>做 2 個循環</strong>= 32 秒（已有可測量效果）</li>
+                    <li><strong>做 4 個循環</strong>= 64 秒（約 1 分鐘，效果最強）</li>
+                </ul>
+
+                <p style="margin-top: 1.5rem;"><strong>💡 新手提示：</strong>不用完全精確。4 秒「大約」是一個自然的數拍速度。你可以試試看用「一一千、二一千、三一千、四一千」來數秒。或者乾脆用手機計時器設 16 秒，輕鬆做一個循環。</p>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🔬 科學證據：為什麼有效</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <h4>Stanford 呼吸研究</h4>
+                <p>Stanford 大學的呼吸與神經科學研究表明：<strong>刻意延長吐氣是最有效的即時減壓法。</strong> 不是冥想、不是運動，就是改變你的呼吸節奏。</p>
+
+                <h4>52 項研究的統合分析</h4>
+                <p>《Stress Research》期刊的統合分析指出：呼吸練習可降低 <span class="highlight">23-30% 的皮質醇</span>。這不是心理安慰，這是可測量的生化變化。</p>
+
+                <h4>30 秒即有效果</h4>
+                <p>你不需要冥想 20 分鐘。盒式呼吸在 30 秒內就能產生可測量的生理變化——心率下降、呼吸平緩、前額葉皮質氧合增加。</p>
+
+                <h4>Navy SEAL 的實戰驗證</h4>
+                <p>Navy SEAL 的聲名狼藉的教練 Mark Divine 在他的著作《The Way of the SEAL》中詳細記載：他在海豹突擊隊訓練期間使用盒式呼吸來保持冷靜。戰場上最需要的能力就是「在壓力下保持理性」，而盒式呼吸正是他們選擇的工具。</p>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🔔 巴甫洛夫的鈴聲效應：如何把呼吸變成習慣</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>盒式呼吸有個神奇的升級版本：習慣化。</strong></p>
+
+                <h4>巴甫洛夫是誰？</h4>
+                <p>俄國科學家巴甫洛夫做過一個著名實驗：每次給狗食物時都按一次鈴聲。經過幾次後，狗聽到鈴聲就會流口水——不需要真的有食物。大腦學會了「鈴聲 = 食物」。</p>
+
+                <h4>你可以用同樣的原理訓練你的大腦：</h4>
+                <ul>
+                    <li><strong>每天在固定時間做盒式呼吸</strong>（比如每天早上起床後）</li>
+                    <li><strong>重複這個動作</strong>（21 天足以形成神經通路）</li>
+                    <li><strong>大腦學會了：「這個儀式 = 準備進入專注模式」</strong></li>
+                    <li><strong>之後光是開始做呼吸動作，大腦就自動切換到專注狀態</strong></li>
+                </ul>
+
+                <p style="margin-top: 1.5rem;"><strong>例子：</strong>經過 2-3 週天天在早上做盒式呼吸後，有人告訴我，他只要坐到書桌前、開始做呼吸動作，他的大腦就「自動」進入專注模式。這不是魔法，這是神經塑性。</p>
+            </div>
+        </div>
+
+        <!-- Practice Exercises -->
+        <h2>💪 實踐練習——四個層級</h2>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🌅 第 1 層：晨間重開機儀式（推薦新手開始）</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>目標：</strong>讓盒式呼吸成為你每天的開機程序，像刷牙一樣自然。</p>
+
+                <h4>具體步驟：</h4>
+                <div class="practice-grid" style="margin-top: 1.5rem;">
+                    <div class="practice-card">
+                        <div class="practice-number">1</div>
+                        <div class="practice-title">時間點</div>
+                        <div class="practice-desc">每天起床後，在開始任何事之前（刷牙前或刷牙後都可以）</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">2</div>
+                        <div class="practice-title">動作</div>
+                        <div class="practice-desc">做 4 個循環的盒式呼吸（約 60 秒）</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">3</div>
+                        <div class="practice-title">配套儀式</div>
+                        <div class="practice-desc">做完後對自己說：「我現在準備好了」或「我清醒了」</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">4</div>
+                        <div class="practice-title">持續</div>
+                        <div class="practice-desc">連續 21 天，讓它成為自動化習慣</div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 2rem;">為什麼這樣做有效：</h4>
+                <ul>
+                    <li>你的大腦剛醒來時最有可塑性</li>
+                    <li>重複的儀式會形成神經通路</li>
+                    <li>一旦習慣化，光是開始做呼吸，大腦就自動進入「準備狀態」</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🎯 第 2 層：設計你的呼吸儀式（使用 BJ Fogg 微習慣框架）</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>目標：</strong>把盒式呼吸插入你已經存在的日常習慣，讓它變成「綁定」。</p>
+
+                <h4>BJ Fogg 微習慣公式：</h4>
+                <div style="background: #fef3c7; padding: 2rem; border-radius: 8px; margin: 1.5rem 0; border-left: 5px solid #f59e0b;">
+                    <p style="font-weight: 600; margin-bottom: 1rem; color: #92400e;">之後立即做 → 新習慣</p>
+                    <p style="color: #78350f; font-size: 0.95rem;">例：刷完牙（已有習慣）之後 → 立即做 1 個循環盒式呼吸（新習慣）</p>
+                </div>
+
+                <h4>具體步驟：</h4>
+                <ol style="margin-left: 2rem;">
+                    <li><strong>找到你的「錨點時刻」</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>刷牙後</li>
+                            <li>坐上書桌時</li>
+                            <li>打開筆電前</li>
+                            <li>吃完早餐</li>
+                            <li>走進教室</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 1rem;"><strong>在錨點之後立即做 1 個循環</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>只需要 16 秒，不會增加太多時間</li>
+                            <li>「立即」很重要——不要有延遲</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 1rem;"><strong>慶祝</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>做完後對自己說「做得好」或微笑</li>
+                            <li>慶祝會釋放多巴胺，強化習慣迴路</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 1rem;"><strong>3 天測試法</strong>
+                        <ul style="margin-top: 0.5rem;">
+                            <li>試 3 天看看順不順</li>
+                            <li>如果感覺阻力太大，換一個錨點，再試 3 天</li>
+                            <li>一旦找到順暢的錨點，就會變得輕鬆</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <p style="margin-top: 1.5rem;"><strong>🎯 例子：</strong>一位學生選擇「走進教室前」做 1 個循環呼吸。3 週後，她說：「現在我一進教室就自動冷靜下來。」這就是習慣化的力量。</p>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">🔥 第 3 層：打造心流的開機儀式（全套 2.5 分鐘）</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>目標：</strong>用一套完整的儀式啟動「心流狀態」（Deep Work）。不只是呼吸，還包括環境、意圖和直接開始。</p>
+
+                <h4>4 步驟開機儀式（總共 2.5 分鐘）：</h4>
+
+                <div class="practice-grid" style="margin-top: 1.5rem;">
+                    <div class="practice-card">
+                        <div class="practice-number">1</div>
+                        <div class="practice-title">身體訊號（32 秒）</div>
+                        <div class="practice-desc">做 2 個循環盒式呼吸。告訴你的大腦：「現在進入專注時間。」</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">2</div>
+                        <div class="practice-title">環境準備（30 秒）</div>
+                        <div class="practice-desc">清空桌面、手機關靜音或離開視線。移除分心物。</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">3</div>
+                        <div class="practice-title">意圖設定（60 秒）</div>
+                        <div class="practice-desc">寫下這段時間要完成的「一件事」。不要列待辦清單，只寫一個明確目標。</div>
+                    </div>
+                    <div class="practice-card">
+                        <div class="practice-number">4</div>
+                        <div class="practice-title">直接開始（立即）</div>
+                        <div class="practice-desc">不給大腦任何猶豫的時間。動作要快，儀式結束 = 開始工作。</div>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 2rem;">科學背景：</h4>
+                <p><strong>睡眠慣性研究：</strong>起床後 30 分鐘大腦的認知容量只有 51%。經過 90 分鐘左右才能達到巔峰。這個開機儀式的目的是加速清醒過程。</p>
+
+                <h4>真實案例：</h4>
+                <p>一位高中生說：「之前我坐下來就開始瞎讀，時間浪費在『準備』上。現在我有了 2.5 分鐘的儀式，我能立刻進入狀態。讀 50 分鐘等於之前讀 2 小時。」</p>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span class="collapsible-title">⭐ 第 4 層：四個黃金使用時機（情境觸發）</span>
+                <span class="collapsible-icon">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p><strong>目標：</strong>在特定的高壓時刻，立刻啟動盒式呼吸。把它當成應急工具。</p>
+
+                <h4>四個黃金時機：</h4>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">📝 時機 1：考試前（降低焦慮）</div>
+                    <div class="icon-box-content">
+                        考試倒數 5 分鐘前做 4 個循環。你會感覺到心跳放緩、思緒變清楚。進考場時已經進入最佳狀態。（比喝咖啡更有效，也不會手抖。）
+                    </div>
+                </div>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">💢 時機 2：被罵之後（冷靜反應）</div>
+                    <div class="icon-box-content">
+                        被父母罵、被主管責備、或被朋友說了傷人的話之後，杏仁核會火爆。做 2 個循環呼吸（32 秒），讓警衛冷靜下來，這樣你才能用理性來回應，而不是情緒化反應。
+                    </div>
+                </div>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">🤖 時機 3：使用 AI 之前（有意識學習）</div>
+                    <div class="icon-box-content">
+                        打開 ChatGPT 前做 1 個循環呼吸。這會幫你進入「有意識提問」的狀態，而不是無腦地把問題丟進去。你會問更好的問題，獲得更好的答案。
+                    </div>
+                </div>
+
+                <div class="icon-box">
+                    <div class="icon-box-title">😴 時機 4：睡前（改善入睡）</div>
+                    <div class="icon-box-content">
+                        睡前 10 分鐘做 4-6 個循環呼吸。刻意延長吐氣會激活副交感神經，身體會進入「休息」模式。很多人反應他們的入睡時間從 30 分鐘縮短到 10 分鐘。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real Case Study -->
+        <h2>📖 真實案例：小月的故事</h2>
+        <div class="case-study">
+            <h3>高中女生的 3 週轉變</h3>
+            <p><strong>背景：</strong>小月是一位高二學生，因為經常焦慮和注意力渙散而苦惱。她能連續專注的時間最長只有 20 分鐘，之後就得分心。</p>
+
+            <h4>介入方案：</h4>
+            <ul style="margin-left: 2rem;">
+                <li>教她盒式呼吸的四步驟</li>
+                <li>每天早上起床後做 4 個循環（完整開機儀式）</li>
+                <li>在坐上書桌前再做 1 個循環（錨點綁定）</li>
+                <li>堅持 21 天</li>
+            </ul>
+
+            <h4 style="margin-top: 1.5rem;">結果：</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">⏱️ 專注時間提升</div>
+                    <span class="metric">20 分鐘 → 45 分鐘</span>
+                </div>
+                <div>
+                    <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📊 數學成績</div>
+                    <span class="metric">58 分 → 73 分</span>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">📚 英文成績</div>
+                    <span class="metric">62 分 → 78 分</span>
+                </div>
+                <div>
+                    <div style="font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">💭 自我評價</div>
+                    <span class="metric">「不再浮躁」</span>
+                </div>
+            </div>
+
+            <p style="margin-top: 1.5rem;"><strong>小月說：</strong>「最神奇的不是我專注時間變長，而是我終於能靜下心來。之前讀書時我一直在焦慮『為什麼我讀不進去』，現在我只需要做 30 秒呼吸，焦慮就消失了。」</p>
+        </div>
+
+        <!-- Resources -->
+        <h2>📥 可下載資源</h2>
+        <div class="resources-grid">
+            <div class="resource-box">
+                <div class="resource-icon">🎵</div>
+                <div class="resource-title">30 秒引導音檔</div>
+                <div class="resource-desc">盒式呼吸最速版本，完美適合考前或臨時降焦</div>
+            </div>
+            <div class="resource-box">
+                <div class="resource-icon">🎵</div>
+                <div class="resource-title">2.5 分鐘引導音檔</div>
+                <div class="resource-desc">完整開機儀式版本，搭配環境音樂</div>
+            </div>
+            <div class="resource-box">
+                <div class="resource-icon">🎵</div>
+                <div class="resource-title">5 分鐘深度版本</div>
+                <div class="resource-desc">睡前專用，配合舒緩背景音樂幫助入睡</div>
+            </div>
+            <div class="resource-box">
+                <div class="resource-icon">🎴</div>
+                <div class="resource-title">開機儀式設計卡</div>
+                <div class="resource-desc">列印版本，幫你設計屬於你的開機儀式</div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h3>🚀 準備開始你的 30 秒轉變？</h3>
+            <p>選擇今天立刻做第一次盒式呼吸。不需要完美，只需要開始。3 週後，你會感受到不同。</p>
+            <a href="#" class="cta-button">下載引導音檔 & 設計卡</a>
+        </div>
+
+        <!-- Next Step -->
+        <h2>🎯 下一步</h2>
+        <div style="background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%); padding: 2rem; border-radius: 8px; border-left: 5px solid #667eea;">
+            <h3 style="margin-top: 0; color: #2c5aa0;">學會讓大腦冷靜之後，下一步要處理的是讓大腦上癮的根源——多巴胺。</h3>
+            <p style="margin-top: 1rem; color: #555;">在 <strong>學習法 03：多巴胺斷食</strong> 中，我們會深入探討為什麼你會被手機、遊戲、短影音吸引，以及如何用科學方法重設你的大腦獎勵系統。</p>
+            <a href="#" style="display: inline-block; margin-top: 1rem; color: #667eea; font-weight: 600; text-decoration: none;">前往學習法 03 →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© KIAO · 總校長的 AI 教育寶典</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #999;">版本 1.0 | 更新於 2026 年 3 月</p>
+    </footer>
+
+    <!-- JavaScript for Collapsible Sections -->
+    <script>
+        function toggleCollapsible(headerElement) {
+            const content = headerElement.nextElementSibling;
+            const isActive = content.classList.contains('active');
+
+            // Close all other sections
+            document.querySelectorAll('.collapsible-content.active').forEach(el => {
+                if (el !== content) {
+                    el.classList.remove('active');
+                    el.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            // Toggle current section
+            if (isActive) {
+                content.classList.remove('active');
+                headerElement.classList.remove('active');
+            } else {
+                content.classList.add('active');
+                headerElement.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

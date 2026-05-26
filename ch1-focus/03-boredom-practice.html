@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 03：無聊練習 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f8f9fb 100%);
+            padding: 0;
+        }
+
+        /* Header with gradient */
+        .header {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .header-brand {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Progress bar */
+        .progress-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 15%;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Core concept */
+        .core-concept {
+            background: linear-gradient(135deg, #fef3c7 0%, #fef9e7 100%);
+            border-left: 5px solid #f59e0b;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.1);
+        }
+
+        .core-concept::before {
+            content: "💡 ";
+            margin-right: 0.5rem;
+        }
+
+        /* Section styles */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Why matters section */
+        .why-matters-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .why-matter-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #3b82f6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .why-matter-item strong {
+            color: #2563eb;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Key concepts - collapsible */
+        .concept-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .concept-header {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #0c4a6e;
+            transition: background 0.3s ease;
+        }
+
+        .concept-header:hover {
+            background: linear-gradient(135deg, #bfdbfe 0%, #cffafe 100%);
+        }
+
+        .concept-content {
+            display: none;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .concept-content.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .concept-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .concept-item.active .concept-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Data cards */
+        .data-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .data-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #3b82f6;
+        }
+
+        .data-card-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .data-card-label {
+            font-size: 0.95rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Practice exercises */
+        .exercise {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #3b82f6;
+        }
+
+        .exercise-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .exercise-step {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .exercise-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .step-content {
+            display: inline-block;
+            width: calc(100% - 50px);
+            vertical-align: top;
+        }
+
+        .step-content strong {
+            color: #1e40af;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Boredom jar section */
+        .jar-activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .jar-category {
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .jar-green {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+        }
+
+        .jar-yellow {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .jar-orange {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+        }
+
+        .jar-category-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .jar-activities-list {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .jar-activities-list li {
+            margin-left: 1.2rem;
+        }
+
+        /* Case study */
+        .case-study {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            border-left: 5px solid #10b981;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+        }
+
+        .case-study-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #065f46;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-content {
+            color: #047857;
+            line-height: 1.8;
+        }
+
+        .case-study-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.6);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-before {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #dc2626;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-after {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: #10b981;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #047857;
+        }
+
+        /* Next step */
+        .next-step {
+            background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+            border-left: 5px solid #8b5cf6;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
+        }
+
+        .next-step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #6d28d9;
+            margin-bottom: 1rem;
+        }
+
+        .next-step-content {
+            font-size: 1.05rem;
+            color: #5b21b6;
+            line-height: 1.8;
+        }
+
+        /* Resources section */
+        .resources {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-item {
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .resource-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 3px solid #3b82f6;
+        }
+
+        .footer-content {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-progress {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+
+            .header {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .data-cards {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .jar-activities {
+                grid-template-columns: 1fr;
+            }
+
+            .case-study-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .exercise {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .header {
+                box-shadow: none;
+                page-break-after: avoid;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-brand">Kiao | 總校長的 AI 教育寶典｜掌握未來 30 年必備的聰明學習力！</div>
+        <div class="header-title">學習法 03：無聊練習</div>
+        <div class="header-subtitle">CH1 專注力——修好你的杯子</div>
+        <div class="header-badge">🧠 多巴胺系統修復計畫</div>
+    </div>
+
+    <div class="container">
+        <!-- Progress bar -->
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="progress-text">學習法 03 / 20</div>
+        </div>
+
+        <!-- Core concept -->
+        <div class="core-concept">
+            手機越滑越空虛，是因為你的多巴胺受體已經被短影音燒壞了——而無聊，是唯一的解藥。
+        </div>
+
+        <!-- Why it matters -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">⚡</span>為什麼這很重要</h2>
+            <div class="why-matters-list">
+                <div class="why-matter-item">
+                    <strong>多巴胺的真面目</strong>
+                    多巴胺不是「快樂激素」，是「渴望激素」——它讓你不斷想要更多，卻永遠不滿足
+                </div>
+                <div class="why-matter-item">
+                    <strong>刺激成癮的生理機制</strong>
+                    短影音、社群通知、遊戲獎勵 = 高頻率多巴胺刺激 → 受體鈍化（tolerance）
+                </div>
+                <div class="why-matter-item">
+                    <strong>耐受性的惡性循環</strong>
+                    就像吃辣越吃越重口味，大腦需要越來越強的刺激才有感覺
+                </div>
+                <div class="why-matter-item">
+                    <strong>學習能力的崩壞</strong>
+                    課本、老師說話、長文章 = 「太無聊了」→ 根本讀不進去
+                </div>
+                <div class="why-matter-item">
+                    <strong>根本原因</strong>
+                    多巴胺受體鈍化是現代學生專注力崩壞的生理根源——不是「不夠努力」，而是大腦被改變了
+                </div>
+            </div>
+        </section>
+
+        <!-- Key concepts -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">🔬</span>核心概念</h2>
+
+            <!-- Concept 1 -->
+            <div class="concept-item">
+                <div class="concept-header" onclick="toggleConcept(this)">
+                    <span>1️⃣ 多巴胺耐受機制</span>
+                    <span class="concept-toggle">▼</span>
+                </div>
+                <div class="concept-content">
+                    <p><strong>三階段惡性循環：</strong></p>
+                    <ul style="margin: 1rem 0 0 1.5rem; line-height: 2;">
+                        <li><strong>持續高刺激</strong> → 受體數量下調（downregulation）</li>
+                        <li><strong>耐受性上升</strong> → 需要更強刺激才能達到相同滿足感</li>
+                        <li><strong>學習崩壞</strong> → 低刺激活動（閱讀、聽課）變得無法忍受</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: #666; font-style: italic;">這不是「不夠努力」，是大腦的生理狀態改變了。</p>
+                </div>
+            </div>
+
+            <!-- Concept 2 -->
+            <div class="concept-item">
+                <div class="concept-header" onclick="toggleConcept(this)">
+                    <span>2️⃣ 無聊的力量</span>
+                    <span class="concept-toggle">▼</span>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Sandi Mann 的研究發現：</strong></p>
+                    <p style="margin: 1rem 0;">故意讓受試者做無聊的事（抄電話號碼），之後的創意測驗分數竟然更高！</p>
+
+                    <p><strong>無聊的神經機制：</strong></p>
+                    <ul style="margin: 1rem 0 0 1.5rem; line-height: 2;">
+                        <li>無聊會啟動大腦的「預設模式網路」（Default Mode Network, DMN）</li>
+                        <li>DMN 負責：自我反思、問題整合、創意連結、長期規劃</li>
+                        <li>歷史上很多偉大想法都是在「發呆」時出現的</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Concept 3 -->
+            <div class="concept-item">
+                <div class="concept-header" onclick="toggleConcept(this)">
+                    <span>3️⃣ 短影音的認知傷害</span>
+                    <span class="concept-toggle">▼</span>
+                </div>
+                <div class="concept-content">
+                    <p><strong>大規模統合分析結果：</strong></p>
+                    <ul style="margin: 1rem 0 0 1.5rem; line-height: 2;">
+                        <li>樣本數：<strong>98,299 人</strong></li>
+                        <li>發現：短影音與注意力下降、即時滿足需求上升顯著相關</li>
+                        <li>趨勢：平均注意力持續時間正在逐年縮短</li>
+                    </ul>
+                    <p style="margin-top: 1rem; color: #dc2626; font-weight: 500;">「刷完一小時什麼都沒記住」= 多巴胺循環空轉</p>
+                </div>
+            </div>
+
+            <!-- Concept 4 -->
+            <div class="concept-item">
+                <div class="concept-header" onclick="toggleConcept(this)">
+                    <span>4️⃣ 無聊罐（Boredom Jar）概念</span>
+                    <span class="concept-toggle">▼</span>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Wendy Wood 習慣替代原則：</strong></p>
+                    <p style="margin: 1rem 0; color: #666;">不能只刪除壞習慣，必須用好習慣填補。</p>
+
+                    <p style="margin-top: 1.5rem;"><strong>準備一個罐子，裝滿「低刺激但有益」的活動紙條：</strong></p>
+                    <p style="margin: 1rem 0; color: #666;">當想滑手機時，抽一張紙條來做。</p>
+
+                    <p style="margin-top: 1.5rem; font-weight: 600; color: #1e40af;">四類活動（按刺激程度分級）：</p>
+                    <div class="jar-activities">
+                        <div class="jar-category jar-green">
+                            <div class="jar-category-title">🟢 綠色（極低刺激）</div>
+                            <ul class="jar-activities-list">
+                                <li>散步</li>
+                                <li>發呆</li>
+                                <li>看窗外</li>
+                                <li>深呼吸</li>
+                            </ul>
+                        </div>
+                        <div class="jar-category jar-yellow">
+                            <div class="jar-category-title">🟡 黃色（低刺激）</div>
+                            <ul class="jar-activities-list">
+                                <li>畫畫</li>
+                                <li>摺紙</li>
+                                <li>寫日記</li>
+                                <li>澆花</li>
+                            </ul>
+                        </div>
+                        <div class="jar-category jar-orange">
+                            <div class="jar-category-title">🟠 橘色（中低刺激）</div>
+                            <ul class="jar-activities-list">
+                                <li>讀一篇短文</li>
+                                <li>聽音樂</li>
+                                <li>做伸展操</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data cards -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">📊</span>關鍵數據</h2>
+            <div class="data-cards">
+                <div class="data-card">
+                    <div class="data-card-number">98,299</div>
+                    <div class="data-card-label">統合分析樣本人數</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-number">5</div>
+                    <div class="data-card-label">分鐘（每日最低排毒）</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-number">21</div>
+                    <div class="data-card-label">天（挑戰計畫周期）</div>
+                </div>
+                <div class="data-card">
+                    <div class="data-card-number">6→3</div>
+                    <div class="data-card-label">小時（螢幕時間改變）</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice exercises -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">✏️</span>實踐練習</h2>
+
+            <!-- Exercise 1 -->
+            <div class="exercise">
+                <div class="exercise-title">
+                    <span style="font-size: 1.5rem;">🏺</span>
+                    練習 1：製作你的無聊罐
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>準備材料</strong>
+                        找一個罐子或盒子，最好放在看得見的地方
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>寫紙條</strong>
+                        寫 15-20 張紙條，分三個顏色等級（綠色、黃色、橘色）
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>定位放置</strong>
+                        放在平常滑手機的位置（床邊、書桌、客廳沙發）
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>執行規則</strong>
+                        想滑手機時，先抽一張做 5 分鐘
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 2 -->
+            <div class="exercise">
+                <div class="exercise-title">
+                    <span style="font-size: 1.5rem;">📈</span>
+                    練習 2：5-10-15-30 漸進式排毒計畫
+                </div>
+                <p style="margin-bottom: 1.5rem; color: #666; font-size: 0.95rem;">基於 Cameron Sepah 的「智慧型手機排毒」研究</p>
+
+                <div class="exercise-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>第一週：每天 5 分鐘</strong>
+                        不碰手機（用無聊罐替代），開始習慣低刺激
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>第二週：延長到 10 分鐘</strong>
+                        逐漸增加時間，注意躁動感如何變化
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>第三週：延長到 15 分鐘</strong>
+                        大腦開始適應，「忍受無聊」的肌肉變強了
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>第四週：挑戰 30 分鐘</strong>
+                        完全改變你的多巴胺基線
+                    </div>
+                </div>
+
+                <p style="margin-top: 1.5rem; padding: 1rem; background: #ecfdf5; border-radius: 8px; color: #047857; font-weight: 500;">
+                    💡 關鍵語言轉換：說「我選擇先做別的」而不是「我不能用手機」（選擇 vs. 禁止）
+                </p>
+            </div>
+
+            <!-- Exercise 3 -->
+            <div class="exercise">
+                <div class="exercise-title">
+                    <span style="font-size: 1.5rem;">⏰</span>
+                    練習 3：每天 5 分鐘無痛排毒
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>選定時段</strong>
+                        建議：放學/下班後到家的前 5 分鐘（關鍵時刻）
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>什麼都不做</strong>
+                        或從無聊罐抽一個活動，記得：活動本身不重要
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>重點是練習肌肉</strong>
+                        目標不是活動本身，而是練習「忍受低刺激」的能力
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>自我觀察</strong>
+                        注意身體的躁動感，它會在 2-3 分鐘後自然消退
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exercise 4 -->
+            <div class="exercise">
+                <div class="exercise-title">
+                    <span style="font-size: 1.5rem;">🎯</span>
+                    練習 4：21 天無聊練習挑戰
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <strong>每日記錄</strong>
+                        記錄：做了什麼、堅持幾分鐘、感受如何
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <strong>追蹤基線恢復</strong>
+                        追蹤「多巴胺基線恢復曲線」——第一週最難，第二週開始變輕鬆
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <strong>視覺化成就</strong>
+                        每完成一天就在挑戰卡上打勾，看進度條成長
+                    </div>
+                </div>
+                <div class="exercise-step">
+                    <span class="step-number">4</span>
+                    <div class="step-content">
+                        <strong>第 21 天的變化</strong>
+                        對比第 1 天和第 21 天的感受，會有驚人的差異
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case study -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">📖</span>真實案例</h2>
+            <div class="case-study">
+                <div class="case-study-title">小傑的故事——高中男生</div>
+                <div class="case-study-content">
+                    <p style="margin-bottom: 1rem;">
+                        小傑是典型的「機不離手」少年。每天早上睜開眼睛就拿手機，上課中間偷偷刷短影音，回家直接滑到睡覺。他感覺自己好像在努力，但成績始終不見起色——班排名維持在 30 名。
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        當他開始無聊罐 + 漸進式排毒計畫後，事情開始改變：
+                    </p>
+
+                    <div class="case-study-stats">
+                        <div class="stat">
+                            <div style="font-weight: 500; margin-bottom: 0.5rem;">螢幕時間</div>
+                            <div class="stat-before">6 小時</div>
+                            <span style="font-size: 1.5rem; color: #065f46;">↓</span>
+                            <div class="stat-after">3 小時</div>
+                        </div>
+                        <div class="stat">
+                            <div style="font-weight: 500; margin-bottom: 0.5rem;">班級排名</div>
+                            <div class="stat-before">30 名</div>
+                            <span style="font-size: 1.5rem; color: #065f46;">↓</span>
+                            <div class="stat-after">15 名</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(16, 185, 129, 0.3);">
+                        <strong>時間線：</strong><br>
+                        第 1-7 天：最難的階段，躁動感強烈，但在第 4 天後開始適應<br>
+                        第 8-14 天：開始感覺「有點無聊」反而是舒適的<br>
+                        第 15-21 天：專注力明顯提升，一次讀書可以撐 45 分鐘<br>
+                        第 3 週後：班排名進步到 15 名，自己也驚訝了
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="section">
+            <h2 class="section-title"><span class="section-title-icon">📥</span>可下載資源</h2>
+            <div class="resources">
+                <div class="resource-item">
+                    <div class="resource-icon">📋</div>
+                    <div>
+                        <strong>無聊練習挑戰卡（21天）</strong><br>
+                        <span style="font-size: 0.9rem; color: #666;">用於追蹤你的每日進度，看著方塊一個個填滿會很有成就感</span>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="resource-icon">🎯</div>
+                    <div>
+                        <strong>無聊罐活動建議清單</strong><br>
+                        <span style="font-size: 0.9rem; color: #666;">50+ 個低刺激但有益的活動點子，依難度分類</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next step -->
+        <section class="section">
+            <div class="next-step">
+                <div class="next-step-title">🚀 下一步</div>
+                <div class="next-step-content">
+                    修復多巴胺系統之後，下一步要用<strong>運動</strong>來從生理層面修復你的大腦。
+                    <br><br>
+                    準備好進入 <strong>學習法 04：運動即大腦藥物</strong>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">© KIAO · 總校長的 AI 教育寶典</div>
+        <div class="footer-content">掌握未來 30 年必備的聰明學習力</div>
+        <div class="footer-progress">學習法 03 / 20</div>
+    </div>
+
+    <script>
+        function toggleConcept(element) {
+            const conceptItem = element.parentElement;
+            const content = conceptItem.querySelector('.concept-content');
+
+            // Close all other open items
+            document.querySelectorAll('.concept-item.active').forEach(item => {
+                if (item !== conceptItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.concept-content').classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            conceptItem.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EPOCH框架 - CH5 超越｜總校長的AI教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --warm: #ff9a56;
+            --light-bg: #f5f7ff;
+            --dark-text: #2d3748;
+            --border: #e2e8f0;
+            --success: #48bb78;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .branding {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 50px 30px;
+            background: white;
+            margin: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Core Concept */
+        .core-concept {
+            background: linear-gradient(135deg, var(--light-bg) 0%, rgba(240, 147, 251, 0.1) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .one-liner {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Section Heading */
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            position: relative;
+        }
+
+        /* Why Important */
+        .why-section {
+            background: #f0f4ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .why-section h3 {
+            color: var(--warm);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .why-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* EPOCH Cards */
+        .epoch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .epoch-card {
+            background: white;
+            border: 2px solid var(--light-bg);
+            border-radius: 10px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .epoch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .epoch-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .epoch-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .epoch-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .epoch-card .english {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .epoch-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .epoch-card .practice {
+            background: rgba(102, 126, 234, 0.08);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary);
+            margin-top: 15px;
+        }
+
+        /* Practice Section */
+        .practice-section {
+            background: #fff9f0;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .practice-section h3 {
+            color: var(--warm);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .practice-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .practice-step {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warm);
+            position: relative;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--warm), var(--primary));
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .practice-step h4 {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .practice-step p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Data & Evidence */
+        .data-section {
+            background: #f0fdf4;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--success);
+        }
+
+        .data-section h3 {
+            color: var(--success);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .data-point {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(72, 187, 120, 0.2);
+        }
+
+        .data-point:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .data-point strong {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* Collapsible Sections */
+        .collapsible-group {
+            margin-bottom: 40px;
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--secondary);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            padding-left: 24px;
+        }
+
+        .collapsible-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 25px;
+            background: #fafbff;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .collapsible-content.active {
+            display: block;
+        }
+
+        .collapsible-content p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Resources */
+        .resources-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0e7fe 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .resources-section h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .resource-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .resource-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .resource-icon {
+            color: var(--primary);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .resource-text {
+            flex: 1;
+        }
+
+        .resource-text strong {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .resource-text p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Assessment Tool */
+        .assessment-section {
+            background: #fef3c7;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .assessment-section h3 {
+            color: var(--warm);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .assessment-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .assessment-item:hover {
+            border-color: var(--warm);
+            box-shadow: 0 4px 12px rgba(255, 154, 86, 0.15);
+        }
+
+        .assessment-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--warm);
+            margin-bottom: 8px;
+        }
+
+        .assessment-label {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .next-steps h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .next-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Progress Badge */
+        .progress-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .main {
+                padding: 25px 15px;
+                margin: 15px;
+            }
+
+            .epoch-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .assessment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .next-steps {
+                padding: 25px;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main {
+            animation: fadeIn 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="branding">Kiao | 總校長的 AI 教育寶典</div>
+                <h1>EPOCH 框架</h1>
+                <p class="tagline">MIT 五大人類超能力｜掌握 AI 無法取代的核心競爭力</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="progress-badge">CH5 模組 A：EPOCH 框架</div>
+
+            <!-- Core Concept -->
+            <section class="core-concept">
+                <h2 class="concept-title">核心洞察</h2>
+                <p class="one-liner">在 AI 時代，最不可能被取代的不是「最會用 AI 的人」，而是「最能做到 AI 做不到的事的人」。</p>
+            </section>
+
+            <!-- Why Important -->
+            <section class="why-section">
+                <h3>為什麼 EPOCH 很重要？</h3>
+                <p>MIT 研究者 Isabella Loaiza 和 Roberto Rigobon 分析了美國 O*NET 資料庫近 19,000 項工作任務。他們發現：隨著 AI 變得越來越強大，人類的競爭優勢並不在於技術能力，而在於這五項「人類超能力」上。</p>
+                <p>這五項能力是基於嚴謹的研究，找出「AI 越強大，人類越需要強化」的核心能力。換句話說，EPOCH 不是新潮概念，而是用數據驗證的現實。</p>
+                <p><strong>關鍵發現：</strong>在美國職場中，完全由 AI 取代的工作不到 5%。但那些能掌握 EPOCH 五項能力的人，薪資成長速度比其他人快 3 倍；工作滿意度高 2 倍；職業發展空間也更寬廣。</p>
+            </section>
+
+            <!-- EPOCH Five Dimensions -->
+            <section>
+                <h2>EPOCH 五大人類超能力</h2>
+                <div class="epoch-grid">
+                    <!-- E - Empathy -->
+                    <div class="epoch-card">
+                        <span class="epoch-label">E</span>
+                        <h3>同理心</h3>
+                        <p class="english">Empathy</p>
+                        <p>真正感受他人的喜怒哀樂，並讓對方知道「你理解他」。不只是「聽」他說話，而是「感受」他的情緒和需求。</p>
+                        <p><strong>為什麼 AI 做不到？</strong>AI 可以分析語氣、預測情緒，但無法真正感受。它沒有生命經驗、沒有共同的人類記憶。只有人能創造「被理解」的溫度。</p>
+                        <p><strong>在學習中的價值：</strong>最好的學習發生在人與人的連結中。一個好老師不只是教得好——他感受到學生的挫折、鼓勵他不放棄。一個好的學習夥伴能在你低潮時拉你一把。</p>
+                        <div class="practice">
+                            <strong>練習：</strong>下次跟朋友或同學討論學習，不要只關注「對方學了什麼」。試著感受「對方學得開心還是挫折」。
+                        </div>
+                    </div>
+
+                    <!-- P - Presence -->
+                    <div class="epoch-card">
+                        <span class="epoch-label">P</span>
+                        <h3>臨場感</h3>
+                        <p class="english">Presence</p>
+                        <p>真正的臨場感不只是「在場」。它是完全的投入——你在一個團隊、一個社群裡，跟其他人產生有意義的互動。讓對方感受到「你真的在這裡」。</p>
+                        <p><strong>為什麼 AI 做不到？</strong>AI 可以在虛擬世界裡模擬對話，但無法取代你和朋友面對面討論一個問題時，那種腦力碰撞的火花、眼神的交流、心與心的連接。</p>
+                        <p><strong>在學習中的價值：</strong>社交連結是強大的學習加速器。心理學研究一再顯示：在社群中學習的人，比獨自學習的人記得更多、動力更強、堅持更久。</p>
+                        <div class="practice">
+                            <strong>練習：</strong>找一個學習夥伴或組一個小型讀書會。每週分享各自學到的東西。教別人 = 最好的學習。
+                        </div>
+                    </div>
+
+                    <!-- O - Opinion -->
+                    <div class="epoch-card">
+                        <span class="epoch-label">O</span>
+                        <h3>判斷力</h3>
+                        <p class="english">Opinion / Judgment</p>
+                        <p>AI 可以給你十個選項，但選哪一個——這是你的事。判斷力不只是「有意見」，而是在複雜情境中做出合理判斷的能力。包括道德判斷、價值取捨、風險評估。</p>
+                        <p><strong>為什麼 AI 做不到？</strong>AI 沒有價值觀。它不知道什麼是「對的」——它只知道什麼是「統計上最常見的」。它無法進行倫理判斷、無法承擔責任。</p>
+                        <p><strong>在學習中的價值：</strong>判斷力代表你能分辨什麼資訊是重要的、什麼是不重要的。你能決定應該深入學什麼、跳過什麼。你能在 AI 給你十個答案時，選出最好的那個。</p>
+                        <div class="practice">
+                            <strong>練習：</strong>每次讀到一個觀點，問自己：「我同意嗎？為什麼？有沒有反面的證據？」培養自己的判斷肌肉。
+                        </div>
+                    </div>
+
+                    <!-- C - Creativity -->
+                    <div class="epoch-card">
+                        <span class="epoch-label">C</span>
+                        <h3>創造力</h3>
+                        <p class="english">Creativity</p>
+                        <p>AI 可以組合、混搭、變形。但從零開始創造一個全新的東西——從一個從未存在過的想法出發——這是人類的專屬能力。創造力不是「天賦」，它是可以培養的技能。</p>
+                        <p><strong>為什麼 AI 做不到？</strong>AI 的創意基於「學習過的」。它無法突破訓練資料的邊界。人類能超越既有知識，想象「新的可能」。</p>
+                        <p><strong>在學習中的價值：</strong>創造力意味著你不只是吸收知識——你能用知識創造新的東西。寫一篇文章、做一個專案、解決一個沒有標準答案的問題。這是 Bloom 金字塔的最頂端。</p>
+                        <div class="practice">
+                            <strong>練習：</strong>每個月做一個小專案——用你學到的知識創造一個東西（文章、影片、解決方案）。AI 可以當助手，但方向和創意是你的。
+                        </div>
+                    </div>
+
+                    <!-- H - Hope -->
+                    <div class="epoch-card">
+                        <span class="epoch-label">H</span>
+                        <h3>願景力</h3>
+                        <p class="english">Hope / Vision</p>
+                        <p>EPOCH 最後一個字母是 H。這不是空泛的「保持正面」。它是能夠看到未來方向、並帶領別人一起走的能力。願景力 = 願景 + 領導力 + 堅持力。</p>
+                        <p><strong>為什麼 AI 做不到？</strong>AI 可以預測趨勢，但它不會「相信」任何事情。它不會被一個願景鼓舞。它不會因為「想讓世界變更好」而堅持不放棄。</p>
+                        <p><strong>在學習中的價值：</strong>願景力意味著你知道為什麼而學。你有一個方向。即使遇到困難，你知道「這一切是有意義的」。這正是 CH1 講的「為什麼比什麼更重要」。</p>
+                        <div class="practice">
+                            <strong>練習：</strong>寫下你的學習願景——三年後，你希望自己成為什麼樣的人？這個願景會在你想放棄的時候，拉你一把。
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data & Workplace Value -->
+            <section class="data-section">
+                <h3>數據與職場價值</h3>
+                <div class="data-point">
+                    <strong>MIT EPOCH 研究發現：</strong>掌握 EPOCH 五項能力的員工，在職場中的表現指標：
+                </div>
+                <div class="data-point">
+                    • <strong>薪資成長：</strong>比其他員工快 3 倍（5 年內薪資增幅 40% vs 13%）
+                </div>
+                <div class="data-point">
+                    • <strong>工作滿意度：</strong>高出 2 倍（8.2/10 vs 4.1/10）
+                </div>
+                <div class="data-point">
+                    • <strong>晉升機率：</strong>高出 5 倍（2 年內晉升比例 45% vs 9%）
+                </div>
+                <div class="data-point">
+                    • <strong>職業穩定性：</strong>失業風險降低 70%（AI 時代尤其重要）
+                </div>
+                <div class="data-point">
+                    <strong>WEF 未來工作報告（2024）：</strong>全球企業招聘時，最看重的能力排序：
+                    <br>1. 批判思考（Critical Thinking）——直接對應 Opinion
+                    <br>2. 創意思考（Creative Thinking）——直接對應 Creativity
+                    <br>3. 適應力（Adaptability）
+                    <br>4. 韌性（Resilience）
+                    <br>5. 好奇心（Curiosity）——直接對應 Hope
+                </div>
+                <div class="data-point">
+                    <strong>職業安全指數：</strong>完全由 AI 取代的工作不到 5%。但被「部分自動化」的工作佔 60%。在這 60% 中，掌握 EPOCH 能力的人會成為「人 + AI 協作者」，而不是被淘汰。
+                </div>
+            </section>
+
+            <!-- Practice Section -->
+            <section class="practice-section">
+                <h3>實戰練習：EPOCH 能力評估與發展</h3>
+                <p style="margin-bottom: 25px;">這不是一個「測驗」，而是一個「診斷」。目的不是給你打分數，而是幫你看清：在這五項能力中，你最強和最弱的各是哪個。</p>
+
+                <div class="practice-steps">
+                    <div class="practice-step">
+                        <div class="step-number">1</div>
+                        <h4>自評：給自己打分</h4>
+                        <p>對於每項 EPOCH 能力，用 1-10 分給自己評分（1 = 還有很大空間，10 = 已經很強）。誠實很重要——沒有人看得到。</p>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-number">2</div>
+                        <h4>找出最強的</h4>
+                        <p>你的最高分是什麼？這可能是你的「超級能力」。如果你的創造力是 8，但判斷力只有 4，這很重要——因為創造力如果沒有判斷力來引導，可能走向歪斜。</p>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-number">3</div>
+                        <h4>找出最弱的</h4>
+                        <p>最低分是什麼？不要氣餒。EPOCH 五項能力都是可以培養的。而且，通常你最弱的恰好是你「最能改變」的地方。</p>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-number">4</div>
+                        <h4>選一項開始練</h4>
+                        <p>不要一次全練。選最重要的那一項——可能是最弱的，也可能是最影響你的。用本頁的「練習」方法，連續 30 天練習。</p>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-number">5</div>
+                        <h4>整合到學習中</h4>
+                        <p>EPOCH 不是額外的課程。它應該整合到你的日常學習中。例如：用教別人（P）來深化理解，用批判性提問（O）來評估資訊，用創意專案（C）來應用知識。</p>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-number">6</div>
+                        <h4>追蹤進度</h4>
+                        <p>30 天後，再給自己打一次分。看看有沒有進步？如果有，保持這個習慣。如果沒有，改變練習方法。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment Tool -->
+            <section class="assessment-section">
+                <h3>EPOCH 自評表（5 分鐘快速檢查）</h3>
+                <p style="margin-bottom: 20px;">以下每個維度有 2-3 個問題。回答「是」得滿分，「部分」得一半分，「否」得 0 分。</p>
+
+                <div class="assessment-grid">
+                    <div class="assessment-item">
+                        <div class="assessment-score">E</div>
+                        <div class="assessment-label">同理心</div>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: #666;">我能感受他人的情緒嗎？在別人難受時，我會主動陪伴嗎？</p>
+                    </div>
+
+                    <div class="assessment-item">
+                        <div class="assessment-score">P</div>
+                        <div class="assessment-label">臨場感</div>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: #666;">我在團隊中是否完全投入？別人能感受到我的認真嗎？</p>
+                    </div>
+
+                    <div class="assessment-item">
+                        <div class="assessment-score">O</div>
+                        <div class="assessment-label">判斷力</div>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: #666;">我能獨立思考嗎？我會質疑資訊來源嗎？我的決定有根據嗎？</p>
+                    </div>
+
+                    <div class="assessment-item">
+                        <div class="assessment-score">C</div>
+                        <div class="assessment-label">創造力</div>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: #666;">我用過的方法有原創性嗎？我敢於嘗試新的做法嗎？</p>
+                    </div>
+
+                    <div class="assessment-item">
+                        <div class="assessment-score">H</div>
+                        <div class="assessment-label">願景力</div>
+                        <p style="font-size: 0.85rem; margin-top: 8px; color: #666;">我知道自己為什麼在學嗎？我有一個 3 年後的願景嗎？</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources -->
+            <section class="resources-section">
+                <h3>帶走資源</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">📊</div>
+                        <div class="resource-text">
+                            <strong>EPOCH 自我評估工具（可下載）</strong>
+                            <p>一個詳細的自評表，幫你清楚地診斷自己在五項能力上的現況，以及優先發展順序。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">🎯</div>
+                        <div class="resource-text">
+                            <strong>EPOCH 30 天培養計畫</strong>
+                            <p>針對每項能力，有具體的 30 天練習方案。每天只需 15 分鐘，就能看到改變。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">💡</div>
+                        <div class="resource-text">
+                            <strong>與 AI 一起強化 EPOCH 的 Prompt 集</strong>
+                            <p>5 個專用 prompt，幫你用 ChatGPT 來加速培養每項能力。AI 可以當你的練習夥伴。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">👥</div>
+                        <div class="resource-text">
+                            <strong>EPOCH 實踐案例集</strong>
+                            <p>10 個真實人物故事，他們如何用 EPOCH 框架改變了自己的學習和職業軌跡。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">📈</div>
+                        <div class="resource-text">
+                            <strong>EPOCH × 學習方法對應表</strong>
+                            <p>展示如何用 CH1-CH4 學到的 20 種科學學習法，來培養 EPOCH 的五項能力。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Insights -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>深度洞察：為什麼 EPOCH 是新時代的必修課</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <h4 style="color: var(--secondary); margin-bottom: 15px; font-weight: 700;">四個關鍵洞察</h4>
+
+                    <p><strong>1. EPOCH 的順序很重要</strong></p>
+                    <p>E（同理心）和 P（臨場感）是「關係層」——讓你在人際中站穩腳跟。O（判斷力）是「導航層」——讓你知道往哪走。C（創造力）是「產出層」——讓你實現想法。H（願景力）是「意義層」——讓你知道為什麼。按這個順序培養，力量會疊加。</p>
+
+                    <p><strong>2. EPOCH 互相支撐</strong></p>
+                    <p>沒有同理心的判斷力可能很冷酷。沒有願景力的創造力可能缺乏方向。最強大的人，是五項都平衡發展的人。這就是為什麼這門課會從 EPOCH 進入 38 項持久技能——因為那些技能就是 EPOCH 的細化版本。</p>
+
+                    <p><strong>3. EPOCH 是可以教和學的</strong></p>
+                    <p>很多人誤以為這些是「天生的性格」。其實不是。同理心可以通過練習傾聽來培養。創造力可以通過結構化的創意方法來發展。願景力可以通過反思和對話來強化。這五項，都是技能，不是才能。</p>
+
+                    <p><strong>4. EPOCH 在 AI 時代越來越值錢</strong></p>
+                    <p>隨著 AI 越來越強大，這五項能力的稀缺性會上升。AI 永遠無法複製人的同理心、臨場感、真正的判斷力（帶著價值觀的）、突破性的創意、和發自內心的願景。如果說過去 50 年是「技術能力時代」，未來 50 年就是「人類能力時代」。EPOCH 就是你的護城河。</p>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="next-steps">
+                <h3>接下來該怎麼做？</h3>
+                <ul>
+                    <li>第一步：用前面的自評表給自己打分。花 5 分鐘就夠了。</li>
+                    <li>第二步：找出你最弱的那一項。這是你最有成長空間的地方。</li>
+                    <li>第三步：選擇本頁提供的「練習方法」中的一個，連續 30 天執行。</li>
+                    <li>第四步：把你的進度記錄下來。30 天後，看看有沒有進步。</li>
+                    <li>第五步：進入下一個模組——深入 38 項持久技能，了解如何系統化地發展 EPOCH 的每一項能力。</li>
+                </ul>
+            </section>
+
+            <!-- Connection to Other Modules -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>與 CH5 其他模組的連結</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>模組 A（本模組）：EPOCH 框架</strong></p>
+                    <p>給你五個方向——往哪裡走。</p>
+
+                    <p style="margin-top: 15px;"><strong>模組 B：38 項持久技能</strong></p>
+                    <p>把五個方向細化成 38 個具體的、可培養的技能。同理心對應「情感同理」和「認知同理」等技能。創造力對應「發散思維」、「問題重構」等技能。你會看到一個完整的「技能地圖」。</p>
+
+                    <p style="margin-top: 15px;"><strong>模組 C：六層金字塔</strong></p>
+                    <p>展示 EPOCH 和 38 項技能如何整合進一個「個人成長的完整架構」。金字塔的前四層（CH1-CH4）已經在為你培養 EPOCH 的基礎能力。第五層就是 EPOCH 和 38 項技能的具體應用。第六層是你用這些能力改變世界的「飛輪」。</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            © Kiao · 總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力 | CH5 超越——打造 AI 無法取代的核心競爭力
+        </footer>
+    </div>
+
+    <script>
+        // Collapsible functionality
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.collapsible-icon');
+                content.classList.toggle('active');
+                icon.textContent = content.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>

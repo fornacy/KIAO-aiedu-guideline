@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 01：專注力診斷 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%);
+            color: #2c3e50;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .breadcrumb {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb span {
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+
+        .progress-indicator {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .core-statement {
+            background: linear-gradient(135deg, #fff5f7 0%, #f0e6ff 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #764ba2;
+            line-height: 1.8;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Data Cards Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #10b981; }
+        .stat-card:nth-child(4) { border-top-color: #ec4899; }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #10b981; }
+        .stat-card:nth-child(4) .stat-number { color: #ec4899; }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section-container {
+            margin-bottom: 3rem;
+        }
+
+        /* Expandable Sections */
+        .expandable-section {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .expand-header {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .expand-header:hover {
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+        }
+
+        .expand-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: #667eea;
+        }
+
+        .expandable-section.active .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .expandable-section.active .expand-content {
+            max-height: 2000px;
+            padding: 1.5rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Lists */
+        .content-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .content-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #374151;
+            line-height: 1.8;
+        }
+
+        .content-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Practice Cards */
+        .practice-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .practice-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .practice-number {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            margin-right: 0.8rem;
+            font-weight: 700;
+        }
+
+        .practice-content {
+            padding: 1.5rem;
+        }
+
+        .practice-step {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .practice-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-label {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .step-content {
+            color: #374151;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Key Concepts */
+        .concept-card {
+            background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .concept-title {
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* Download Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .resource-card {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .resource-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .resource-desc {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Next Section */
+        .next-section {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .next-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .next-content {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .next-button {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .next-button:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-size: 0.9rem;
+        }
+
+        /* Utilities */
+        .emoji {
+            margin-right: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #667eea;
+            padding-left: 1rem;
+            border-left: 3px solid #667eea;
+            margin: 1rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 0;
+            }
+
+            .header-content {
+                padding: 0 1.5rem;
+            }
+
+            .course-title {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expand-header {
+                font-size: 0.95rem;
+                padding: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .core-statement {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
+
+            .practice-header {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="platform-badge">🎓 Kiao 平台</div>
+            <div class="course-title">總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力！</div>
+            <div class="breadcrumb">
+                <span>CH1 專注力——修好你的杯子</span>
+                <span>›</span>
+                <span><strong>學習法 01：專注力診斷</strong></span>
+            </div>
+            <div class="progress-indicator">
+                📊 進度：學習法 01 / 20
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Core Statement -->
+        <div class="core-statement">
+            <span class="emoji">💡</span>
+            你以為你在專心，但你的大腦可能每天正在自己打斷自己上百次——而你完全不知道。
+        </div>
+
+        <!-- Key Statistics -->
+        <section class="section-container">
+            <h2 class="section-title">📈 關鍵數據</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">分鐘</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">大腦回復時間</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">49%</div>
+                    <div class="stat-label">自我中斷</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">所有分心的比例</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">96</div>
+                    <div class="stat-label">次</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">每日平均解鎖手機</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">分鐘</div>
+                    <div style="font-size: 0.85rem; color: #9ca3af; margin-top: 0.5rem;">平均自我中斷頻率</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why It Matters -->
+        <section class="section-container">
+            <h2 class="section-title">🎯 為什麼重要</h2>
+            <div class="expandable-section active">
+                <div class="expand-header">
+                    <span>分心的科學證據</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <ul class="content-list">
+                        <li><span class="highlight">分心一次，大腦需要 23 分鐘才能完全回到原本的任務</span>（Gloria Mark, UC Irvine 研究）— 這個認知成本遠遠超過大多數人的想像。</li>
+                        <li><span class="highlight">49% 的分心是「自我中斷」</span>——不是別人打擾你，是你自己拿起手機，切換應用程式。你是自己注意力的最大敵人。</li>
+                        <li><span class="highlight">「注意力殘留」現象</span>（Sophie Leroy 研究）：即使你已經切換回原本的任務，前一個任務的思緒仍會占據你的認知資源，讓你無法發揮最佳效能。</li>
+                        <li><span class="highlight">長期多工處理者的注意力過濾能力反而更差</span>（Stanford 多工研究）——經常分心的人，大腦的聚焦能力會逐漸衰退。</li>
+                        <li>每一次分心都是一次<span class="highlight">「認知重開機」</span>——就像電腦重新啟動需要時間，你的大腦也需要時間來恢復深度工作狀態。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="expandable-section active">
+                <div class="expand-header">
+                    <span>時間成本計算</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p style="margin-bottom: 1rem; color: #374151;">假設你一天被分心打斷 5 次（這個數字對大多數人來說是保守估計）：</p>
+                    <ul class="content-list">
+                        <li>5 次分心 × 23 分鐘 = <span class="highlight">115 分鐘（近 2 小時）損失的深度思考時間</span></li>
+                        <li>這 2 小時本來可以用來完成重要工作、學習新技能，或創意思考</li>
+                        <li>一週下來，你損失了 <span class="highlight">10 小時的有效學習時間</span></li>
+                        <li>一年下來，你損失了 <span class="highlight">520 小時——相當於 13 週的全職工作時間</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Concepts -->
+        <section class="section-container">
+            <h2 class="section-title">🔑 核心觀念</h2>
+
+            <!-- Concept 1 -->
+            <div class="concept-card">
+                <div class="concept-title">1️⃣ 分心的真正代價：認知重開機</div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.8rem; color: #374151;"><strong>用「電腦重開機」比喻深度工作的轉換成本：</strong></p>
+                    <ul class="content-list">
+                        <li>每次分心 = 大腦強制重啟，要 <span class="highlight">23 分鐘才能回到深度工作狀態</span></li>
+                        <li>一天被打斷 5 次 = 損失近 <span class="highlight">2 小時的深度思考時間</span></li>
+                        <li>這就是為什麼「心流狀態」對學習和創意工作如此重要——一旦被打斷，就要花費巨大的代價才能恢復</li>
+                    </ul>
+                </div>
+                <p style="color: #667eea; font-weight: 600; margin-top: 1rem;">💭 反思：你今天損失了多少有效時間？</p>
+            </div>
+
+            <!-- Concept 2 -->
+            <div class="concept-card">
+                <div class="concept-title">2️⃣ 演算法的老虎機效應：多巴胺的陷阱</div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.8rem; color: #374151;"><strong>社群媒體的設計原理就是拉斯維加斯老虎機的「變動獎賞機制」：</strong></p>
+                    <ul class="content-list">
+                        <li><span class="highlight">社群媒體 = 拉斯維加斯老虎機</span>（Skinner 操作制約）：每次你滑動螢幕，可能會看到有趣的內容（獎賞），也可能沒有——這種<strong>「不確定性」</strong>正是最容易讓人上癮的設計。</li>
+                        <li>多巴胺不是「快樂激素」，而是<span class="highlight">「渴望激素」</span>——它讓你不斷期待下一次滑動，不斷期待下一個通知。</li>
+                        <li>在 Natasha Schüll 的著作《Addiction by Design》中，她揭露了相同的設計原理如何從賭場搬到手機，將人類的大腦變成了算法的猎物。</li>
+                        <li><span class="highlight">青少年大腦的前額葉尚未發育完全</span>，對這類設計更脆弱。他們的衝動控制能力還在發展中，更容易被這些「機制」操控。</li>
+                        <li><span class="highlight">Sean Parker（Facebook 前總裁）和 Aza Raskin（無限滾動發明者）都公開懺悔</span>，表示他們創造的功能對社會造成了傷害，卻無法停止這場「軍備競賽」。</li>
+                    </ul>
+                </div>
+                <p style="color: #667eea; font-weight: 600; margin-top: 1rem;">⚠️ 警示：你不是在「選擇」滑手機，你是在被設計操控。</p>
+            </div>
+
+            <!-- Concept 3 -->
+            <div class="concept-card">
+                <div class="concept-title">3️⃣ 自我中斷的發現：你比你想像的更容易分心</div>
+                <div style="margin-bottom: 1rem;">
+                    <p style="margin-bottom: 0.8rem; color: #374151;"><strong>科學研究揭示了一個驚人的真相：</strong></p>
+                    <ul class="content-list">
+                        <li>Larry Rosen 的研究觀察了 <span class="highlight">263 名學生</span>，發現他們<span class="highlight">平均每 6 分鐘自我中斷一次</span>——大部分情況下，是無意識的。</li>
+                        <li>手機<span class="highlight">平均每天解鎖 96 次</span>——這意味著你平均每 10 分鐘就會主動拿起手機一次。</li>
+                        <li>Matt Killingsworth 的「<span class="highlight">追蹤幸福」研究</span>發現：單純是<strong>「覺察」</strong>自己在做什麼，就能帶來改變——當人們意識到自己在分心時，他們更傾向於回到手邊的工作。</li>
+                        <li>區分<span class="highlight">「推式中斷」和「拉式中斷」</span>很關鍵：
+                            <ul style="margin-top: 0.8rem; margin-left: 2rem;">
+                                <li><strong>推式中斷（Push）</strong>：通知、消息推送、提醒——被動地推向你</li>
+                                <li><strong>拉式中斷（Pull）</strong>：你主動去拿手機、打開應用程式——這是你的選擇</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <p style="color: #667eea; font-weight: 600; margin-top: 1rem;">🔍 關鍵洞見：自我中斷往往是無意識的習慣，但覺察本身就是改變的開始。</p>
+            </div>
+        </section>
+
+        <!-- Practice Exercises -->
+        <section class="section-container">
+            <h2 class="section-title">🛠️ 練習方案</h2>
+            <p style="margin-bottom: 2rem; color: #374151;">以下三個練習設計得越來越深入，幫助你<strong>真正診斷</strong>自己的專注力漏洞。</p>
+
+            <!-- Practice 1 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">練習 1</span>
+                    自我中斷日誌（24 小時追蹤）
+                </div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151; font-weight: 600;">📋 目標：發現自己<strong>無意識</strong>分心的模式</p>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 第一步：選擇觀察對象</div>
+                        <div class="step-content">
+                            挑選一個<strong>普通的上課日或上班日</strong>——不要選擇特別忙碌或特別清閒的日子，因為你要看的是自己的「常態」分心模式。
+                        </div>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 第二步：記錄每一次分心</div>
+                        <div class="step-content">
+                            每當你<strong>無意識地拿起手機或切換任務時</strong>，立即記錄以下三個問題：
+                            <ul style="margin-top: 0.8rem; margin-left: 2rem;">
+                                <li><strong>①</strong> 現在幾點？</li>
+                                <li><strong>②</strong> 我正在做什麼？（之前的任務）</li>
+                                <li><strong>③</strong> 是什麼觸發了這次中斷？
+                                    <ul style="margin-top: 0.5rem;">
+                                        <li>📱 通知或推送？</li>
+                                        <li>😐 無聊？</li>
+                                        <li>😰 焦慮或壓力？</li>
+                                        <li>🔄 習慣（手摸向口袋）？</li>
+                                        <li>❓ 其他原因？</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 第三步：分析與統計</div>
+                        <div class="step-content">
+                            一天結束後，統計以下數據：
+                            <ul style="margin-top: 0.8rem; margin-left: 2rem;">
+                                <li>💯 <strong>總分心次數</strong>是多少？</li>
+                                <li>🎯 <strong>最常見的觸發因素</strong>是什麼？（通知、無聊、焦慮還是習慣？）</li>
+                                <li>⏱️ <strong>損失時間估算</strong>：總次數 × 23 分鐘 = ?</li>
+                                <li>🔍 <strong>分心最頻繁的時段</strong>是什麼時候？（上午？下午？晚上？）</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #f59e0b;">
+                        <p style="color: #b45309; font-weight: 600; margin-bottom: 0.5rem;">💡 提示：用你的手機備忘錄、紙筆，或下載的自我中斷日誌模板來記錄。</p>
+                        <p style="color: #92400e; font-size: 0.9rem;">最重要的是要<strong>誠實</strong>——每一次中斷都記下來，不要遺漏，因為你看不到的分心往往最危險。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice 2 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">練習 2</span>
+                    專注力診斷自評表（每日快速檢測）
+                </div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151; font-weight: 600;">📊 目標：追蹤一週的專注力趨勢，發現自己的薄弱環節</p>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 每天花 2 分鐘回答以下 5 個問題：</div>
+                        <div class="step-content">
+                            <p style="margin-bottom: 1rem; font-weight: 600; color: #2c3e50;">為每個面向打分（1 = 非常差，5 = 非常好）</p>
+
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.8rem;"><strong>1. 意識層面</strong>（今天我能察覺自己何時分心嗎？）</p>
+                                <p style="color: #667eea; font-size: 0.9rem;">評分：☐ 1  ☐ 2  ☐ 3  ☐ 4  ☐ 5</p>
+                            </div>
+
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.8rem;"><strong>2. 控制力</strong>（我能抵抗拿起手機的衝動嗎？）</p>
+                                <p style="color: #667eea; font-size: 0.9rem;">評分：☐ 1  ☐ 2  ☐ 3  ☐ 4  ☐ 5</p>
+                            </div>
+
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.8rem;"><strong>3. 心流狀態</strong>（我有進入「心流」的時刻嗎？——完全沉浸在工作中）</p>
+                                <p style="color: #667eea; font-size: 0.9rem;">評分：☐ 1  ☐ 2  ☐ 3  ☐ 4  ☐ 5</p>
+                            </div>
+
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                                <p style="margin-bottom: 0.8rem;"><strong>4. 環境掌控</strong>（我的環境中有多少干擾源？）</p>
+                                <p style="color: #667eea; font-size: 0.9rem;">評分：☐ 1 (很多)  ☐ 2  ☐ 3  ☐ 4  ☐ 5 (很少)</p>
+                            </div>
+
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 8px;">
+                                <p style="margin-bottom: 0.8rem;"><strong>5. 整體專注力品質</strong>（整體來說，我今天的專注力有多好？）</p>
+                                <p style="color: #667eea; font-size: 0.9rem;">評分：☐ 1  ☐ 2  ☐ 3  ☐ 4  ☐ 5</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 追蹤一週後的分析</div>
+                        <div class="step-content">
+                            把七天的分數記下來，看看是否有<strong>趨勢</strong>：
+                            <ul style="margin-top: 0.8rem; margin-left: 2rem;">
+                                <li>🔻 哪一天的分數最低？那天發生了什麼？</li>
+                                <li>📈 分數在上升還是下降？</li>
+                                <li>❗ 哪個面向最是你的薄弱點？</li>
+                                <li>🎯 你想要在哪個面向首先改進？</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 1rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #667eea;">
+                        <p style="color: #1e40af; font-weight: 600; margin-bottom: 0.5rem;">📝 建議：把分數記在日曆上或用應用程式追蹤，這樣你可以看到視覺化的進度。</p>
+                        <p style="color: #1e3a8a; font-size: 0.9rem;">這個練習的目的不是「完美」，而是<strong>創造覺察</strong>——你越了解自己的模式，就越能改變它。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice 3 -->
+            <div class="practice-container">
+                <div class="practice-header">
+                    <span class="practice-number">練習 3</span>
+                    30 秒靜默實驗
+                </div>
+                <div class="practice-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151; font-weight: 600;">🔬 目標：深度察覺自己的「分心衝動」，了解專注力漏洞的深度</p>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 如何進行</div>
+                        <div class="step-content">
+                            <ol style="margin-left: 2rem; color: #374151;">
+                                <li style="margin-bottom: 0.8rem;"><strong>放下所有裝置</strong>：手機、電腦、平板、遙控器——統統放下。</li>
+                                <li style="margin-bottom: 0.8rem;"><strong>不做任何事</strong>：不看書、不聽音樂、不看電視——什麼都不做。</li>
+                                <li style="margin-bottom: 0.8rem;"><strong>靜坐 30 秒</strong>：就這樣坐著，什麼都不做。</li>
+                                <li><strong>觀察你的反應</strong>：注意你的身體和心理反應。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 觀察這些信號</div>
+                        <div class="step-content">
+                            在這 30 秒內，尋找以下信號：
+                            <ul style="margin-top: 0.8rem; margin-left: 2rem;">
+                                <li>🫳 <strong>身體層面</strong>：你的手是否不由自主地伸向口袋？你是否感到坐立不安？</li>
+                                <li>💭 <strong>心理層面</strong>：腦中是否浮現「該看一下手機」的念頭？你是否感到焦慮或無聊？</li>
+                                <li>⏱️ <strong>時間感知</strong>：30 秒感覺很長嗎？還是出乎意料地短？</li>
+                                <li>😟 <strong>情緒反應</strong>：你有多不自在？這反映的是什麼？</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="practice-step">
+                        <div class="step-label">✓ 30 秒後的反思</div>
+                        <div class="step-content">
+                            <p style="margin-bottom: 0.8rem;"><strong>問自己三個問題：</strong></p>
+                            <ul style="margin-left: 2rem;">
+                                <li>🤔 我有多難「什麼都不做」？</li>
+                                <li>📱 我是否強烈想要拿起手機？</li>
+                                <li>🔍 這告訴我什麼關於我的專注力和依賴程度？</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #10b981;">
+                        <p style="color: #166534; font-weight: 700; margin-bottom: 1rem;">🎯 這就是你的「專注力漏水診斷」</p>
+                        <p style="color: #15803d; margin-bottom: 1rem;">30 秒靜默實驗看似簡單，但它直接揭露了：</p>
+                        <ul style="margin-left: 2rem; color: #166534;">
+                            <li>✓ 你的「無聊耐受度」有多低</li>
+                            <li>✓ 你對刺激的上癮程度有多深</li>
+                            <li>✓ 你的自我控制能力有多強</li>
+                            <li>✓ 分心不只是習慣，而是一種心理需求</li>
+                        </ul>
+                        <p style="color: #15803d; margin-top: 1rem; font-size: 0.95rem;"><strong>重要：</strong>這個練習沒有「及格」或「不及格」——只有「數據」。你的反應就是你現在的起點。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="section-container">
+            <h2 class="section-title">📥 帶走資源</h2>
+            <p style="margin-bottom: 2rem; color: #374151;">以下三個工具可以幫助你實踐上面的練習：</p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">專注力診斷自評表</div>
+                    <div class="resource-desc">每日快速檢測，追蹤一週趨勢</div>
+                </div>
+                <div class="resource-card" style="background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);">
+                    <div class="resource-icon">📝</div>
+                    <div class="resource-title">自我中斷日誌模板</div>
+                    <div class="resource-desc">24 小時完整追蹤表單</div>
+                </div>
+                <div class="resource-card" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                    <div class="resource-icon">🧮</div>
+                    <div class="resource-title">分心成本計算機</div>
+                    <div class="resource-desc">計算你每天損失的時間</div>
+                </div>
+            </div>
+            <p style="color: #667eea; font-weight: 600; text-align: center; margin-top: 1.5rem;">
+                💡 提示：這些資源都可以線上使用，也可以列印出來手寫填寫。
+            </p>
+        </section>
+
+        <!-- Deep Dive - More Insights -->
+        <section class="section-container">
+            <h2 class="section-title">🔬 深度洞見</h2>
+
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>為什麼我們特別容易自我中斷？（神經科學的視角）</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p style="margin-bottom: 1rem; color: #374151;">自我中斷並不是「意志力弱」的問題，而是大腦的<strong>多巴胺系統被黑客入侵了</strong>。以下是為什麼你這麼容易自己打斷自己：</p>
+
+                    <ul class="content-list">
+                        <li><strong>多巴胺迴圈被劫持</strong>：你的大腦演化了幾百萬年來對「新奇事物」做出反應。社群媒體、新聞推播、訊息應用程式——它們都利用這個古老的機制，製造出無窮無盡的「新奇」，讓你無法停止尋求。</li>
+                        <li><strong>「間隙焦慮」現象</strong>：心理學家發現，人類對「不確定性」的恐懼會導致焦慮。社群媒體的設計利用這一點：你永遠不知道下一個滑動會看到什麼，所以你不斷滑動以減輕焦慮。</li>
+                        <li><strong>預設模式網路的過度活躍</strong>：當你不是在做任何特定任務時，你的大腦會進入「預設模式」——開始進行自我反思、擔憂、幻想。手機打破了這個狀態，提供了一個「逃脫」——所以你變得依賴它來逃避內心的聲音。</li>
+                        <li><strong>習慣形成的強大力量</strong>：習慣不是由理性決定的，而是由<strong>情境 → 行為 → 獎賞</strong>的迴圈形成的。當你每次感到無聊時都拿起手機，你就在強化這個迴圈。經過幾週，這變成了自動反應。</li>
+                    </ul>
+
+                    <p style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #667eea; font-weight: 600;">🧠 關鍵認知：這不是你的錯。系統是被設計來操控你的。認識到這一點，是改變的第一步。</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>「推式」vs「拉式」中斷：有什麼區別？</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p style="margin-bottom: 1.5rem; color: #374151;">區分這兩種中斷很重要，因為應對策略是不同的：</p>
+
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid #10b981;">
+                        <p style="font-weight: 700; color: #15803d; margin-bottom: 1rem;">📱 推式中斷 (Push Interruption)</p>
+                        <ul class="content-list">
+                            <li><strong>定義</strong>：外部系統「推」向你的中斷（通知、訊息、提醒）</li>
+                            <li><strong>特點</strong>：被動的、你無法完全控制的</li>
+                            <li><strong>例子</strong>：Gmail 通知、WhatsApp 訊息、Instagram 推播、新聞提醒</li>
+                            <li><strong>應對策略</strong>：<span class="highlight">關閉通知、改變設定</span>——你可以直接消除它們</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                        <p style="font-weight: 700; color: #b45309; margin-bottom: 1rem;">🎯 拉式中斷 (Pull Interruption)</p>
+                        <ul class="content-list">
+                            <li><strong>定義</strong>：你<strong>主動「拉」</strong>向系統的中斷（你決定拿起手機、打開應用程式）</li>
+                            <li><strong>特點</strong>：主動的、看起來「是你的選擇」，但往往是無意識的</li>
+                            <li><strong>例子</strong>：檢查手機、滑 TikTok、看 YouTube、刷微博</li>
+                            <li><strong>應對策略</strong>：<span class="highlight">改變環境、建立習慣、增強覺察</span>——更難，但更根本</li>
+                        </ul>
+                    </div>
+
+                    <p style="margin-top: 1.5rem; color: #667eea; font-weight: 600;">💡 洞見：49% 的分心是「拉式」——這意味著問題不在外部，而在你的選擇。但好消息是，如果是你的選擇，你就可以改變它。</p>
+                </div>
+            </div>
+
+            <div class="expandable-section">
+                <div class="expand-header">
+                    <span>「注意力殘留」：為什麼切換任務比你想的更昂貴</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+                <div class="expand-content">
+                    <p style="margin-bottom: 1rem; color: #374151;">Sophie Leroy 的研究揭露了一個令人不安的發現：</p>
+
+                    <div class="quote" style="margin: 1.5rem 0;">
+                        當你從任務 A 切換到任務 B 時，任務 A 的「注意力殘留」（attention residue）會繼續占據你的認知資源，導致你在任務 B 上的表現下降。即使你已經物理上轉向了任務 B，你的大腦仍在「想著」任務 A。
+                    </div>
+
+                    <p style="margin-bottom: 1rem; color: #374151;"><strong>這意味著什麼？</strong></p>
+                    <ul class="content-list">
+                        <li>你不是在「失去 23 分鐘」——你是在失去<span class="highlight">多倍的認知能力</span>。當你切回工作時，你的大腦只有 50% 的處理能力可用。</li>
+                        <li>如果你在 30 分鐘內切換 3 次任務，你可能實際上只完成了 15 分鐘的有效工作。</li>
+                        <li>這就是為什麼「深度工作」需要<strong>長時間的不被中斷的時間段</strong>——你需要時間讓「注意力殘留」完全消散。</li>
+                        <li>質量重於數量：1 小時的不被中斷的工作 > 3 小時的被中斷的工作。</li>
+                    </ul>
+
+                    <p style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e5e7eb; color: #667eea; font-weight: 600;">🎯 實踐洞見：如果你想要高效，不要尋求「效率技巧」，要尋求「深度時間」。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Next Section Connection -->
+        <div class="next-section">
+            <div class="next-title">📚 下一步：學習法 02</div>
+            <div class="next-content">
+                診斷完你的專注力漏洞後，是時候學會一個可以讓大腦立即冷靜下來的技巧——<strong>盒式呼吸</strong>。這個只需 30 秒的技巧可以激活你的副交感神經系統，幫助你快速從分心的焦躁狀態回到平靜的深度工作狀態。
+            </div>
+            <a href="#" class="next-button">→ 前往學習法 02：盒式呼吸</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© KIAO · 總校長的 AI 教育寶典</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem; opacity: 0.8;">掌握未來 30 年必備的聰明學習力</p>
+    </footer>
+
+    <!-- JavaScript for Expandable Sections -->
+    <script>
+        document.querySelectorAll('.expandable-section').forEach(section => {
+            const header = section.querySelector('.expand-header');
+            header.addEventListener('click', () => {
+                section.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('.resource-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.resource-title').textContent;
+                alert(`🎯 ${title}\n\n這個資源在完整課程中可以下載。\n\n提示：在課程平台上查看詳細說明。`);
+            });
+        });
+    </script>
+</body>
+</html>

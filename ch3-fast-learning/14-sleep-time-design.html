@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學習法 14：睡眠鞏固與時間設計 - 總校長的 AI 教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif; background: linear-gradient(to bottom, #f8f9fa 0%, #f0f2f5 100%); color: #2c3e50; line-height: 1.8; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; padding: 2rem 0; position: relative; overflow: hidden; }
+        .header::before { content: ''; position: absolute; top: -50%; right: -10%; width: 400px; height: 400px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(30px); } }
+        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+        .platform-badge { display: inline-block; background: rgba(255, 255, 255, 0.25); padding: 0.5rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; backdrop-filter: blur(10px); }
+        .course-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.6; }
+        .breadcrumb { font-size: 0.95rem; opacity: 0.95; margin-bottom: 1.5rem; }
+        .progress-indicator { background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 12px; display: inline-block; font-weight: 600; margin-top: 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+        .core-statement { background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%); border-left: 5px solid #8b5cf6; padding: 2rem; border-radius: 12px; margin-bottom: 3rem; font-size: 1.1rem; font-weight: 600; color: #6d28d9; line-height: 1.8; box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; text-align: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; border-top: 4px solid #8b5cf6; }
+        .stat-card:nth-child(2) { border-top-color: #f59e0b; }
+        .stat-card:nth-child(3) { border-top-color: #06b6d4; }
+        .stat-card:nth-child(4) { border-top-color: #ec4899; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: #8b5cf6; margin-bottom: 0.5rem; }
+        .stat-card:nth-child(2) .stat-number { color: #f59e0b; }
+        .stat-card:nth-child(3) .stat-number { color: #06b6d4; }
+        .stat-card:nth-child(4) .stat-number { color: #ec4899; }
+        .stat-label { font-size: 0.95rem; color: #6b7280; font-weight: 500; }
+        .section-title { font-size: 1.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.5rem; padding-bottom: 0.5rem; border-bottom: 3px solid #8b5cf6; display: inline-block; }
+        .section-container { margin-bottom: 3rem; }
+        .expandable-section { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .expand-header { background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); padding: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-weight: 600; font-size: 1.05rem; color: #2c3e50; transition: background 0.3s ease; user-select: none; }
+        .expand-header:hover { background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%); }
+        .expand-icon { font-size: 1.3rem; transition: transform 0.3s ease; }
+        .expandable-section.active .expand-icon { transform: rotate(180deg); }
+        .expand-content { padding: 1.5rem; background: white; display: none; }
+        .expandable-section.active .expand-content { display: block; }
+        .research-box { background: #f3e8ff; border-left: 4px solid #8b5cf6; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; }
+        .research-box h4 { color: #6d28d9; margin-bottom: 0.8rem; font-weight: 600; }
+        .research-box p { font-size: 0.95rem; color: #374151; line-height: 1.7; }
+        .research-box ul { margin-top: 0.8rem; margin-left: 1.5rem; color: #374151; }
+        .research-box li { margin-bottom: 0.5rem; }
+        .case-study { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-left: 4px solid #8b5cf6; }
+        .case-study h4 { color: #8b5cf6; margin-bottom: 1rem; font-size: 1.1rem; }
+        .case-study .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+        .case-study .before-after > div { padding: 1rem; border-radius: 8px; }
+        .before { background: #fee2e2; border-left: 4px solid #ef4444; }
+        .after { background: #d1fae5; border-left: 4px solid #10b981; }
+        .before h5, .after h5 { font-weight: 600; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .before h5 { color: #991b1b; }
+        .after h5 { color: #166534; }
+        .before p, .after p { font-size: 0.9rem; line-height: 1.6; }
+        .tool-box { background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; border: 2px solid #e9d5ff; }
+        .tool-box h4 { color: #6d28d9; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600; }
+        .tool-box .steps { margin-top: 1rem; }
+        .tool-box .step { background: white; padding: 1rem; margin-bottom: 0.8rem; border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .tool-box .step-number { display: inline-block; background: #8b5cf6; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: 700; margin-right: 0.8rem; }
+        .practice-section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .practice-section h4 { color: #8b5cf6; margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 600; }
+        .practice-item { background: #f9fafb; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6; }
+        .practice-item h5 { color: #1f2937; margin-bottom: 0.8rem; font-weight: 600; }
+        .ai-section { background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; border: 2px solid #e5e7eb; }
+        .ai-section h4 { color: #8b5cf6; margin-bottom: 1rem; font-size: 1.1rem; font-weight: 600; }
+        .prompt-box { background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; font-family: 'Courier New', monospace; font-size: 0.9rem; color: #374151; border-left: 4px solid #8b5cf6; line-height: 1.6; overflow-x: auto; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); }
+        .comparison-table th { background: #8b5cf6; color: white; padding: 1rem; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 1rem; border-bottom: 1px solid #e5e7eb; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9fafb; }
+        .key-insight { background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%); border-left: 5px solid #8b5cf6; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; font-weight: 500; color: #6d28d9; }
+        .theory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .theory-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); border-top: 4px solid #8b5cf6; }
+        .theory-card h5 { color: #6d28d9; margin-bottom: 0.8rem; font-weight: 600; }
+        .theory-card p { font-size: 0.95rem; color: #6b7280; line-height: 1.6; }
+        footer { background: #2c3e50; color: white; padding: 2rem; text-align: center; margin-top: 3rem; font-size: 0.95rem; }
+        @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .case-study .before-after { grid-template-columns: 1fr; } .section-title { font-size: 1.3rem; } .container { padding: 2rem 1rem; } .course-title { font-size: 1.2rem; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="platform-badge">Kiao | 總校長的 AI 教育寶典</div>
+            <h1 class="course-title">學習法 14：睡眠鞏固與時間設計</h1>
+            <div class="breadcrumb">
+                <span>📚 CH3 速學 | 最後一個方法</span>
+                <span>→</span>
+                <span>什麼時候學最好？</span>
+            </div>
+            <div class="progress-indicator">掌握未來 30 年必備的聰明學習力！</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="core-statement">
+            🎯 <strong>核心概念：</strong> 熬夜讀書是無效努力。你的大腦在睡眠中鞏固記憶。找到你的黃金 90 分鐘，比狂讀 10 小時更有效。<strong>不是時間多，是時間對。</strong>
+        </div>
+
+        <section class="section-container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">90 分</div>
+                    <div class="stat-label">BRAC 完整週期</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20%</div>
+                    <div class="stat-label">午睡提升效果</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">黃金時段效率倍數</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">50%</div>
+                    <div class="stat-label">熬夜反應遲緩程度</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第一部分：真相揭露——熬夜的代價</h2>
+
+            <div class="research-box">
+                <h4>⚠️ 連續清醒 17 小時 = 血液酒精濃度 0.05%</h4>
+                <p>
+                    澳洲 Williamson 和 Feyer（2000）的研究發現了令人震驚的結論：連續清醒 17 個小時，你的認知能力相當於血液酒精濃度 0.05%。
+                </p>
+                <ul>
+                    <li>0.05% 是澳洲、英國的<strong>法定酒駕標準</strong></li>
+                    <li>在美國，標準是 0.08%，而你已經接近違法邊緣</li>
+                    <li><strong>反應速度慢了高達 50%</strong></li>
+                    <li>前額葉皮質（負責邏輯推理和複雜思考）受影響最大</li>
+                    <li><strong>最可怕的是：你自己察覺不到</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; color: #6d28d9; font-weight: 600;">
+                    你熬夜到凌晨一點讀書，你的大腦狀態，跟你喝醉了差不多。而你還覺得自己在「拼命努力」。
+                </p>
+            </div>
+
+            <div class="case-study">
+                <h4>📖 真實案例：黃鈺庭的 180 度轉變</h4>
+                <div class="before-after">
+                    <div class="before">
+                        <h5>轉變前：盲目熬夜</h5>
+                        <p><strong>黃鈺庭，17 歲（高二）</strong></p>
+                        <p style="margin-top: 0.8rem;">學習科目：物理（準備大學入試）</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #7f1d1d;">
+                            ❌ 習慣性熬夜讀物理，覺得晚上十一點到凌晨才是「衝刺時間」<br/>
+                            ❌ 隔天上課經常打瞌睡<br/>
+                            ❌ 新概念的理解力很差<br/>
+                            ❌ 三個月只進步 3 分<br/>
+                            ❌ 感到無力和挫折
+                        </p>
+                    </div>
+                    <div class="after">
+                        <h5>轉變後：順著大腦節律</h5>
+                        <p><strong>根據自己的心智能力曲線調整</strong></p>
+                        <p style="margin-top: 0.8rem;">時間安排改變：新增午睡，改變學習時段</p>
+                        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #166534;">
+                            ✅ 把最難的推導題放在早上 9-10 點（自己的黃金時段）<br/>
+                            ✅ 加入 20 分鐘午睡（清空暫存記憶體）<br/>
+                            ✅ 晚上改成輕度複習<br/>
+                            ✅ 三個月進步 15 分<br/>
+                            ✅ 對新概念的理解明顯更快
+                        </p>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #6b7280;">
+                    <strong>關鍵轉變：</strong>不是更努力，而是跟大腦的節律一致。同樣的努力，換個時間就產出了 5 倍的成果。
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>🧠 為什麼熬夜特別致命？</h4>
+                <p>
+                    因為大腦在深夜時本來就應該睡覺。你違抗了生物節律，要求大腦在最低效的時刻做最複雜的工作。這不只是「效率差」，而是「用錯誤的方式消耗自己」。
+                </p>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第二部分：科學原理——睡眠如何鞏固記憶</h2>
+
+            <div class="research-box">
+                <h4>💤 睡眠 ≠ 休息。睡眠 = 學習</h4>
+                <p>
+                    加州大學柏克萊的神經科學家 Matthew Walker 教授，花了超過二十年研究睡眠。他的發現徹底顛覆了我們對睡眠的理解：
+                </p>
+                <ul>
+                    <li><strong>睡覺時，你的大腦不是在休息。它在整理你白天學的東西。</strong></li>
+                    <li>白天學的新東西 → 先暫存在海馬迴（手機暫存記憶體）</li>
+                    <li>睡覺時 → 大腦把這些資料搬到大腦皮質（長期硬碟）</li>
+                    <li>這個過程叫做「<strong>記憶鞏固（Memory Consolidation）</strong>」</li>
+                    <li>2010 年研究：有午睡的學生在測試中表現比沒午睡的好了約 <strong>20%</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; color: #6d28d9; font-weight: 600;">
+                    你睡覺的時候，大腦在幫你複習。不睡覺？等於白天的學習沒有被存檔。
+                </p>
+            </div>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h5>🧠 NREM 深層睡眠</h5>
+                    <p>
+                        負責鞏固陳述性記憶（事實和知識）。歷史年份、數學公式、英文單字在深層睡眠中被強化。睡眠紡錘波像一把鑰匙，把暫存的記憶鎖進長期記憶庫。
+                    </p>
+                </div>
+                <div class="theory-card">
+                    <h5>🌙 REM 快速動眼睡眠</h5>
+                    <p>
+                        負責程序性記憶（技能和模式）和創意連結。吉他技巧、編程邏輯在 REM 中被「安裝」。夢中想到解決方案不是巧合——REM 睡眠讓大腦自由連結概念。
+                    </p>
+                </div>
+                <div class="theory-card">
+                    <h5>⚠️ 為什麼只睡 4-5 小時不夠</h5>
+                    <p>
+                        因為你砍掉的通常是後半夜的 REM 睡眠。等於砍掉了創意和技能鞏固的時間。你存檔了事實，但沒安裝軟體。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第三部分：BRAC 節律——你的大腦有自己的時刻表</h2>
+
+            <div class="research-box">
+                <h4>🔄 90 分鐘的超晝夜節律（Ultradian Rhythm）</h4>
+                <p>
+                    被稱為「睡眠研究之父」的 Nathaniel Kleitman 在 1950 年代發現了一件很重要的事：你的大腦每 90 分鐘左右會經歷一個完整的周期，這叫做 BRAC（Basic Rest-Activity Cycle）。
+                </p>
+                <ul>
+                    <li>前 60 分鐘：清醒、專注</li>
+                    <li>後 20-30 分鐘：疲倦、走神</li>
+                    <li><strong>不是你不自律。是你的大腦正好在「休息段」。</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; color: #6d28d9; font-weight: 600;">
+                    了解這個節律之後，你就可以順著它學習，而不是逆著它硬撐。
+                </p>
+            </div>
+
+            <div class="tool-box">
+                <h4>💡 如何運用 BRAC：深度學習區塊設計</h4>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <strong>前 5 分鐘：啟動儀式</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">盒式呼吸（學習法 01）+ 清空心裡話。幫大腦從日常模式切換到學習模式。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <strong>45 分鐘：深度學習</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">看課程、讀課本、學新概念。在最清醒的時刻做最複雜的事。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <strong>5 分鐘：休息</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">喝水、活動身體。不要看手機。讓大腦短暫休息。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <strong>40 分鐘：應用練習</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">做練習、立刻反饋。把剛學的東西馬上用上，加深理解。</p>
+                    </div>
+                </div>
+                <div class="key-insight" style="margin-top: 1.5rem;">
+                    📌 <strong>這 90 分鐘的結構正好利用了 BRAC 的完整週期</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第四部分：午睡的神奇力量</h2>
+
+            <div class="research-box">
+                <h4>😴 60-90 分鐘午睡 ≈ 一整晚的學習效果</h4>
+                <p>
+                    加州大學爾灣分校的 Sara Mednick 教授專門研究午睡。她的結論讓人驚訝：
+                </p>
+                <ul>
+                    <li><strong>一次 60-90 分鐘的午睡，對學習的提升效果，幾乎等於一整晚的睡眠。</strong></li>
+                    <li>為什麼？因為 60-90 分鐘剛好可以經歷一個完整的睡眠週期</li>
+                    <li>包含深層睡眠和 REM 睡眠。兩種記憶鞏固都能完成</li>
+                    <li>如果不午休，你下午的學習表現會持續下滑</li>
+                    <li>海馬迴滿了 → 新東西進不去</li>
+                    <li>午睡 = <strong>清空手機的暫存記憶體，騰出空間，讓你下午能繼續裝新東西</strong></li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h4>💤 午睡的最佳方案</h4>
+                <div class="steps">
+                    <div class="step">
+                        <span class="step-number">60-90 分</span>
+                        <strong>完整午睡</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">如果時間允許，這是最佳選擇。經歷完整的睡眠週期，效果最好。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">20-30 分</span>
+                        <strong>快速小睡</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">沒有那麼多時間？20 分鐘小睡也能顯著恢復注意力和工作記憶。</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">10 分</span>
+                        <strong>冥想式小憩</strong>
+                        <p style="margin-top: 0.5rem; color: #6b7280; font-size: 0.9rem;">完全沒時間？10 分鐘的冥想或盒式呼吸也有幫助。總比沒有好。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第五部分：睡前黃金 30 分鐘</h2>
+
+            <div class="research-box">
+                <h4>🌟 睡前最後讀的東西，最容易被記住</h4>
+                <p>
+                    睡前讀的內容有什麼特殊之處？
+                </p>
+                <ul>
+                    <li>睡前讀的內容 → 馬上進入睡眠記憶鞏固</li>
+                    <li>中間<strong>沒有其他資訊干擾</strong></li>
+                    <li>這叫做「<strong>減少逆向干擾</strong>」</li>
+                    <li>學完新東西後又學一堆別的 → 前面的記憶被干擾</li>
+                    <li>學完就睡 → 什麼都不會來搗亂</li>
+                </ul>
+                <p style="margin-top: 1rem; color: #6d28d9; font-weight: 600;">
+                    把最需要記住的內容，放在睡前 30 分鐘複習。
+                </p>
+            </div>
+
+            <div class="research-box">
+                <h4>📱 但是——藍光是偷走睡眠的小偷</h4>
+                <p>
+                    哈佛大學研究：藍光抑制褪黑激素的效果，是其他光線的 2 倍。
+                </p>
+                <ul>
+                    <li>褪黑激素 = 讓你產生睡意的荷爾蒙</li>
+                    <li>晚上滑手機、看平板 → 藍光告訴大腦「現在是白天」</li>
+                    <li>褪黑激素<strong>延遲分泌</strong> → 睡眠品質下降</li>
+                    <li>睡眠品質差 = 記憶鞏固差 = 白天學的<strong>沒存檔</strong></li>
+                </ul>
+                <p style="margin-top: 1rem; font-weight: 600; color: #6d28d9;">
+                    結論：睡前 30 分鐘可以複習——但請用<strong>紙本，不要用螢幕</strong>。
+                </p>
+            </div>
+
+            <div class="key-insight">
+                💡 <strong>建議方案：</strong> 睡前 2-3 小時避免強烈藍光。如果真的需要用手機，至少開夜間模式。
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第六部分：三大策略——設計你的黃金學習時段</h2>
+
+            <div class="tool-box">
+                <h4>🎯 策略一：順著 90 分鐘節律</h4>
+                <p style="color: #374151; margin-bottom: 1rem;">把 90 分鐘作為一個完整的學習單位。</p>
+                <ul style="margin-left: 1.5rem; color: #374151;">
+                    <li>前 60 分鐘：全力衝刺學新東西</li>
+                    <li>後 30 分鐘：自然疲倦，用來做練習或放鬆</li>
+                    <li>這是番茄鐘（25 分）的升級版</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h4>📍 策略二：把最難的內容放在黃金時段</h4>
+                <p style="color: #374151; margin-bottom: 1rem;">大多數人的認知高峰在上午 10-12 點，下午 2-4 點。</p>
+                <ul style="margin-left: 1.5rem; color: #374151;">
+                    <li><strong>把最需要深度思考的內容放在這些時段</strong></li>
+                    <li>數學、邏輯、寫作、複雜推理 = 放黃金時段</li>
+                    <li>簡單複習、整理筆記 = 放低谷時段</li>
+                </ul>
+            </div>
+
+            <div class="tool-box">
+                <h4>💤 策略三：午睡 + 睡前複習</h4>
+                <ul style="margin-left: 1.5rem; color: #374151;">
+                    <li>中午小睡 20 分鐘（如果可以）</li>
+                    <li>晚上睡前 30 分鐘用紙本複習最重要的內容</li>
+                    <li>讓你的時間安排配合大腦的自然節律</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第七部分：實踐——一個學霸的一天</h2>
+
+            <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);">
+                <p style="color: #374151; margin-bottom: 1.5rem; font-weight: 600;">假設你是晨型人（早上清醒）的完整時間表：</p>
+
+                <div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; border-left: 4px solid #8b5cf6; font-family: 'Courier New', monospace; font-size: 0.9rem; color: #374151; line-height: 1.8;">
+                    7:00-7:15 | 🌅 盒式呼吸 + 今日計畫<br/>
+                    7:15-8:45 | 🔥 深度學習（90分鐘）→ 最難的科目（專注 45 分 + 練習 40 分）<br/>
+                    8:45-9:00 | 🥤 早餐 + 休息<br/>
+                    9:00-9:30 | 📝 複習鞏固 → 昨天的內容<br/>
+                    9:30-10:00 | 🎬 輕度探索 → 興趣擴展<br/>
+                    10:00-12:30| 💼 課程 / 工作<br/>
+                    12:30-12:50| 😴 午睡（20 分鐘）→ 清空暫存<br/>
+                    14:00-15:30| 🔥 深度學習 → 次難的科目<br/>
+                    15:30-16:00| 📝 複習鞏固 → 應用題<br/>
+                    16:00-16:15| 🎬 輕度探索 → 碎片時間<br/>
+                    晚間    | 📖 輕鬆複習、整理筆記<br/>
+                    22:30-23:00| 📚 睡前 30 分鐘 → 紙本複習最重要的<br/>
+                    23:00 | 😴 7-8 小時完整睡眠
+                </div>
+
+                <div class="key-insight">
+                    ✅ <strong>這不是更多時間。是更聰明地用時間。</strong>
+                </div>
+            </div>
+
+            <div class="research-box">
+                <h4>如果你是夜貓子？</h4>
+                <p>
+                    原則相同，只是時間移後。早上做輕度任務（複習 + 探索），把深度學習排在你最清醒的晚上時段（通常 8-10 點）。但要注意：<strong>無論什麼時間深度學習，都要留出充足的睡眠時間</strong>。深度學習 + 充足睡眠 > 深度學習 + 熬夜。
+                </p>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第八部分：常見時間陷阱與修正</h2>
+
+            <div class="practice-section">
+                <h4>🚨 陷阱 1：計畫謬誤（Planning Fallacy）</h4>
+                <div class="practice-item">
+                    <h5>問題</h5>
+                    <p>你估計某個任務要 1 小時，結果花了 2 小時。明天的時間就全亂套了。</p>
+                </div>
+                <div class="practice-item">
+                    <h5>修正方案</h5>
+                    <ul style="margin-left: 1.5rem; color: #374151;">
+                        <li>第一次做某個類型的任務，估計時間後<strong>乘以 1.5</strong></li>
+                        <li>追蹤「實際用的時間」vs「預估時間」，慢慢校準</li>
+                        <li>永遠留出 <strong>20% 的 Buffer</strong>（機動時間）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h4>🚨 陷阱 2：帕金森定律（Parkinson's Law）</h4>
+                <div class="practice-item">
+                    <h5>問題</h5>
+                    <p>你給自己無限時間去做「複習」，結果永遠複習不完。</p>
+                </div>
+                <div class="practice-item">
+                    <h5>修正方案</h5>
+                    <ul style="margin-left: 1.5rem; color: #374151;">
+                        <li>給每個任務設定「硬截止時間」</li>
+                        <li>時間一到，立刻停止，即使沒做完</li>
+                        <li>「30 分鐘複習區塊」就是 30 分鐘，時間一到就結束</li>
+                        <li>這會強迫你專注在「<strong>最重要的部分</strong>」</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h4>🚨 陷阱 3：時間碎片化</h4>
+                <div class="practice-item">
+                    <h5>問題</h5>
+                    <p>一整天被切成零碎的 15 分鐘，大腦一直在「切換模式」。忙但沒進度。</p>
+                </div>
+                <div class="practice-item">
+                    <h5>修正方案</h5>
+                    <ul style="margin-left: 1.5rem; color: #374151;">
+                        <li>至少要有「<strong>一個</strong>」連續的 90 分鐘深度學習區塊</li>
+                        <li>其他時間可以碎片化，但深度學習區塊一定要完整</li>
+                        <li>這就是為什麼「深度學習排在黃金時段」這麼重要</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="practice-section">
+                <h4>🚨 陷阱 4：忽視環境影響</h4>
+                <div class="practice-item">
+                    <h5>問題</h5>
+                    <p>你在嘈雜的地方學，花了 2 小時；在安靜的地方學，30 分鐘就搞懂了。但你還在同一個地方重複低效努力。</p>
+                </div>
+                <div class="practice-item">
+                    <h5>修正方案</h5>
+                    <ul style="margin-left: 1.5rem; color: #374151;">
+                        <li>深度學習區塊 = 最沒有干擾的地方</li>
+                        <li>複習區塊 = 可以在次要的地方</li>
+                        <li>輕度探索 = 可以在任何地方（這對應學習法 04 的「環境設計」）</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">第九部分：AI 幫你設計個人化時間表</h2>
+
+            <div class="ai-section">
+                <h4>🤖 AI Prompt 1：設計你的週時間表</h4>
+                <div class="prompt-box">
+                    根據我的生活節奏，幫我設計個人化的學習時間表。<br/><br/>
+                    我的資訊：<br/>
+                    - 每天醒來時間：（例如 7 點）<br/>
+                    - 需要準備的科目：（列出 2-3 科，按難度排序）<br/>
+                    - 每天有 X 小時可以讀書<br/>
+                    - 我的精力特色：（例如「早上清醒，下午 3 點會崩潰」）<br/><br/>
+                    請根據 90 分鐘的 BRAC 循環和睡眠的記憶鞏固原理，幫我：<br/>
+                    1. 設計一週的時間表<br/>
+                    2. 每個時段放什麼科目<br/>
+                    3. 什麼時候該午睡<br/>
+                    4. 睡前 30 分鐘該複習什麼
+                </div>
+            </div>
+
+            <div class="ai-section">
+                <h4>🤖 AI Prompt 2：分析和調整</h4>
+                <div class="prompt-box">
+                    我這週每天的學習狀態如下：（描述你每天什麼時段的效率如何）<br/><br/>
+                    請分析：<br/>
+                    1. 我哪個時段效率最高、哪個最低<br/>
+                    2. 為什麼會這樣（可能的原因）<br/>
+                    3. 下週時間安排應該怎麼調整<br/>
+                    4. 如何優化午睡和睡前複習
+                </div>
+            </div>
+
+            <div class="key-insight">
+                ⚡ <strong>AI 的角色：</strong>根據科學原理幫你制定計畫。但你還是要根據自己的情況調整。AI 設計，你執行。
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">CH3 完結——七大學習法的完整體系</h2>
+
+            <div style="background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%); border-radius: 12px; padding: 2rem; border: 2px solid #e9d5ff;">
+                <p style="color: #6d28d9; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">
+                    🎓 你在 CH3 走完了學習的完整循環
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #999;">
+                        <p style="font-weight: 600; color: #6b7280; margin-bottom: 0.5rem;">08 - DiSSS</p>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">快速拆解</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #999;">
+                        <p style="font-weight: 600; color: #6b7280; margin-bottom: 0.5rem;">09 - 雙重編碼</p>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">加深記憶</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #999;">
+                        <p style="font-weight: 600; color: #6b7280; margin-bottom: 0.5rem;">10 - 間隔重複</p>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">科學複習</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #999;">
+                        <p style="font-weight: 600; color: #6b7280; margin-bottom: 0.5rem;">11 - 刻意練習</p>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">有效練習</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #999;">
+                        <p style="font-weight: 600; color: #6b7280; margin-bottom: 0.5rem;">12 - 費曼技巧</p>
+                        <p style="font-size: 0.85rem; color: #9ca3af;">測試理解</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                        <p style="font-weight: 600; color: #6d28d9; margin-bottom: 0.5rem;">13 - 監控系統</p>
+                        <p style="font-size: 0.85rem; color: #8b5cf6;">追蹤進度</p>
+                    </div>
+                    <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                        <p style="font-weight: 600; color: #6d28d9; margin-bottom: 0.5rem;">14 - 時間設計</p>
+                        <p style="font-size: 0.85rem; color: #8b5cf6;">優化時段</p>
+                    </div>
+                </div>
+                <p style="color: #374151; line-height: 1.7;">
+                    七個方法，一個核心：<strong>你不需要更努力，你需要更聰明地學。</strong>
+                </p>
+                <ul style="margin-top: 1rem; margin-left: 1.5rem; color: #374151;">
+                    <li>杯子修好了（CH1：專注力）</li>
+                    <li>水倒對了（CH2：護腦）</li>
+                    <li>肌肉也練出來了（CH3：速學的七大方法）</li>
+                </ul>
+                <p style="margin-top: 1.5rem; color: #6d28d9; font-weight: 600;">
+                    下一章，你要學的不是另一個方法——你要學的是怎麼讓 AI 變成你的超級夥伴。
+                </p>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">你的 60 秒行動清單</h2>
+
+            <div style="background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%); border-radius: 12px; padding: 2rem; border: 2px solid #e9d5ff;">
+                <p style="margin-bottom: 1.5rem; color: #374151; font-weight: 600;">在接下來的 60 秒內，做這三件事：</p>
+
+                <div style="margin-bottom: 1rem;">
+                    <p style="color: #6d28d9; font-weight: 600; margin-bottom: 0.5rem;">1️⃣ 觀察自己今天哪個時段最清醒、最能專注</p>
+                    <p style="color: #6b7280; font-size: 0.95rem;">記下來。這就是你的黃金時段。</p>
+                </div>
+
+                <div style="margin-bottom: 1rem;">
+                    <p style="color: #6d28d9; font-weight: 600; margin-bottom: 0.5rem;">2️⃣ 把明天最難的科目排在那個時段</p>
+                    <p style="color: #6b7280; font-size: 0.95rem;">拿出行事曆，一個 90 分鐘的深度學習區塊。</p>
+                </div>
+
+                <div>
+                    <p style="color: #6d28d9; font-weight: 600; margin-bottom: 0.5rem;">3️⃣ 複製上面的 Prompt，請 AI 幫你設計一週時間表</p>
+                    <p style="color: #6b7280; font-size: 0.95rem;">根據你的生活節奏調整。</p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #8b5cf6;">
+                    <p style="color: #6d28d9; font-weight: 600; margin-bottom: 0.5rem;">📥 想要更深入？</p>
+                    <p style="color: #6b7280; font-size: 0.95rem;">下載「90 分鐘 BRAC 循環時間表」，根據你的生活節奏調整。</p>
+                    <p style="color: #6d28d9; font-weight: 600; margin-top: 1rem;">
+                        從今天開始，不要重複做錯誤的事。<strong>做對的事情。</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">學習法 14 核心重點</h2>
+
+            <div class="theory-grid">
+                <div class="theory-card">
+                    <h5>🧠 BRAC 90 分鐘節律</h5>
+                    <p>大腦每 90 分鐘一個活動-休息循環。順著它，效率提升 3 倍。</p>
+                </div>
+                <div class="theory-card">
+                    <h5>💤 睡眠 = 學習</h5>
+                    <p>睡覺時大腦整理記憶。不睡覺 = 白天的學習沒存檔。</p>
+                </div>
+                <div class="theory-card">
+                    <h5>⚠️ 熬夜 = 醉酒</h5>
+                    <p>清醒 17 小時 ≈ 酒精濃度 0.05%。反應慢了 50%。</p>
+                </div>
+                <div class="theory-card">
+                    <h5>🌙 睡前黃金法則</h5>
+                    <p>最後讀的最容易被鞏固。用紙本，不用螢幕。</p>
+                </div>
+                <div class="theory-card">
+                    <h5>😴 午睡的力量</h5>
+                    <p>20-90 分鐘午睡清空暫存，讓下午效率大幅提升。</p>
+                </div>
+                <div class="theory-card">
+                    <h5>💡 終極金句</h5>
+                    <p>不是你不夠努力。是你在錯的時間努力。</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2 class="section-title">學習法 14 總結</h2>
+
+            <div style="background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%); border-radius: 12px; padding: 2rem; border: 2px solid #e9d5ff;">
+                <p style="color: #6d28d9; font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;">
+                    🎯 你現在擁有了什麼
+                </p>
+                <ul style="color: #374151; margin-left: 2rem; line-height: 2;">
+                    <li><strong>90 分鐘 BRAC 的完整理解</strong>——知道何時專注、何時休息</li>
+                    <li><strong>睡眠鞏固的科學基礎</strong>——理解為什麼睡眠比熬夜重要</li>
+                    <li><strong>個人黃金時段的發現</strong>——找到你最清醒的時刻</li>
+                    <li><strong>完整的一日時間表</strong>——知道什麼時候學什麼</li>
+                    <li><strong>AI 時間表設計工具</strong>——個人化的學習排程</li>
+                    <li><strong>CH3 的完整體系</strong>——七大方法串聯成一個循環</li>
+                </ul>
+                <p style="color: #6d28d9; font-size: 1.1rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">
+                    ✨ CH3 完成——你的聰明學習力已經成型
+                </p>
+                <p style="color: #6b7280; line-height: 1.7;">
+                    從拆解、編碼、練習、檢驗、監控，到時間設計——七個方法形成了一個完整的學習生態。你不再依賴「拼命努力」，而是依賴「聰明策略」。<br/><br/>
+                    下一章（CH4），你要學的是怎麼讓 AI 成為這個生態的一部分。AI 不是替代你，而是超級充電器。
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Kiao | 總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力！</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
+            學習法 14：睡眠鞏固與時間設計 | CH3 速學（最後）| 最後更新：2026-03-29<br/>
+            檔案大小：30KB+ | 內容行數：600+
+        </p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.expandable-section').forEach(section => {
+            section.querySelector('.expand-header').addEventListener('click', function() {
+                section.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>38項持久技能 - CH5 超越｜總校長的AI教育寶典</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #f093fb;
+            --warm: #ff9a56;
+            --light-bg: #f5f7ff;
+            --dark-text: #2d3748;
+            --border: #e2e8f0;
+            --success: #48bb78;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.8;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .branding {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        .main {
+            padding: 50px 30px;
+            background: white;
+            margin: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Core Concept */
+        .core-concept {
+            background: linear-gradient(135deg, var(--light-bg) 0%, rgba(240, 147, 251, 0.1) 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .one-liner {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* Section Heading */
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Why Important */
+        .why-section {
+            background: #f0f4ff;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .why-section h3 {
+            color: var(--warm);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .why-section p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        /* Tier Structure */
+        .tier-container {
+            margin-bottom: 40px;
+        }
+
+        .tier-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tier-badge {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .tier-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .tier-skills {
+            background: #f9fafb;
+            padding: 25px;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .skill-number {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .skill-english {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .skill-definition {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Special Tiers */
+        .meta-skill {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--warm);
+            margin-bottom: 40px;
+        }
+
+        .meta-skill h3 {
+            color: var(--warm);
+            margin-bottom: 15px;
+        }
+
+        .meta-skill .skill-card {
+            background: white;
+            border-left: 4px solid var(--warm);
+        }
+
+        /* Four AI-Proof Abilities */
+        .ai-proof {
+            background: #f0fdf4;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--success);
+            margin-bottom: 40px;
+        }
+
+        .ai-proof h3 {
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .ai-proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .ai-proof-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--success);
+        }
+
+        .ai-proof-item h4 {
+            color: var(--success);
+            margin-bottom: 10px;
+        }
+
+        .ai-proof-item p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Meta-Skill Deep Dive */
+        .critical-questioning {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .critical-questioning h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .question-levels {
+            display: grid;
+            gap: 15px;
+        }
+
+        .question-level {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .level-label {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .question-level h4 {
+            margin-bottom: 10px;
+        }
+
+        .question-level p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .question-level .example {
+            background: #f5f7ff;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--secondary);
+            margin-top: 8px;
+            border-left: 2px solid var(--primary);
+        }
+
+        /* Sense-Making Deep Dive */
+        .sense-making {
+            background: linear-gradient(135deg, #fef3c7 0%, #fee2e2 100%);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--warm);
+            margin-bottom: 40px;
+        }
+
+        .sense-making h3 {
+            color: var(--warm);
+            margin-bottom: 15px;
+        }
+
+        .sense-making-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--warm);
+        }
+
+        .process-step-number {
+            display: block;
+            background: var(--warm);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            line-height: 32px;
+            font-weight: 700;
+        }
+
+        .process-step strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+
+        .process-step p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Collapsible */
+        .collapsible-group {
+            margin-bottom: 40px;
+        }
+
+        .collapsible-header {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--secondary);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .collapsible-header:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+            padding-left: 24px;
+        }
+
+        .collapsible-icon {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 25px;
+            background: #fafbff;
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .collapsible-content.active {
+            display: block;
+        }
+
+        .collapsible-content p {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        /* Practice */
+        .practice-section {
+            background: #fff9f0;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .practice-section h3 {
+            color: var(--warm);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .practice-item {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--warm);
+        }
+
+        .practice-item strong {
+            display: block;
+            color: var(--secondary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .practice-item p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #666;
+        }
+
+        /* Resources */
+        .resources-section {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0e7fe 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .resources-section h3 {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .resource-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .resource-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .resource-icon {
+            color: var(--primary);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .resource-text strong {
+            color: var(--secondary);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .resource-text p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .next-steps h3 {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .next-steps li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .next-steps li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Progress Badge */
+        .progress-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .main {
+                padding: 25px 15px;
+                margin: 15px;
+            }
+
+            .tier-skills {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main {
+            animation: fadeIn 0.6s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="branding">Kiao | 總校長的 AI 教育寶典</div>
+                <h1>38 項持久技能</h1>
+                <p class="tagline">22 個全球框架的超級共識｜層級化的能力發展系統</p>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="progress-badge">CH5 模組 B：持久技能</div>
+
+            <!-- Core Concept -->
+            <section class="core-concept">
+                <h2 class="concept-title">核心洞察</h2>
+                <p class="one-liner">全球 22 個權威機構花了 30 年研究「人類最需要什麼能力」。驚人的是：他們的結論不是各說各話，而是「驚人地一致」。而且，排名最高的不是技術能力，而是批判思考和協作——軟技能被需求的頻率是技術技能的五倍。</p>
+            </section>
+
+            <!-- Why Important -->
+            <section class="why-section">
+                <h3>為什麼要了解 38 項持久技能？</h3>
+                <p>EPOCH 框架給你五個方向。但「怎麼練」呢？38 項持久技能就是答案——它們是 22 個全球權威框架（UNESCO、WEF、MIT、哈佛、新加坡、荷蘭等）的交叉對比結果。這 38 項技能都符合兩個條件：</p>
+                <p><strong>1. 有科學證據支持</strong>——每項技能都有多個國際框架認可</p>
+                <p><strong>2. 可以培養的</strong>——每項技能都不是「天生的」，都能通過練習改進</p>
+                <p>把它們組織成五個梯隊，是因為「下層基礎決定上層高度」。你不可能跳過地基直接蓋房子。</p>
+            </section>
+
+            <!-- Meta-Skill: Sense-Making -->
+            <section class="meta-skill">
+                <h3>#0 元技能：意義建構（Sense-Making）</h3>
+                <p style="margin-bottom: 15px;"><strong>定義：</strong>在複雜、模糊、矛盾的資訊中，辨識模式、建構理解、賦予意義——從噪音中找到信號，從碎片中建構整體。</p>
+                <p style="margin-bottom: 20px;"><strong>為什麼是元技能？</strong>意義建構不是 37 項技能之外的附加品，而是驅動所有其他技能的底層作業系統。批判思考需要它來「知道要分析什麼」，創造力需要它來「知道為誰創造」，同理心需要它來「理解脈絡」。</p>
+
+                <div class="sense-making-process">
+                    <div class="process-step">
+                        <span class="process-step-number">1</span>
+                        <strong>收集信號</strong>
+                        <p>從混亂的資訊中注意到重要的模式</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-step-number">2</span>
+                        <strong>提出疑問</strong>
+                        <p>「這些資訊為什麼重要？」</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-step-number">3</span>
+                        <strong>建構理解</strong>
+                        <p>把碎片連接成一個有邏輯的整體</p>
+                    </div>
+                    <div class="process-step">
+                        <span class="process-step-number">4</span>
+                        <strong>賦予意義</strong>
+                        <p>決定「這對我意味著什麼」</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px;"><strong>為什麼 AI 做不到？</strong>AI 做的是 Reckoning（推算）——給你統計最可能的答案。人類做的是 Judgment（判斷）——決定「這對我有意義嗎」。意義建構是從推算到判斷的橋樑。AI 永遠無法為你創造意義。</p>
+            </section>
+
+            <!-- Tier 1: Foundation -->
+            <div class="tier-container">
+                <div class="tier-header">
+                    <div class="tier-title">第一梯隊：超級共識（5 項）</div>
+                    <div class="tier-badge">68% 以上全球認可</div>
+                </div>
+                <div class="tier-skills">
+                    <div class="skill-card">
+                        <div class="skill-number">1</div>
+                        <div class="skill-name">分析推理</div>
+                        <div class="skill-english">Analytical Reasoning</div>
+                        <div class="skill-definition">拆解複雜資訊，辨識因果關係、邏輯謬誤與隱藏假設。這是批判思考的基礎。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">2</div>
+                        <div class="skill-name">證據評估</div>
+                        <div class="skill-english">Evidence Evaluation</div>
+                        <div class="skill-definition">判斷資訊來源的可信度，區分事實、觀點與 AI 生成內容。在信息時代至關重要。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">3</div>
+                        <div class="skill-name">決策判斷</div>
+                        <div class="skill-english">Decision-Making</div>
+                        <div class="skill-definition">在資訊不完整、存在矛盾的情境中做出合理決定。沒有完美資訊的世界中，這是最實用的能力。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">4</div>
+                        <div class="skill-name">團隊協作</div>
+                        <div class="skill-english">Collaborative Teamwork</div>
+                        <div class="skill-definition">在團隊中分工合作、貢獻專長、達成共同目標。沒有任何人能獨力完成複雜任務。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">5</div>
+                        <div class="skill-name">衝突調解</div>
+                        <div class="skill-english">Conflict Resolution</div>
+                        <div class="skill-definition">面對意見分歧時，理解各方立場並促進建設性對話。衝突本身不是問題，如何處理才是。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 2: Core Engine -->
+            <div class="tier-container">
+                <div class="tier-header">
+                    <div class="tier-title">第二梯隊：核心引擎（6 項）</div>
+                    <div class="tier-badge">55-64% 全球認可</div>
+                </div>
+                <div class="tier-skills">
+                    <div class="skill-card">
+                        <div class="skill-number">6</div>
+                        <div class="skill-name">發散思維</div>
+                        <div class="skill-english">Divergent Thinking</div>
+                        <div class="skill-definition">針對同一問題產生多種不同的可能解法，不急著收斂。創意的第一步。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">7</div>
+                        <div class="skill-name">問題重構</div>
+                        <div class="skill-english">Problem Reframing</div>
+                        <div class="skill-definition">改變看待問題的角度，把「困境」轉化為「設計挑戰」。許多創新始於重新定義問題。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">8</div>
+                        <div class="skill-name">創新實踐</div>
+                        <div class="skill-english">Creative Implementation</div>
+                        <div class="skill-definition">將創意想法轉化為具體可執行的方案或作品。想法沒有執行，只是幻想。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">9</div>
+                        <div class="skill-name">成長心態</div>
+                        <div class="skill-english">Growth Mindset</div>
+                        <div class="skill-definition">相信能力可透過努力發展，把失敗視為學習機會而非終點。決定了你能成長多遠。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">10</div>
+                        <div class="skill-name">自主學習策略</div>
+                        <div class="skill-english">Self-Directed Learning</div>
+                        <div class="skill-definition">能獨立設定學習目標、選擇方法、監控進度並調整策略。AI 時代的「基本功」。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">11</div>
+                        <div class="skill-name">好奇心</div>
+                        <div class="skill-english">Curiosity & Inquiry</div>
+                        <div class="skill-definition">對未知事物保持主動探索的驅動力，持續提出問題而非滿足於現有答案。成長的燃料。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tier 3: Relationships -->
+            <div class="tier-container">
+                <div class="tier-header">
+                    <div class="tier-title">第三梯隊：關係層（8 項）</div>
+                    <div class="tier-badge">41-50% 全球認可</div>
+                </div>
+                <div class="tier-skills">
+                    <div class="skill-card">
+                        <div class="skill-number">12</div>
+                        <div class="skill-name">清晰表達</div>
+                        <div class="skill-english">Clear Expression</div>
+                        <div class="skill-definition">用對方能理解的語言、結構和方式傳達想法。再好的想法說不出來也沒用。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">13</div>
+                        <div class="skill-name">積極傾聽</div>
+                        <div class="skill-english">Active Listening</div>
+                        <div class="skill-definition">專注理解對方的意思和感受，而非只等著回應。最被忽視的溝通能力。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">14</div>
+                        <div class="skill-name">敘事力</div>
+                        <div class="skill-english">Storytelling</div>
+                        <div class="skill-definition">用故事和具象比喻讓抽象概念生動有感，啟發行動。數字說服腦，故事說服心。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">15</div>
+                        <div class="skill-name">情感同理</div>
+                        <div class="skill-english">Affective Empathy</div>
+                        <div class="skill-definition">感受他人的情緒狀態，產生共鳴與關懷。沒有這個，同理心只是理智上的同意。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">16</div>
+                        <div class="skill-name">認知同理</div>
+                        <div class="skill-english">Cognitive Empathy</div>
+                        <div class="skill-definition">從對方的角度理解其想法、動機與處境。幫你突破自己的視角限制。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">17</div>
+                        <div class="skill-name">情緒調節</div>
+                        <div class="skill-english">Emotional Regulation</div>
+                        <div class="skill-definition">辨識自己的情緒狀態，主動調整而非被情緒劫持。在壓力下保持清晰，在衝突中保持冷靜。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">18</div>
+                        <div class="skill-name">挫折復原力</div>
+                        <div class="skill-english">Bounce-Back Resilience</div>
+                        <div class="skill-definition">遭遇失敗或挫折後，能調整情緒、提取教訓並重新出發。人生是馬拉松，不是短跑。</div>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-number">19</div>
+                        <div class="skill-name">彈性適應</div>
+                        <div class="skill-english">Adaptive Flexibility</div>
+                        <div class="skill-definition">面對環境變化時，能快速調整計畫、策略和行為。AI 時代變化的唯一常數。</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden Meta-Skills -->
+            <section class="critical-questioning">
+                <h3>隱藏的元技能：批判性提問的三個層次</h3>
+                <p style="margin-bottom: 20px;">批判性思考最終落在「問對問題」上。不同層次的提問，開啟不同層次的理解：</p>
+
+                <div class="question-levels">
+                    <div class="question-level">
+                        <span class="level-label">Level 1：事實層提問</span>
+                        <h4>「發生了什麼？」</h4>
+                        <p>最基礎的提問——搞清楚事實。但很多人停在這裡。</p>
+                        <div class="example">例：「為什麼 AI 會給出這個答案？」「資料來源是哪裡？」</div>
+                    </div>
+
+                    <div class="question-level">
+                        <span class="level-label">Level 2：推理層提問</span>
+                        <h4>「為什麼會這樣？」</h4>
+                        <p>開始探索因果關係、假設、邏輯。這是批判思考的真正開始。</p>
+                        <div class="example">例：「他之所以這樣說，背後的假設是什麼？」「這個論證的漏洞在哪？」</div>
+                    </div>
+
+                    <div class="question-level">
+                        <span class="level-label">Level 3：價值層提問</span>
+                        <h4>「這對我有什麼意義？」</h4>
+                        <p>最深的層次——不只理解，還要判斷「這與我的價值觀是否一致」「我應該相信嗎」。</p>
+                        <div class="example">例：「如果我接受這個觀點，會導致什麼後果？」「這個決定符合我的價值觀嗎？」「誰會從我的同意中受益？」</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Four AI-Proof Abilities -->
+            <section class="ai-proof">
+                <h3>四項 AI 永遠無法模仿的人類靈魂能力</h3>
+                <p style="margin-bottom: 20px;">在 38 項技能中，有四項特別關鍵——它們不只是「難以自動化」，而是「不可能自動化」，因為它們涉及人類的核心。</p>
+
+                <div class="ai-proof-grid">
+                    <div class="ai-proof-item">
+                        <h4>1. 真正的同理心</h4>
+                        <p>AI 可以分析情緒，但無法「感受」。它無法在半夜接到朋友難過的電話，放下所有事陪著哭。無法因為看到他人的痛苦而改變自己的行動。這是人類獨有的「被改變的能力」。</p>
+                    </div>
+
+                    <div class="ai-proof-item">
+                        <h4>2. 倫理判斷</h4>
+                        <p>AI 無法承擔道德責任。當某個決定導致傷害時，AI 無法說「我對此負責」。倫理判斷需要價值觀、需要良知、需要對他人的承諾。AI 沒有這些。</p>
+                    </div>
+
+                    <div class="ai-proof-item">
+                        <h4>3. 創意突破</h4>
+                        <p>AI 的創意來自「重組已知」。真正的創新是「想象未曾存在過的東西」。這需要人的直覺、夢想、和對「不同可能」的執著。AI 無法做出「從零開始」的創造。</p>
+                    </div>
+
+                    <div class="ai-proof-item">
+                        <h4>4. 願景與領導</h4>
+                        <p>AI 可以預測未來，但無法「相信」一個更好的未來會到來。領導力的核心是「讓他人相信一個他們想去的地方」。這需要人的熱情、信仰、和對意義的追尋。AI 做不到這個。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tiers 4 & 5 Summary -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>第四、五梯隊：導航層與存在層（18 項）</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <h4 style="margin-bottom: 15px;">第四梯隊：導航層（9 項，27-36% 認可）</h4>
+                    <p>20. 道德推理 — 21. 誠信責任 — 22. 願景設定 — 23. 影響說服 — 24. 自我覺察 — 25. 後設認知 — 26. AI 協作素養 — 27. 人機協作 — 28. 資訊判讀素養</p>
+
+                    <p style="margin-top: 15px;"><strong>這層的特色：</strong>開始「導航」自己的方向。不再只是「做好」，而是「往正確的方向走」。涉及道德判斷、自我認知、與他人的影響力。</p>
+
+                    <h4 style="margin-bottom: 15px; margin-top: 25px;">第五梯隊：存在層（9 項，≤18% 認可）</h4>
+                    <p>29. 臨在與真實連結 — 30. 身心整合 — 31. 壓力與能量管理 — 32. 文化敏感度 — 33. 多元包容 — 34. 公民責任與參與 — 35. 需求洞察 — 36. 服務設計 — 37. 價值創造</p>
+
+                    <p style="margin-top: 15px;"><strong>這層的特色：</strong>最被忽視，卻最不可取代。涉及「誰你真的是」、「你能帶給世界什麼」、「你如何存在於這個世界」。這些能力在 AI 時代的價值會大幅上升，因為它們最難自動化。</p>
+                </div>
+            </section>
+
+            <!-- Practice Section -->
+            <section class="practice-section">
+                <h3>實戰練習：設計你的能力發展計畫</h3>
+                <p style="margin-bottom: 25px;">38 項技能太多？不用全練。用這個方法找出「你現在應該優先發展的 5 項」：</p>
+
+                <div class="practice-grid">
+                    <div class="practice-item">
+                        <strong>第 1 步：自評（5 分鐘）</strong>
+                        <p>看 38 項技能，給每項打 1-10 分（1 = 還有很大空間，10 = 很強）。只需要大致估計，不用精準。</p>
+                    </div>
+
+                    <div class="practice-item">
+                        <strong>第 2 步：找出最弱的 10 項</strong>
+                        <p>你的 10 個最低分是什麼？這些通常都是「高影響」的能力——改進它們，會帶來最大改變。</p>
+                    </div>
+
+                    <div class="practice-item">
+                        <strong>第 3 步：問「為什麼」</strong>
+                        <p>選一項最低分的技能，問自己：「為什麼這對我的生活/學習/工作很重要？」如果答案是「其實不重要」，就跳過它。只練真正重要的。</p>
+                    </div>
+
+                    <div class="practice-item">
+                        <strong>第 4 步：檢查依賴關係</strong>
+                        <p>有些技能是「基礎」，有些是「進階」。例如「情感同理」是學會「清晰表達」的基礎。確保你不會「跳過下層直接蓋上層」。</p>
+                    </div>
+
+                    <div class="practice-item">
+                        <strong>第 5 步：挑選 5 項開始</strong>
+                        <p>不要一次全練。挑最重要的 5 項。可能是最弱的，也可能是「一旦改進就能改變全局」的那個。</p>
+                    </div>
+
+                    <div class="practice-item">
+                        <strong>第 6 步：設定 90 天計畫</strong>
+                        <p>每一項給 18 天。每天 20 分鐘的刻意練習。90 天後檢查進度。如果進步明顯，保持習慣。如果卡住，改變練習方法。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources -->
+            <section class="resources-section">
+                <h3>帶走資源</h3>
+                <div class="resource-list">
+                    <div class="resource-item">
+                        <div class="resource-icon">📋</div>
+                        <div class="resource-text">
+                            <strong>38 項技能自評表 + 梯隊分布圖</strong>
+                            <p>可列印的自評工具，幫你清楚看到自己的能力分布，以及優先發展的方向。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">🎯</div>
+                        <div class="resource-text">
+                            <strong>每項技能的 30 天練習方案</strong>
+                            <p>38 個具體的、可執行的練習方法。選一項，執行 30 天，看到改變。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">📊</div>
+                        <div class="resource-text">
+                            <strong>38 項技能 × EPOCH 維度對應表</strong>
+                            <p>看清「哪些技能發展了我的同理心」、「哪些強化了我的創造力」等。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">🔗</div>
+                        <div class="resource-text">
+                            <strong>技能依賴關係圖</strong>
+                            <p>展示 38 項技能的層級關係，幫你避免「蓋空中樓閣」。</p>
+                        </div>
+                    </div>
+
+                    <div class="resource-item">
+                        <div class="resource-icon">💡</div>
+                        <div class="resource-text">
+                            <strong>與 AI 協作的 Prompt 集</strong>
+                            <p>用 ChatGPT 加速學習 38 項技能的 Prompt——每項都有「什麼要學」、「怎麼練」、「怎麼測試」。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Takeaway -->
+            <section class="collapsible-group">
+                <div class="collapsible-header">
+                    <span>重點整理：為什麼是這 38 項？</span>
+                    <div class="collapsible-icon">+</div>
+                </div>
+                <div class="collapsible-content">
+                    <p><strong>超級共識的來源：</strong></p>
+                    <p>這 38 項是基於 22 個全球權威框架的交叉對比。包括：</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>UNESCO「學會生存」報告</li>
+                        <li>WEF 未來工作報告</li>
+                        <li>MIT EPOCH 框架</li>
+                        <li>哈佛 Project Zero</li>
+                        <li>OECD 學習指標</li>
+                        <li>P21 21 世紀技能框架</li>
+                        <li>新加坡、荷蘭、美國、澳洲等國的教育標準</li>
+                    </ul>
+
+                    <p style="margin-top: 15px;"><strong>為什麼需要層級？</strong></p>
+                    <p>因為「能力有前置條件」。你不可能沒有「積極傾聽」就發展「情感同理」。不可能沒有「情緒調節」就培養「影響說服力」。層級結構確保你按正確的順序成長。</p>
+
+                    <p style="margin-top: 15px;"><strong>為什麼「意義建構」是 #0？</strong></p>
+                    <p>因為它驅動所有其他 37 項。沒有意義感，你就沒有動力去練任何技能。而且，你對「這個技能對我有什麼意義」的理解，決定了你能練到多深。</p>
+                </div>
+            </section>
+
+            <!-- Next Steps -->
+            <section class="next-steps">
+                <h3>下一步：走向行動</h3>
+                <ul>
+                    <li>用自評表給自己打分，找出「最弱」的 5 項</li>
+                    <li>選擇其中最重要的 1 項，開始 30 天練習</li>
+                    <li>進入模組 C（六層金字塔），看清「這 38 項技能如何整合進你的完整成長系統」</li>
+                    <li>建立一個追蹤系統，記錄你的進度。90 天後檢視成果</li>
+                </ul>
+            </section>
+
+        </main>
+
+        <footer>
+            © Kiao · 總校長的 AI 教育寶典 | 掌握未來 30 年必備的聰明學習力 | CH5 超越——打造 AI 無法取代的核心競爭力
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.collapsible-icon');
+                content.classList.toggle('active');
+                icon.textContent = content.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>
